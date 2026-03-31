@@ -1,7 +1,7 @@
-import { inngest } from "../inngest"
-import { prisma } from "../prisma"
-import { sendConnectionRequest, sendInMail } from "../unipile"
-import { logActivity } from "../salesloft"
+import { inngest } from "./client"
+import { prisma } from "@/lib/prisma"
+import { sendConnectionRequest, sendInMail } from "@/lib/unipile"
+import { logActivity } from "@/lib/salesloft"
 
 /**
  * Send LinkedIn messages via Unipile

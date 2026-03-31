@@ -96,3 +96,741 @@ Import trace for requested module:
  PUT /api/inngest 500 in 16ms
  PUT /api/inngest 500 in 13ms
  PUT /api/inngest 500 in 9ms
+ PUT /api/inngest 500 in 9ms
+ PUT /api/inngest 500 in 12ms
+ PUT /api/inngest 500 in 11ms
+ PUT /api/inngest 500 in 22ms
+ PUT /api/inngest 500 in 18ms
+ PUT /api/inngest 500 in 12ms
+ PUT /api/inngest 500 in 23ms
+ PUT /api/inngest 500 in 24ms
+ PUT /api/inngest 500 in 17ms
+ PUT /api/inngest 500 in 20ms
+ PUT /api/inngest 500 in 87ms
+ PUT /api/inngest 500 in 24ms
+ PUT /api/inngest 500 in 10ms
+ PUT /api/inngest 500 in 19ms
+ PUT /api/inngest 500 in 18ms
+ PUT /api/inngest 500 in 15ms
+ PUT /api/inngest 500 in 24ms
+ PUT /api/inngest 500 in 24ms
+ PUT /api/inngest 500 in 11ms
+ PUT /api/inngest 500 in 21ms
+ PUT /api/inngest 500 in 18ms
+ PUT /api/inngest 500 in 13ms
+ PUT /api/inngest 500 in 16ms
+ PUT /api/inngest 500 in 18ms
+ PUT /api/inngest 500 in 11ms
+ PUT /api/inngest 500 in 22ms
+ PUT /api/inngest 500 in 14ms
+ PUT /api/inngest 500 in 15ms
+ PUT /api/inngest 500 in 12ms
+ PUT /api/inngest 500 in 17ms
+ PUT /api/inngest 500 in 12ms
+ PUT /api/inngest 500 in 21ms
+ PUT /api/inngest 500 in 16ms
+ PUT /api/inngest 500 in 13ms
+ PUT /api/inngest 500 in 14ms
+ PUT /api/inngest 500 in 22ms
+ PUT /api/inngest 500 in 12ms
+ PUT /api/inngest 500 in 12ms
+ PUT /api/inngest 500 in 13ms
+ PUT /api/inngest 500 in 16ms
+ PUT /api/inngest 500 in 12ms
+ PUT /api/inngest 500 in 14ms
+ PUT /api/inngest 500 in 14ms
+ PUT /api/inngest 500 in 14ms
+ PUT /api/inngest 500 in 13ms
+ PUT /api/inngest 500 in 19ms
+ PUT /api/inngest 500 in 19ms
+ PUT /api/inngest 500 in 13ms
+ PUT /api/inngest 500 in 12ms
+ PUT /api/inngest 500 in 17ms
+ ⨯ ./lib/inngest/send-messages.ts:1:1
+Module not found: Can't resolve '../inngest'
+[0m[31m[1m>[22m[39m[90m 1 |[39m [36mimport[39m { inngest } [36mfrom[39m [32m"../inngest"[39m[0m
+[0m [90m   |[39m [31m[1m^[22m[39m[0m
+[0m [90m 2 |[39m [36mimport[39m { prisma } [36mfrom[39m [32m"../prisma"[39m[0m
+[0m [90m 3 |[39m [36mimport[39m { sendConnectionRequest[33m,[39m sendInMail } [36mfrom[39m [32m"../unipile"[39m[0m
+[0m [90m 4 |[39m [36mimport[39m { logActivity } [36mfrom[39m [32m"../salesloft"[39m[0m
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./app/api/inngest/route.ts
+ GET /_next/static/webpack/dc63678eff300ca8.webpack.hot-update.json 500 in 267ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ ./lib/inngest/send-messages.ts:1:1
+Module not found: Can't resolve '../inngest'
+[0m[31m[1m>[22m[39m[90m 1 |[39m [36mimport[39m { inngest } [36mfrom[39m [32m"../inngest"[39m[0m
+[0m [90m   |[39m [31m[1m^[22m[39m[0m
+[0m [90m 2 |[39m [36mimport[39m { prisma } [36mfrom[39m [32m"../prisma"[39m[0m
+[0m [90m 3 |[39m [36mimport[39m { sendConnectionRequest[33m,[39m sendInMail } [36mfrom[39m [32m"../unipile"[39m[0m
+[0m [90m 4 |[39m [36mimport[39m { logActivity } [36mfrom[39m [32m"../salesloft"[39m[0m
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./app/api/inngest/route.ts
+ GET / 500 in 63ms
+ PUT /api/inngest 500 in 13ms
+ PUT /api/inngest 500 in 13ms
+ PUT /api/inngest 500 in 15ms
+ PUT /api/inngest 500 in 13ms
+ PUT /api/inngest 500 in 26ms
+ PUT /api/inngest 500 in 17ms
+ PUT /api/inngest 500 in 13ms
+ PUT /api/inngest 500 in 12ms
+ PUT /api/inngest 500 in 9ms
+ PUT /api/inngest 500 in 11ms
+ PUT /api/inngest 500 in 24ms
+ PUT /api/inngest 500 in 19ms
+ PUT /api/inngest 500 in 15ms
+ PUT /api/inngest 500 in 15ms
+ PUT /api/inngest 500 in 76ms
+ PUT /api/inngest 500 in 25ms
+ PUT /api/inngest 500 in 9ms
+ PUT /api/inngest 500 in 20ms
+ PUT /api/inngest 500 in 10ms
+ PUT /api/inngest 500 in 17ms
+ PUT /api/inngest 500 in 12ms
+ PUT /api/inngest 500 in 15ms
+ PUT /api/inngest 500 in 15ms
+ PUT /api/inngest 500 in 11ms
+ PUT /api/inngest 500 in 19ms
+ PUT /api/inngest 500 in 15ms
+ PUT /api/inngest 500 in 15ms
+ PUT /api/inngest 500 in 17ms
+ PUT /api/inngest 500 in 14ms
+ PUT /api/inngest 500 in 19ms
+ PUT /api/inngest 500 in 18ms
+ PUT /api/inngest 500 in 23ms
+ PUT /api/inngest 500 in 12ms
+ PUT /api/inngest 500 in 19ms
+ PUT /api/inngest 500 in 11ms
+ PUT /api/inngest 500 in 12ms
+ PUT /api/inngest 500 in 22ms
+ PUT /api/inngest 500 in 28ms
+ PUT /api/inngest 500 in 20ms
+ PUT /api/inngest 500 in 19ms
+ PUT /api/inngest 500 in 17ms
+ PUT /api/inngest 500 in 13ms
+ PUT /api/inngest 500 in 25ms
+ PUT /api/inngest 500 in 15ms
+ PUT /api/inngest 500 in 20ms
+ PUT /api/inngest 500 in 15ms
+ PUT /api/inngest 500 in 17ms
+ PUT /api/inngest 500 in 20ms
+ PUT /api/inngest 500 in 18ms
+ PUT /api/inngest 500 in 13ms
+ PUT /api/inngest 500 in 23ms
+ PUT /api/inngest 500 in 26ms
+ PUT /api/inngest 500 in 18ms
+ PUT /api/inngest 500 in 18ms
+ PUT /api/inngest 500 in 23ms
+ PUT /api/inngest 500 in 14ms
+ PUT /api/inngest 500 in 15ms
+ PUT /api/inngest 500 in 41ms
+ PUT /api/inngest 500 in 13ms
+ PUT /api/inngest 500 in 18ms
+ PUT /api/inngest 500 in 12ms
+ PUT /api/inngest 500 in 23ms
+ PUT /api/inngest 500 in 14ms
+ PUT /api/inngest 500 in 16ms
+ PUT /api/inngest 500 in 16ms
+ PUT /api/inngest 500 in 21ms
+ PUT /api/inngest 500 in 15ms
+ PUT /api/inngest 500 in 32ms
+ PUT /api/inngest 500 in 18ms
+ PUT /api/inngest 500 in 34ms
+ PUT /api/inngest 500 in 17ms
+ PUT /api/inngest 500 in 16ms
+ PUT /api/inngest 500 in 11ms
+ PUT /api/inngest 500 in 16ms
+ PUT /api/inngest 500 in 10ms
+ PUT /api/inngest 500 in 21ms
+ PUT /api/inngest 500 in 12ms
+ PUT /api/inngest 500 in 34ms
+ PUT /api/inngest 500 in 11ms
+ PUT /api/inngest 500 in 22ms
+ PUT /api/inngest 500 in 13ms
+ PUT /api/inngest 500 in 18ms
+ PUT /api/inngest 500 in 12ms
+ PUT /api/inngest 500 in 20ms
+ PUT /api/inngest 500 in 12ms
+ PUT /api/inngest 500 in 16ms
+ PUT /api/inngest 500 in 13ms
+ PUT /api/inngest 500 in 16ms
+ PUT /api/inngest 500 in 14ms
+ PUT /api/inngest 500 in 10ms
+ PUT /api/inngest 500 in 15ms
+ PUT /api/inngest 500 in 17ms
+ PUT /api/inngest 500 in 13ms
+ PUT /api/inngest 500 in 15ms
+ PUT /api/inngest 500 in 13ms
+ PUT /api/inngest 500 in 18ms
+ PUT /api/inngest 500 in 18ms
+ PUT /api/inngest 500 in 21ms
+ PUT /api/inngest 500 in 13ms
+ PUT /api/inngest 500 in 15ms
+ PUT /api/inngest 500 in 14ms
+ PUT /api/inngest 500 in 19ms
+ PUT /api/inngest 500 in 9ms
+ PUT /api/inngest 500 in 11ms
+ PUT /api/inngest 500 in 10ms
+ PUT /api/inngest 500 in 16ms
+ PUT /api/inngest 500 in 12ms
+ PUT /api/inngest 500 in 19ms
+ PUT /api/inngest 500 in 9ms
+ PUT /api/inngest 500 in 20ms
+ PUT /api/inngest 500 in 16ms
+ PUT /api/inngest 500 in 14ms
+ PUT /api/inngest 500 in 11ms
+ PUT /api/inngest 500 in 13ms
+ PUT /api/inngest 500 in 14ms
+ PUT /api/inngest 500 in 22ms
+ PUT /api/inngest 500 in 13ms
+ PUT /api/inngest 500 in 32ms
+ PUT /api/inngest 500 in 17ms
+ PUT /api/inngest 500 in 12ms
+ PUT /api/inngest 500 in 12ms
+ PUT /api/inngest 500 in 15ms
+ PUT /api/inngest 500 in 21ms
+ PUT /api/inngest 500 in 16ms
+ PUT /api/inngest 500 in 11ms
+ PUT /api/inngest 500 in 12ms
+ PUT /api/inngest 500 in 11ms
+ PUT /api/inngest 500 in 31ms
+ PUT /api/inngest 500 in 26ms
+ PUT /api/inngest 500 in 11ms
+ PUT /api/inngest 500 in 6ms
+ PUT /api/inngest 500 in 7ms
+ ✓ Compiled /_not-found in 543ms (1283 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /_next/static/webpack/dc63678eff300ca8.webpack.hot-update.json 404 in 629ms
+ ✓ Compiled / in 176ms (834 modules)
+ GET / 307 in 238ms
+ ○ Compiling /campaigns ...
+ ✓ Compiled /campaigns in 1635ms (3548 modules)
+ ⨯ app/campaigns/page.tsx (46:49) @ user
+ ⨯ TypeError: Cannot read properties of null (reading 'user')
+    at CampaignsPage (./app/campaigns/page.tsx:65:50)
+digest: "1495819746"
+[0m [90m 44 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mCampaignsPage[39m() {[0m
+[0m [90m 45 |[39m   [36mconst[39m session [33m=[39m [36mawait[39m getServerSession(authOptions)[0m
+[0m[31m[1m>[22m[39m[90m 46 |[39m   [36mconst[39m campaigns [33m=[39m [36mawait[39m getCampaigns(session[33m![39m[33m.[39muser[33m.[39mid)[0m
+[0m [90m    |[39m                                                 [31m[1m^[22m[39m[0m
+[0m [90m 47 |[39m[0m
+[0m [90m 48 |[39m   [36mreturn[39m ([0m
+[0m [90m 49 |[39m     [33m<[39m[33mdiv[39m[33m>[39m[0m
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /_next/static/webpack/dc63678eff300ca8.webpack.hot-update.json 404 in 504ms
+Warning: UNIPILE_API_KEY not set
+ GET /campaigns 307 in 2331ms
+ PUT /api/inngest 200 in 200ms
+ GET / 307 in 24ms
+ ⨯ app/campaigns/page.tsx (46:49) @ user
+ ⨯ TypeError: Cannot read properties of null (reading 'user')
+    at CampaignsPage (./app/campaigns/page.tsx:65:50)
+digest: "296415820"
+[0m [90m 44 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mCampaignsPage[39m() {[0m
+[0m [90m 45 |[39m   [36mconst[39m session [33m=[39m [36mawait[39m getServerSession(authOptions)[0m
+[0m[31m[1m>[22m[39m[90m 46 |[39m   [36mconst[39m campaigns [33m=[39m [36mawait[39m getCampaigns(session[33m![39m[33m.[39muser[33m.[39mid)[0m
+[0m [90m    |[39m                                                 [31m[1m^[22m[39m[0m
+[0m [90m 47 |[39m[0m
+[0m [90m 48 |[39m   [36mreturn[39m ([0m
+[0m [90m 49 |[39m     [33m<[39m[33mdiv[39m[33m>[39m[0m
+ GET /campaigns 307 in 19ms
+ ✓ Compiled /login in 165ms (3556 modules)
+ GET /login 200 in 198ms
+ GET /_next/static/webpack/dc63678eff300ca8.webpack.hot-update.json 404 in 29ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled /api/auth/[...nextauth] in 116ms (2454 modules)
+ GET /api/auth/session 200 in 533ms
+ GET /api/auth/session 200 in 6ms
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 47ms
+ PUT /api/inngest 200 in 29ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 61ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 32ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 33ms
+ PUT /api/inngest 200 in 33ms
+ PUT /api/inngest 200 in 9ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 12ms
+ PUT /api/inngest 200 in 13ms
+
+> ps-campaign-manager@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use, trying 3001 instead.
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3001
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1528ms
+ GET /api/inngest 404 in 4ms
+ PUT /api/inngest 404 in 6ms
+ ○ Compiling /api/inngest ...
+ ✓ Compiled /api/inngest in 717ms (549 modules)
+Warning: UNIPILE_API_KEY not set
+ GET /api/inngest 200 in 857ms
+ ○ Compiling /_not-found ...
+ PUT /api/inngest 200 in 27ms
+ ✓ Compiled /_not-found in 2.2s (1079 modules)
+ GET /.netlify/functions/inngest 404 in 80ms
+ ✓ Compiled in 108ms (1056 modules)
+ GET /.redwood/functions/inngest 404 in 88ms
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 19ms
+ GET /api/auth/providers 404 in 32ms
+ POST /api/auth/_log 404 in 35ms
+ GET /api/auth/error 404 in 28ms
+ GET /api/auth/session 404 in 13ms
+ GET /api/auth/session 404 in 14ms
+ POST /api/auth/_log 404 in 15ms
+ POST /api/auth/_log 404 in 12ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 29ms
+ GET /login 404 in 29ms
+ GET /api/auth/session 404 in 16ms
+ GET /api/auth/session 404 in 14ms
+ POST /api/auth/_log 404 in 16ms
+ POST /api/auth/_log 404 in 12ms
+ PUT /api/inngest 200 in 18ms
+ GET /campaigns 404 in 231ms
+ GET /api/auth/session 404 in 14ms
+ GET /api/auth/session 404 in 15ms
+ POST /api/auth/_log 404 in 15ms
+ POST /api/auth/_log 404 in 12ms
+ PUT /api/inngest 200 in 5ms
+ GET /campaigns 404 in 228ms
+ GET /api/auth/session 404 in 13ms
+ GET /api/auth/session 404 in 11ms
+ POST /api/auth/_log 404 in 12ms
+ POST /api/auth/_log 404 in 11ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 18ms
+ GET / 404 in 228ms
+ GET /api/auth/session 404 in 13ms
+ GET /api/auth/session 404 in 13ms
+ POST /api/auth/_log 404 in 13ms
+ POST /api/auth/_log 404 in 10ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 19ms
+ GET / 404 in 243ms
+ GET /api/auth/session 404 in 10ms
+ GET /api/auth/session 404 in 12ms
+ POST /api/auth/_log 404 in 12ms
+ POST /api/auth/_log 404 in 12ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 12ms
+ GET / 404 in 242ms
+ GET /api/auth/session 404 in 13ms
+ GET /api/auth/session 404 in 16ms
+ POST /api/auth/_log 404 in 13ms
+ GET /api/auth/session 404 in 13ms
+ POST /api/auth/_log 404 in 12ms
+ POST /api/auth/_log 404 in 10ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 17ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 16ms
+ PUT /api/inngest 200 in 37ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 18ms
+ GET / 404 in 247ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 25ms
+ GET /api/auth/session 404 in 20ms
+ GET /api/auth/session 404 in 19ms
+ POST /api/auth/_log 404 in 17ms
+ GET /api/auth/session 404 in 25ms
+ POST /api/auth/_log 404 in 23ms
+ POST /api/auth/_log 404 in 12ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 5ms
+ PUT /api/inngest 200 in 5ms
+ PUT /api/inngest 200 in 10ms
+ PUT /api/inngest 200 in 9ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 404 in 30ms
+ PUT /api/inngest 404 in 12ms
+ PUT /api/inngest 404 in 9ms
+ PUT /api/inngest 404 in 17ms
+ PUT /api/inngest 404 in 10ms
+ PUT /api/inngest 404 in 23ms
+ PUT /api/inngest 404 in 8ms
+ PUT /api/inngest 404 in 40ms
+ PUT /api/inngest 404 in 9ms
+ PUT /api/inngest 404 in 13ms
+ PUT /api/inngest 404 in 15ms
+ PUT /api/inngest 404 in 9ms
+ PUT /api/inngest 404 in 12ms
+ PUT /api/inngest 404 in 13ms
+ PUT /api/inngest 404 in 12ms
+ PUT /api/inngest 404 in 15ms
+ PUT /api/inngest 404 in 13ms
+ PUT /api/inngest 404 in 17ms
+ PUT /api/inngest 404 in 13ms
+ PUT /api/inngest 404 in 22ms
+ PUT /api/inngest 404 in 16ms
+ PUT /api/inngest 404 in 13ms
+ PUT /api/inngest 404 in 11ms
+   Reload env: .env
+   Reload env: .env
+ ✓ Compiled in 174ms (268 modules)
+ ✓ Compiled in 662ms (1942 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /_next/static/webpack/fcc0f97e5f37de6c.webpack.hot-update.json 404 in 356ms
+ PUT /api/inngest 404 in 59ms
+ ✓ Compiled / in 142ms (1950 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /_next/static/webpack/fcc0f97e5f37de6c.webpack.hot-update.json 404 in 191ms
+ GET / 307 in 175ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /_next/static/css/app/layout.css?v=1774973589817 404 in 14ms
+ GET /_next/static/webpack/fcc0f97e5f37de6c.webpack.hot-update.json 404 in 22ms
+ GET / 307 in 33ms
+ ○ Compiling /campaigns ...
+ ✓ Compiled /campaigns in 1108ms (3556 modules)
+ ⨯ app/campaigns/page.tsx (46:49) @ user
+ ⨯ TypeError: Cannot read properties of null (reading 'user')
+    at CampaignsPage (./app/campaigns/page.tsx:65:50)
+digest: "1495819746"
+[0m [90m 44 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mCampaignsPage[39m() {[0m
+[0m [90m 45 |[39m   [36mconst[39m session [33m=[39m [36mawait[39m getServerSession(authOptions)[0m
+[0m[31m[1m>[22m[39m[90m 46 |[39m   [36mconst[39m campaigns [33m=[39m [36mawait[39m getCampaigns(session[33m![39m[33m.[39muser[33m.[39mid)[0m
+[0m [90m    |[39m                                                 [31m[1m^[22m[39m[0m
+[0m [90m 47 |[39m[0m
+[0m [90m 48 |[39m   [36mreturn[39m ([0m
+[0m [90m 49 |[39m     [33m<[39m[33mdiv[39m[33m>[39m[0m
+ GET /_next/static/css/app/layout.css?v=1774973589855 404 in 1189ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /_next/static/webpack/fcc0f97e5f37de6c.webpack.hot-update.json 404 in 170ms
+ GET /campaigns 307 in 1217ms
+ ⨯ app/campaigns/page.tsx (46:49) @ user
+ ⨯ TypeError: Cannot read properties of null (reading 'user')
+    at CampaignsPage (./app/campaigns/page.tsx:65:50)
+digest: "1495819746"
+[0m [90m 44 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mCampaignsPage[39m() {[0m
+[0m [90m 45 |[39m   [36mconst[39m session [33m=[39m [36mawait[39m getServerSession(authOptions)[0m
+[0m[31m[1m>[22m[39m[90m 46 |[39m   [36mconst[39m campaigns [33m=[39m [36mawait[39m getCampaigns(session[33m![39m[33m.[39muser[33m.[39mid)[0m
+[0m [90m    |[39m                                                 [31m[1m^[22m[39m[0m
+[0m [90m 47 |[39m[0m
+[0m [90m 48 |[39m   [36mreturn[39m ([0m
+[0m [90m 49 |[39m     [33m<[39m[33mdiv[39m[33m>[39m[0m
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /campaigns?_rsc=hjftf 200 in 15ms
+ GET /_next/static/webpack/fcc0f97e5f37de6c.webpack.hot-update.json 404 in 14ms
+ ⨯ app/campaigns/page.tsx (46:49) @ user
+ ⨯ TypeError: Cannot read properties of null (reading 'user')
+    at CampaignsPage (./app/campaigns/page.tsx:65:50)
+digest: "296415820"
+[0m [90m 44 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mCampaignsPage[39m() {[0m
+[0m [90m 45 |[39m   [36mconst[39m session [33m=[39m [36mawait[39m getServerSession(authOptions)[0m
+[0m[31m[1m>[22m[39m[90m 46 |[39m   [36mconst[39m campaigns [33m=[39m [36mawait[39m getCampaigns(session[33m![39m[33m.[39muser[33m.[39mid)[0m
+[0m [90m    |[39m                                                 [31m[1m^[22m[39m[0m
+[0m [90m 47 |[39m[0m
+[0m [90m 48 |[39m   [36mreturn[39m ([0m
+[0m [90m 49 |[39m     [33m<[39m[33mdiv[39m[33m>[39m[0m
+ ⨯ app/campaigns/page.tsx (46:49) @ user
+ ⨯ TypeError: Cannot read properties of null (reading 'user')
+    at CampaignsPage (./app/campaigns/page.tsx:65:50)
+digest: "1495819746"
+[0m [90m 44 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mCampaignsPage[39m() {[0m
+[0m [90m 45 |[39m   [36mconst[39m session [33m=[39m [36mawait[39m getServerSession(authOptions)[0m
+[0m[31m[1m>[22m[39m[90m 46 |[39m   [36mconst[39m campaigns [33m=[39m [36mawait[39m getCampaigns(session[33m![39m[33m.[39muser[33m.[39mid)[0m
+[0m [90m    |[39m                                                 [31m[1m^[22m[39m[0m
+[0m [90m 47 |[39m[0m
+[0m [90m 48 |[39m   [36mreturn[39m ([0m
+[0m [90m 49 |[39m     [33m<[39m[33mdiv[39m[33m>[39m[0m
+ GET /campaigns?_rsc=hjftf 200 in 31ms
+ GET /login 200 in 41ms
+ GET /campaigns 307 in 48ms
+ GET /_next/static/css/app/layout.css?v=1774973591084 404 in 13ms
+ GET /_next/static/chunks/main-app.js?v=1774973591084 404 in 19ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 16ms
+ GET /login 200 in 41ms
+ GET /_next/static/chunks/app/login/page.js 404 in 30ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 12ms
+ GET /_next/static/css/app/layout.css?v=1774973591122 404 in 15ms
+ GET /_next/static/chunks/app/layout.js 404 in 17ms
+ GET /_next/static/chunks/main-app.js?v=1774973591122 404 in 17ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 18ms
+ GET /_next/static/chunks/app/login/page.js 404 in 14ms
+ GET /_next/static/chunks/app/layout.js 404 in 10ms
+ PUT /api/inngest 404 in 40ms
+ PUT /api/inngest 404 in 42ms
+ PUT /api/inngest 404 in 37ms
+ PUT /api/inngest 404 in 35ms
+ ✓ Compiled in 126ms (2452 modules)
+ PUT /api/inngest 404 in 52ms
+ PUT /api/inngest 404 in 25ms
+ PUT /api/inngest 404 in 29ms
+ PUT /api/inngest 404 in 13ms
+ PUT /api/inngest 404 in 36ms
+ PUT /api/inngest 404 in 39ms
+ PUT /api/inngest 404 in 23ms
+ PUT /api/inngest 404 in 35ms
+ PUT /api/inngest 404 in 29ms
+ PUT /api/inngest 404 in 29ms
+ PUT /api/inngest 404 in 33ms
+ PUT /api/inngest 404 in 42ms
+ PUT /api/inngest 404 in 30ms
+ PUT /api/inngest 404 in 28ms
+ PUT /api/inngest 404 in 18ms
+ PUT /api/inngest 404 in 24ms
+ PUT /api/inngest 404 in 16ms
+ PUT /api/inngest 404 in 25ms
+ PUT /api/inngest 404 in 25ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/api/inngest/route.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/inngest/route' in /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server for build dependencies doesn't lead to expected result '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/api/inngest/route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/inngest/route' in '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/inngest/route (expected /Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/api/inngest/route.js)
+<w>  at file dependencies /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js
+<w>  at file /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js
+<w>  at file dependencies /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js
+<w>  at file /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js
+<w>  at file /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/webpack/loaders/next-app-loader.js
+<w>  at file /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/webpack/loaders/next-app-loader.js
+<w>  at file dependencies /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js
+<w>  at file /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js
+<w>  at file dependencies /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/webpack/bundle5.js
+<w>  at file /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/webpack/bundle5.js
+<w>  at file dependencies /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/webpack/webpack.js
+<w>  at file /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/webpack/webpack.js
+<w>  at file dependencies /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/webpack/plugins/define-env-plugin.js
+<w>  at file /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/webpack/plugins/define-env-plugin.js
+<w>  at file dependencies /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/webpack-config.js
+<w>  at file /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/webpack-config.js
+<w>  at file dependencies /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js
+<w>  at file /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js
+<w>  at resolve commonjs /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js
+ PUT /api/inngest 404 in 24ms
+
+> ps-campaign-manager@0.1.0 dev
+> next dev
+
+ PUT /api/inngest 404 in 34ms
+ ⚠ Port 3000 is in use, trying 3001 instead.
+ ⚠ Port 3001 is in use, trying 3002 instead.
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3002
+  - Environments: .env.local, .env
+
+ ✓ Starting...
+ ✓ Ready in 1136ms
+ PUT /api/inngest 404 in 4ms
+ PUT /api/inngest 404 in 7ms
+ PUT /api/inngest 404 in 4ms
+ PUT /api/inngest 404 in 8ms
+ PUT /api/inngest 404 in 9ms
+ GET / 404 in 211ms
+ GET / 404 in 209ms
+ GET / 404 in 213ms
+ GET / 404 in 215ms
+ PUT /api/inngest 404 in 9ms
+ GET / 404 in 217ms
+ PUT /api/inngest 404 in 10ms
+ GET / 404 in 214ms
+ GET / 404 in 215ms
+ PUT /api/inngest 404 in 8ms
+ GET / 404 in 210ms
+ GET / 404 in 218ms
+ PUT /api/inngest 404 in 9ms
+ GET / 404 in 218ms
+ GET / 404 in 215ms
+ GET / 404 in 214ms
+ PUT /api/inngest 404 in 7ms
+ GET / 404 in 214ms
+ PUT /api/inngest 404 in 17ms
+ GET / 404 in 216ms
+ GET / 404 in 218ms
+ GET / 404 in 212ms
+ PUT /api/inngest 404 in 22ms
+ GET / 404 in 215ms
+ PUT /api/inngest 404 in 9ms
+ GET / 404 in 215ms
+ GET / 404 in 214ms
+ GET / 404 in 213ms
+ PUT /api/inngest 404 in 9ms
+ GET / 404 in 214ms
+ PUT /api/inngest 404 in 6ms
+ GET / 404 in 214ms
+ GET / 404 in 213ms
+ GET / 404 in 216ms
+ PUT /api/inngest 404 in 13ms
+ GET / 404 in 227ms
+ PUT /api/inngest 404 in 7ms
+ GET / 404 in 211ms
+ GET / 404 in 214ms
+ GET / 404 in 210ms
+ GET / 404 in 213ms
+ PUT /api/inngest 404 in 11ms
+ GET / 404 in 213ms
+ GET / 404 in 214ms
+ PUT /api/inngest 404 in 9ms
+ GET / 404 in 216ms
+ GET / 404 in 225ms
+ PUT /api/inngest 404 in 16ms
+ GET / 404 in 216ms
+ GET / 404 in 217ms
+ PUT /api/inngest 404 in 33ms
+ GET / 404 in 226ms
+ GET / 404 in 217ms
+ GET / 404 in 217ms
+ PUT /api/inngest 404 in 8ms
+ GET / 404 in 216ms
+ PUT /api/inngest 404 in 7ms
+ GET / 404 in 215ms
+ GET / 404 in 214ms
+ GET / 404 in 216ms
+ PUT /api/inngest 404 in 5ms
+ GET / 404 in 210ms
+ PUT /api/inngest 404 in 9ms
+ GET / 404 in 215ms
+ GET / 404 in 210ms
+ GET / 404 in 211ms
+ PUT /api/inngest 404 in 6ms
+ GET / 404 in 213ms
+ PUT /api/inngest 404 in 11ms
+ GET / 404 in 225ms
+ GET /campaigns 404 in 22ms
+ GET /campaigns 404 in 7ms
+ GET /campaigns 404 in 16ms
+ PUT /api/inngest 404 in 15ms
+ GET /campaigns 404 in 8ms
+ GET /campaigns 404 in 4ms
+ PUT /api/inngest 404 in 7ms
+ GET /campaigns 404 in 7ms
+ GET /campaigns 404 in 22ms
+ GET /campaigns 404 in 9ms
+ PUT /api/inngest 404 in 9ms
+ GET /campaigns 404 in 13ms
+ GET /campaigns 404 in 5ms
+ PUT /api/inngest 404 in 211ms
+ GET /campaigns 404 in 7ms
+ GET /campaigns 404 in 19ms
+ PUT /api/inngest 404 in 13ms
+ GET /campaigns 404 in 17ms
+ PUT /api/inngest 404 in 10ms
+ GET /campaigns 404 in 24ms
+ PUT /api/inngest 404 in 13ms
+ GET /campaigns 404 in 26ms
+ PUT /api/inngest 404 in 10ms
+ GET /campaigns 404 in 12ms
+ GET /campaigns 404 in 22ms
+ PUT /api/inngest 404 in 9ms
+ GET /campaigns 404 in 13ms
+ PUT /api/inngest 404 in 7ms
+ GET /campaigns 404 in 10ms
+ PUT /api/inngest 404 in 9ms
+ GET /campaigns 404 in 13ms
+ PUT /api/inngest 404 in 12ms
+ GET /campaigns 404 in 15ms
+ GET /campaigns 404 in 15ms
+ PUT /api/inngest 404 in 8ms
+ GET /campaigns 404 in 36ms
+ PUT /api/inngest 404 in 24ms
+ GET /campaigns 404 in 8ms
+ PUT /api/inngest 404 in 13ms
+ GET /campaigns 404 in 12ms
+ PUT /api/inngest 404 in 5ms
+ GET /campaigns 404 in 11ms
+ GET /campaigns 404 in 11ms
+ PUT /api/inngest 404 in 6ms
+ GET /campaigns 404 in 12ms
+ PUT /api/inngest 404 in 10ms
+ GET /campaigns 404 in 10ms
+ PUT /api/inngest 404 in 10ms
+ GET /campaigns 404 in 13ms
+ PUT /api/inngest 404 in 6ms
+ GET /campaigns 404 in 6ms
+ GET /campaigns 404 in 10ms
+ PUT /api/inngest 404 in 11ms
+ GET /campaigns 404 in 5ms
+ PUT /api/inngest 404 in 13ms
+ GET /campaigns 404 in 16ms
+ PUT /api/inngest 404 in 10ms
+ GET /campaigns 404 in 21ms
+ PUT /api/inngest 404 in 14ms
+ GET /campaigns 404 in 21ms
+ GET /campaigns 404 in 24ms
+ PUT /api/inngest 404 in 8ms
+ GET /campaigns 404 in 12ms
+ PUT /api/inngest 404 in 15ms
+ GET /campaigns 404 in 9ms
+ PUT /api/inngest 404 in 8ms
+ GET /campaigns 404 in 17ms
+ PUT /api/inngest 404 in 23ms
+ GET /campaigns 404 in 47ms
+ GET /campaigns 404 in 11ms
+ PUT /api/inngest 404 in 9ms
+ GET /campaigns 404 in 13ms
+ PUT /api/inngest 404 in 15ms
+ GET /campaigns 404 in 4ms
+ PUT /api/inngest 404 in 8ms
+ GET /campaigns 404 in 24ms
+ PUT /api/inngest 404 in 12ms
+ GET /campaigns 404 in 12ms
+ GET /campaigns 404 in 17ms
+ PUT /api/inngest 404 in 9ms
+
+> ps-campaign-manager@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use, trying 3001 instead.
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3001
+  - Environments: .env.local, .env
+
+ ✓ Starting...
+ ✓ Ready in 1228ms
+[?25h
