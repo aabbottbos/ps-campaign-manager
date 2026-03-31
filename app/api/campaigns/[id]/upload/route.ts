@@ -93,7 +93,7 @@ export async function POST(
       `campaigns/${campaignId}/${file.name}`,
       buffer,
       {
-        access: "public",
+        access: "private",
         addRandomSuffix: true,
       }
     )

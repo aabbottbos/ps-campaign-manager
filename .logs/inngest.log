@@ -75,3 +75,117 @@ npm warn exec The following package was not found and will be installed: inngest
 {"time":"2026-03-31T16:47:59.428144Z","level":"INFO","msg":"starting connect gateway grpc server","caller":"connect-gateway","addr":":50052"}
 {"time":"2026-03-31T16:47:59.432949Z","level":"INFO","msg":"subscribing to events","topic":"events"}
 {"time":"2026-03-31T16:48:08.219167Z","level":"INFO","msg":"apps synced, disabling auto-discovery"}
+{"time":"2026-03-31T17:42:59.427266Z","level":"INFO","msg":"Port conflict, using new port","name":"dev server api","from":8288,"to":8290}
+{"time":"2026-03-31T17:42:59.427422Z","level":"INFO","msg":"Port conflict, using new port","name":"connect gateway","from":8289,"to":8291}
+{"time":"2026-03-31T17:42:59.427435Z","level":"INFO","msg":"Port conflict, using new port","name":"connect gateway grpc","from":50052,"to":50054}
+{"time":"2026-03-31T17:42:59.42744Z","level":"INFO","msg":"Port conflict, using new port","name":"connect executor grpc","from":50053,"to":50055}
+{"time":"2026-03-31T17:42:59.442053Z","level":"INFO","msg":"starting executor grpc server","svc":"executor","addr":":50055"}
+{"time":"2026-03-31T17:42:59.445009Z","level":"INFO","msg":"service starting","caller":"executor","service":"executor"}
+{"time":"2026-03-31T17:42:59.44503Z","level":"INFO","msg":"subscribing to function queue"}
+{"time":"2026-03-31T17:42:59.445032Z","level":"INFO","msg":"autodiscovering locally hosted SDKs"}
+{"time":"2026-03-31T17:42:59.445041Z","level":"INFO","msg":"Executor started in assignedQueueShard Mode","queue_shard":"default"}
+{"time":"2026-03-31T17:42:59.445029Z","level":"INFO","msg":"service starting","caller":"api","service":"api"}
+{"time":"2026-03-31T17:42:59.445106Z","level":"INFO","msg":"starting server","caller":"api","addr":"0.0.0.0:8290"}
+{"time":"2026-03-31T17:42:59.44513Z","level":"INFO","msg":"starting event stream","backend":"redis"}
+{"time":"2026-03-31T17:42:59.445141Z","level":"INFO","msg":"service starting","caller":"runner","service":"runner"}
+{"time":"2026-03-31T17:42:59.445199Z","level":"INFO","msg":"service starting","caller":"connect-gateway","service":"connect-gateway"}
+{"time":"2026-03-31T17:42:59.445252Z","level":"INFO","msg":"starting connect gateway grpc server","caller":"connect-gateway","addr":":50054"}
+{"time":"2026-03-31T17:42:59.445076Z","level":"INFO","msg":"service starting","caller":"devserver","service":"devserver"}
+{"time":"2026-03-31T17:42:59.447403Z","level":"INFO","msg":"subscribing to events","topic":"events"}
+{"time":"2026-03-31T17:43:07.558289Z","level":"INFO","msg":"apps synced, disabling auto-discovery"}
+{"time":"2026-03-31T17:46:40.085896Z","level":"INFO","msg":"waiting for service run to finish","caller":"connect-gateway","service":"connect-gateway"}
+{"time":"2026-03-31T17:46:44.426416Z","level":"INFO","msg":"starting executor grpc server","svc":"executor","addr":":50053"}
+{"time":"2026-03-31T17:46:44.427037Z","level":"INFO","msg":"service starting","caller":"executor","service":"executor"}
+{"time":"2026-03-31T17:46:44.427062Z","level":"INFO","msg":"subscribing to function queue"}
+{"time":"2026-03-31T17:46:44.427074Z","level":"INFO","msg":"Executor started in assignedQueueShard Mode","queue_shard":"default"}
+{"time":"2026-03-31T17:46:44.427074Z","level":"INFO","msg":"starting event stream","backend":"redis"}
+{"time":"2026-03-31T17:46:44.427101Z","level":"INFO","msg":"autodiscovering locally hosted SDKs"}
+{"time":"2026-03-31T17:46:44.42709Z","level":"INFO","msg":"service starting","caller":"devserver","service":"devserver"}
+{"time":"2026-03-31T17:46:44.42739Z","level":"INFO","msg":"service starting","caller":"api","service":"api"}
+{"time":"2026-03-31T17:46:44.427403Z","level":"INFO","msg":"starting server","caller":"api","addr":"0.0.0.0:8288"}
+{"time":"2026-03-31T17:46:44.427455Z","level":"INFO","msg":"service starting","caller":"connect-gateway","service":"connect-gateway"}
+{"time":"2026-03-31T17:46:44.427512Z","level":"INFO","msg":"starting connect gateway grpc server","caller":"connect-gateway","addr":":50052"}
+{"time":"2026-03-31T17:46:44.42712Z","level":"INFO","msg":"service starting","caller":"runner","service":"runner"}
+{"time":"2026-03-31T17:46:44.428743Z","level":"INFO","msg":"subscribing to events","topic":"events"}
+{"time":"2026-03-31T17:46:52.988986Z","level":"INFO","msg":"apps synced, disabling auto-discovery"}
+{"time":"2026-03-31T17:51:13.110743Z","level":"INFO","msg":"waiting for service run to finish","caller":"api","service":"api"}
+{"time":"2026-03-31T17:51:16.773189Z","level":"INFO","msg":"starting executor grpc server","svc":"executor","addr":":50053"}
+{"time":"2026-03-31T17:51:16.777464Z","level":"INFO","msg":"service starting","caller":"devserver","service":"devserver"}
+{"time":"2026-03-31T17:51:16.777468Z","level":"INFO","msg":"autodiscovering locally hosted SDKs"}
+{"time":"2026-03-31T17:51:16.777511Z","level":"INFO","msg":"service starting","caller":"executor","service":"executor"}
+{"time":"2026-03-31T17:51:16.777527Z","level":"INFO","msg":"subscribing to function queue"}
+{"time":"2026-03-31T17:51:16.777538Z","level":"INFO","msg":"Executor started in assignedQueueShard Mode","queue_shard":"default"}
+{"time":"2026-03-31T17:51:16.777543Z","level":"INFO","msg":"service starting","caller":"api","service":"api"}
+{"time":"2026-03-31T17:51:16.777561Z","level":"INFO","msg":"starting server","caller":"api","addr":"0.0.0.0:8288"}
+{"time":"2026-03-31T17:51:16.777608Z","level":"INFO","msg":"starting event stream","backend":"redis"}
+{"time":"2026-03-31T17:51:16.777627Z","level":"INFO","msg":"service starting","caller":"runner","service":"runner"}
+{"time":"2026-03-31T17:51:16.777755Z","level":"INFO","msg":"service starting","caller":"connect-gateway","service":"connect-gateway"}
+{"time":"2026-03-31T17:51:16.777808Z","level":"INFO","msg":"starting connect gateway grpc server","caller":"connect-gateway","addr":":50052"}
+{"time":"2026-03-31T17:51:16.7797Z","level":"INFO","msg":"subscribing to events","topic":"events"}
+{"time":"2026-03-31T17:51:25.965657Z","level":"INFO","msg":"apps synced, disabling auto-discovery"}
+{"time":"2026-03-31T17:56:49.446256Z","level":"INFO","msg":"Port conflict, using new port","name":"dev server api","from":8288,"to":8292}
+{"time":"2026-03-31T17:56:49.446443Z","level":"INFO","msg":"Port conflict, using new port","name":"connect gateway","from":8289,"to":8293}
+{"time":"2026-03-31T17:56:49.446451Z","level":"INFO","msg":"Port conflict, using new port","name":"connect gateway grpc","from":50052,"to":50056}
+{"time":"2026-03-31T17:56:49.446456Z","level":"INFO","msg":"Port conflict, using new port","name":"connect executor grpc","from":50053,"to":50057}
+{"time":"2026-03-31T17:56:49.460606Z","level":"INFO","msg":"starting executor grpc server","svc":"executor","addr":":50057"}
+{"time":"2026-03-31T17:56:49.464467Z","level":"INFO","msg":"service starting","caller":"executor","service":"executor"}
+{"time":"2026-03-31T17:56:49.464491Z","level":"INFO","msg":"autodiscovering locally hosted SDKs"}
+{"time":"2026-03-31T17:56:49.464498Z","level":"INFO","msg":"subscribing to function queue"}
+{"time":"2026-03-31T17:56:49.464558Z","level":"INFO","msg":"service starting","caller":"api","service":"api"}
+{"time":"2026-03-31T17:56:49.464571Z","level":"INFO","msg":"starting server","caller":"api","addr":"0.0.0.0:8292"}
+{"time":"2026-03-31T17:56:49.464479Z","level":"INFO","msg":"service starting","caller":"devserver","service":"devserver"}
+{"time":"2026-03-31T17:56:49.464565Z","level":"INFO","msg":"Executor started in assignedQueueShard Mode","queue_shard":"default"}
+{"time":"2026-03-31T17:56:49.464633Z","level":"INFO","msg":"service starting","caller":"connect-gateway","service":"connect-gateway"}
+{"time":"2026-03-31T17:56:49.464599Z","level":"INFO","msg":"starting event stream","backend":"redis"}
+{"time":"2026-03-31T17:56:49.464654Z","level":"INFO","msg":"service starting","caller":"runner","service":"runner"}
+{"time":"2026-03-31T17:56:49.464826Z","level":"INFO","msg":"starting connect gateway grpc server","caller":"connect-gateway","addr":":50056"}
+{"time":"2026-03-31T17:56:49.467026Z","level":"INFO","msg":"subscribing to events","topic":"events"}
+{"time":"2026-03-31T17:56:57.3128Z","level":"INFO","msg":"apps synced, disabling auto-discovery"}
+./start.sh: line 42: 64627 Killed: 9               npx inngest-cli@latest dev -u http://localhost:3000/api/inngest
+{"time":"2026-03-31T18:27:40.716061Z","level":"INFO","msg":"starting executor grpc server","svc":"executor","addr":":50053"}
+{"time":"2026-03-31T18:27:40.721764Z","level":"INFO","msg":"service starting","caller":"executor","service":"executor"}
+{"time":"2026-03-31T18:27:40.721764Z","level":"INFO","msg":"service starting","caller":"devserver","service":"devserver"}
+{"time":"2026-03-31T18:27:40.721816Z","level":"INFO","msg":"subscribing to function queue"}
+{"time":"2026-03-31T18:27:40.721832Z","level":"INFO","msg":"starting event stream","backend":"redis"}
+{"time":"2026-03-31T18:27:40.72186Z","level":"INFO","msg":"service starting","caller":"runner","service":"runner"}
+{"time":"2026-03-31T18:27:40.721875Z","level":"INFO","msg":"Executor started in assignedQueueShard Mode","queue_shard":"default"}
+{"time":"2026-03-31T18:27:40.721942Z","level":"INFO","msg":"autodiscovering locally hosted SDKs"}
+{"time":"2026-03-31T18:27:40.722002Z","level":"INFO","msg":"service starting","caller":"api","service":"api"}
+{"time":"2026-03-31T18:27:40.722013Z","level":"INFO","msg":"starting server","caller":"api","addr":"0.0.0.0:8288"}
+{"time":"2026-03-31T18:27:40.722991Z","level":"INFO","msg":"service starting","caller":"connect-gateway","service":"connect-gateway"}
+{"time":"2026-03-31T18:27:40.723127Z","level":"INFO","msg":"starting connect gateway grpc server","caller":"connect-gateway","addr":":50052"}
+{"time":"2026-03-31T18:27:40.728222Z","level":"INFO","msg":"subscribing to events","topic":"events"}
+{"time":"2026-03-31T18:27:47.982781Z","level":"INFO","msg":"apps synced, disabling auto-discovery"}
+{"time":"2026-03-31T19:08:02.50402Z","level":"INFO","msg":"Port conflict, using new port","name":"dev server api","from":8288,"to":8290}
+{"time":"2026-03-31T19:08:02.50417Z","level":"INFO","msg":"Port conflict, using new port","name":"connect gateway","from":8289,"to":8291}
+{"time":"2026-03-31T19:08:02.504183Z","level":"INFO","msg":"Port conflict, using new port","name":"connect gateway grpc","from":50052,"to":50054}
+{"time":"2026-03-31T19:08:02.504189Z","level":"INFO","msg":"Port conflict, using new port","name":"connect executor grpc","from":50053,"to":50055}
+{"time":"2026-03-31T19:08:02.518086Z","level":"INFO","msg":"starting executor grpc server","svc":"executor","addr":":50055"}
+{"time":"2026-03-31T19:08:02.523836Z","level":"INFO","msg":"service starting","caller":"executor","service":"executor"}
+{"time":"2026-03-31T19:08:02.523846Z","level":"INFO","msg":"service starting","caller":"devserver","service":"devserver"}
+{"time":"2026-03-31T19:08:02.523866Z","level":"INFO","msg":"autodiscovering locally hosted SDKs"}
+{"time":"2026-03-31T19:08:02.523858Z","level":"INFO","msg":"subscribing to function queue"}
+{"time":"2026-03-31T19:08:02.523899Z","level":"INFO","msg":"Executor started in assignedQueueShard Mode","queue_shard":"default"}
+{"time":"2026-03-31T19:08:02.523868Z","level":"INFO","msg":"service starting","caller":"api","service":"api"}
+{"time":"2026-03-31T19:08:02.523917Z","level":"INFO","msg":"starting server","caller":"api","addr":"0.0.0.0:8290"}
+{"time":"2026-03-31T19:08:02.52399Z","level":"INFO","msg":"service starting","caller":"connect-gateway","service":"connect-gateway"}
+{"time":"2026-03-31T19:08:02.524013Z","level":"INFO","msg":"starting event stream","backend":"redis"}
+{"time":"2026-03-31T19:08:02.524026Z","level":"INFO","msg":"service starting","caller":"runner","service":"runner"}
+{"time":"2026-03-31T19:08:02.524602Z","level":"INFO","msg":"starting connect gateway grpc server","caller":"connect-gateway","addr":":50054"}
+{"time":"2026-03-31T19:08:02.526654Z","level":"INFO","msg":"subscribing to events","topic":"events"}
+{"time":"2026-03-31T19:08:10.462703Z","level":"INFO","msg":"apps synced, disabling auto-discovery"}
+{"time":"2026-03-31T19:11:20.731571Z","level":"INFO","msg":"waiting for service run to finish","caller":"connect-gateway","service":"connect-gateway"}
+{"time":"2026-03-31T19:11:24.2201Z","level":"INFO","msg":"starting executor grpc server","svc":"executor","addr":":50053"}
+{"time":"2026-03-31T19:11:24.221027Z","level":"INFO","msg":"starting event stream","backend":"redis"}
+{"time":"2026-03-31T19:11:24.221053Z","level":"INFO","msg":"service starting","caller":"runner","service":"runner"}
+{"time":"2026-03-31T19:11:24.221063Z","level":"INFO","msg":"autodiscovering locally hosted SDKs"}
+{"time":"2026-03-31T19:11:24.221066Z","level":"INFO","msg":"service starting","caller":"api","service":"api"}
+{"time":"2026-03-31T19:11:24.221085Z","level":"INFO","msg":"starting server","caller":"api","addr":"0.0.0.0:8288"}
+{"time":"2026-03-31T19:11:24.221055Z","level":"INFO","msg":"service starting","caller":"devserver","service":"devserver"}
+{"time":"2026-03-31T19:11:24.221043Z","level":"INFO","msg":"service starting","caller":"executor","service":"executor"}
+{"time":"2026-03-31T19:11:24.221112Z","level":"INFO","msg":"subscribing to function queue"}
+{"time":"2026-03-31T19:11:24.221122Z","level":"INFO","msg":"Executor started in assignedQueueShard Mode","queue_shard":"default"}
+{"time":"2026-03-31T19:11:24.221278Z","level":"INFO","msg":"service starting","caller":"connect-gateway","service":"connect-gateway"}
+{"time":"2026-03-31T19:11:24.22132Z","level":"INFO","msg":"starting connect gateway grpc server","caller":"connect-gateway","addr":":50052"}
+{"time":"2026-03-31T19:11:24.222519Z","level":"INFO","msg":"subscribing to events","topic":"events"}
+{"time":"2026-03-31T19:11:32.109306Z","level":"INFO","msg":"apps synced, disabling auto-discovery"}

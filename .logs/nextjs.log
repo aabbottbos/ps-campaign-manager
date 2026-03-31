@@ -1145,3 +1145,1546 @@ Warning: UNIPILE_API_KEY not set
  PUT /api/inngest 200 in 8ms
  PUT /api/inngest 200 in 17ms
  PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 10ms
+ PUT /api/inngest 200 in 11ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 12ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 12ms
+ PUT /api/inngest 200 in 18ms
+
+> ps-campaign-manager@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3000
+  - Environments: .env.local, .env
+
+ ✓ Starting...
+ ✓ Ready in 1049ms
+ ✓ Compiled /_error in 172ms (1282 modules)
+ PUT /api/inngest 404 in 180ms
+ ○ Compiling /api/inngest ...
+ ✓ Compiled /api/inngest in 716ms (549 modules)
+Warning: UNIPILE_API_KEY not set
+ GET /api/inngest 200 in 1269ms
+ PUT /api/inngest 200 in 1291ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1523ms (1079 modules)
+ GET /x/inngest 404 in 1574ms
+ ✓ Compiled in 103ms (1056 modules)
+ GET /.netlify/functions/inngest 404 in 88ms
+ GET /.redwood/functions/inngest 404 in 9ms
+Warning: UNIPILE_API_KEY not set
+ GET /api/inngest 200 in 87ms
+ GET /x/inngest 404 in 35ms
+ GET /.netlify/functions/inngest 404 in 9ms
+ GET /.redwood/functions/inngest 404 in 9ms
+ PUT /api/inngest 200 in 8ms
+ PUT /api/inngest 200 in 5ms
+ ✓ Compiled /login in 297ms (1078 modules)
+ GET /login 200 in 325ms
+ ✓ Compiled /api/auth/[...nextauth] in 299ms (1107 modules)
+ GET /api/auth/session 200 in 537ms
+ GET /api/auth/session 200 in 4ms
+ GET /api/auth/providers 200 in 15ms
+ GET /api/auth/csrf 200 in 8ms
+(node:63487) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ POST /api/auth/signin/google 200 in 112ms
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 46ms
+ PUT /api/inngest 200 in 16ms
+ GET /api/auth/callback/google?state=kPmBQqXEKZSnjdv_9jNnOhKSYUueoLakAsNEYXU6H-k&iss=https%3A%2F%2Faccounts.google.com&code=4%2F0Aci98E_XD_fOLrH2fZtOQ1n0A3TDMb3xHAXH3qb6lHu0G33ZuJ1Gz-ndPyKxptzWf7z66g&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&hd=productschool.com&prompt=consent 302 in 1457ms
+ ○ Compiling /campaigns ...
+ ✓ Compiled /campaigns in 906ms (3328 modules)
+ GET /campaigns 200 in 1035ms
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 46ms
+ GET /api/auth/session 200 in 5ms
+ GET /api/auth/session 200 in 3ms
+ PUT /api/inngest 200 in 18ms
+ ✓ Compiled /campaigns/[id] in 206ms (3331 modules)
+ GET /campaigns/cmneu34yd0004rnm1it9avb0o?_rsc=1in2r 200 in 81ms
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 47ms
+ ✓ Compiled /campaigns/[id]/upload in 173ms (3339 modules)
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 37ms
+ PUT /api/inngest 200 in 13ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 38ms
+ PUT /api/inngest 200 in 9ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 21ms
+ ○ Compiling /api/campaigns/[id]/upload ...
+ ✓ Compiled /api/campaigns/[id]/upload in 606ms (2568 modules)
+Error uploading file: BlobError: Vercel Blob: Cannot use public access on a private store. The store is configured with private access.
+    at getBlobError (webpack-internal:///(rsc)/./node_modules/@vercel/blob/dist/chunk-QRRHJ574.js:170:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async eval (webpack-internal:///(rsc)/./node_modules/@vercel/blob/dist/chunk-QRRHJ574.js:218:31)
+    at async requestApi (webpack-internal:///(rsc)/./node_modules/@vercel/blob/dist/chunk-QRRHJ574.js:193:23)
+    at async put (webpack-internal:///(rsc)/./node_modules/@vercel/blob/dist/chunk-QRRHJ574.js:768:22)
+    at async POST (webpack-internal:///(rsc)/./app/api/campaigns/[id]/upload/route.ts:104:22)
+    at async /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:1576:40)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/start-server.js:141:13)
+ POST /api/campaigns/cmneu34yd0004rnm1it9avb0o/upload 500 in 1349ms
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 46ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 4ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 13ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 38ms
+ PUT /api/inngest 200 in 10ms
+ PUT /api/inngest 200 in 13ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 13ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 13ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 13ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 8ms
+ PUT /api/inngest 200 in 12ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 7ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 13ms
+ PUT /api/inngest 200 in 13ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 13ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 13ms
+ PUT /api/inngest 200 in 12ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 9ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 12ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 12ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 6ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 10ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 20ms
+ GET /api/auth/session 200 in 14ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 18ms
+ ✓ Compiled in 510ms (3329 modules)
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 229ms
+ GET /campaigns/cmneu34yd0004rnm1it9avb0o/upload?_rsc=i16ap 200 in 156ms
+ ✓ Compiled in 714ms (501 modules)
+ ⨯ Failed to generate static paths for /campaigns/[id]/upload:
+Error [PageNotFoundError]: Cannot find module for page: /campaigns/[id]/upload/page
+    at getPagePath (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js:94:15)
+    at requirePage (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js:99:22)
+    at /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js:103:84
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async loadComponentsImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js:103:26)
+    at async Object.loadStaticPaths (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/static-paths-worker.js:23:24) {
+  type: 'PageNotFoundError',
+  code: 'ENOENT'
+}
+ ✓ Compiled /_not-found in 124ms (3332 modules)
+ PUT /api/inngest 404 in 172ms
+
+> ps-campaign-manager@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use, trying 3001 instead.
+ ⚠ Port 3001 is in use, trying 3002 instead.
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3002
+  - Environments: .env.local, .env
+
+ ✓ Starting...
+ ✓ Ready in 1087ms
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 676ms (3558 modules)
+ ✓ Compiled in 0ms (2452 modules)
+ PUT /api/inngest 404 in 810ms
+ ✓ Compiled in 0ms (2452 modules)
+ ✓ Compiled in 0ms (2452 modules)
+ GET /api/inngest 404 in 371ms
+ PUT /api/inngest 404 in 373ms
+ GET /x/inngest 404 in 9ms
+ GET /.netlify/functions/inngest 404 in 7ms
+ GET /.redwood/functions/inngest 404 in 9ms
+ ⨯ Error: Cannot find module './vendor-chunks/@opentelemetry.js'
+Require stack:
+- /Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js
+- /Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/campaigns/[id]/upload/page.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/static-paths-worker.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/jest-worker/processChild.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1475:15)
+    at /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:55:36
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1048:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1072:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1093:12)
+    at Module._load (node:internal/modules/cjs/loader:1261:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at mod.require (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:191:16) {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/campaigns/[id]/upload/page.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/static-paths-worker.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/jest-worker/processChild.js'
+  ],
+  page: '/campaigns/cmneu34yd0004rnm1it9avb0o/upload'
+}
+ ⨯ Error: Cannot find module './vendor-chunks/@opentelemetry.js'
+Require stack:
+- /Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js
+- /Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/campaigns/[id]/upload/page.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/static-paths-worker.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/jest-worker/processChild.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1475:15)
+    at /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:55:36
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1048:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1072:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1093:12)
+    at Module._load (node:internal/modules/cjs/loader:1261:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at mod.require (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:191:16) {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/campaigns/[id]/upload/page.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/static-paths-worker.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/jest-worker/processChild.js'
+  ],
+  page: '/campaigns/cmneu34yd0004rnm1it9avb0o/upload'
+}
+ ⨯ Error: Cannot find module './vendor-chunks/@opentelemetry.js'
+Require stack:
+- /Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js
+- /Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/campaigns/[id]/upload/page.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/static-paths-worker.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/jest-worker/processChild.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1475:15)
+    at /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:55:36
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1048:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1072:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1093:12)
+    at Module._load (node:internal/modules/cjs/loader:1261:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at mod.require (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:191:16) {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/campaigns/[id]/upload/page.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/static-paths-worker.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/jest-worker/processChild.js'
+  ],
+  page: '/campaigns/cmneu34yd0004rnm1it9avb0o/upload'
+}
+ GET /campaigns/cmneu34yd0004rnm1it9avb0o/upload 500 in 187ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 26ms
+ ○ Compiling /api/inngest ...
+ ✓ Compiled /api/inngest in 941ms (549 modules)
+Warning: UNIPILE_API_KEY not set
+ GET /api/inngest 200 in 1105ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1535ms (1079 modules)
+ GET /x/inngest 404 in 1584ms
+ ✓ Compiled in 115ms (1056 modules)
+ GET /.netlify/functions/inngest 404 in 96ms
+ GET /.redwood/functions/inngest 404 in 10ms
+ ✓ Compiled /api/inngest in 69ms (588 modules)
+Warning: UNIPILE_API_KEY not set
+ GET /api/inngest 200 in 169ms
+ ✓ Compiled /_not-found in 97ms (1280 modules)
+ GET /x/inngest 404 in 146ms
+ GET /.netlify/functions/inngest 404 in 8ms
+ GET /.redwood/functions/inngest 404 in 8ms
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 24ms
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 18ms
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 39ms
+ ✓ Compiled / in 498ms (3562 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET / 307 in 536ms
+ GET /campaigns 200 in 85ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 19ms
+ GET /_next/static/chunks/app/campaigns/page.js 404 in 15ms
+ GET /_next/static/chunks/app/campaigns/layout.js 404 in 16ms
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 59ms
+ PUT /api/inngest 200 in 15ms
+ ○ Compiling /campaigns/new ...
+ ✓ Compiled /campaigns/new in 881ms (3737 modules)
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 33ms
+ GET /campaigns/new 200 in 939ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 20ms
+ GET /_next/static/chunks/app/campaigns/layout.js 404 in 28ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 33ms
+ PUT /api/inngest 200 in 15ms
+ GET /campaigns/new? 200 in 36ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 21ms
+ GET /_next/static/chunks/app/campaigns/layout.js 404 in 34ms
+ PUT /api/inngest 200 in 31ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 17ms
+ GET /campaigns/new? 200 in 36ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 19ms
+ GET /_next/static/chunks/app/campaigns/layout.js 404 in 13ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 30ms
+ GET /campaigns 200 in 103ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 23ms
+ GET /_next/static/chunks/app/campaigns/page.js 404 in 15ms
+ GET /_next/static/chunks/app/campaigns/layout.js 404 in 16ms
+ ✓ Compiled /campaigns/[id] in 162ms (2541 modules)
+ GET /campaigns/cmneu34yd0004rnm1it9avb0o 200 in 250ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 71ms
+ GET /_next/static/chunks/app/campaigns/layout.js 404 in 20ms
+ GET /_next/static/chunks/app/campaigns/%5Bid%5D/page.js 404 in 17ms
+ ⨯ Failed to generate static paths for /campaigns/[id]:
+Error: Cannot find module './vendor-chunks/openid-client.js'
+Require stack:
+- /Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js
+- /Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/campaigns/[id]/page.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/static-paths-worker.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/jest-worker/processChild.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1475:15)
+    at /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:55:36
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1048:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1072:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1093:12)
+    at Module._load (node:internal/modules/cjs/loader:1261:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at mod.require (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:191:16) {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/campaigns/[id]/page.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/static-paths-worker.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/jest-worker/processChild.js'
+  ]
+}
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 45ms
+ PUT /api/inngest 200 in 5ms
+ ⨯ Error: Cannot find module './vendor-chunks/openid-client.js'
+Require stack:
+- /Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js
+- /Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/campaigns/[id]/upload/page.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/static-paths-worker.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/jest-worker/processChild.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1475:15)
+    at /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:55:36
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1048:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1072:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1093:12)
+    at Module._load (node:internal/modules/cjs/loader:1261:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at mod.require (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:191:16) {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/campaigns/[id]/upload/page.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/static-paths-worker.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/jest-worker/processChild.js'
+  ],
+  page: '/campaigns/cmneu34yd0004rnm1it9avb0o/upload'
+}
+ GET /campaigns/cmneu34yd0004rnm1it9avb0o/upload 500 in 190ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 15ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 13ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 9ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 4ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 17ms
+[?25h
+[?25h
+[?25h
+
+> ps-campaign-manager@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use, trying 3001 instead.
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3001
+  - Environments: .env.local, .env
+
+ ✓ Starting...
+ ✓ Ready in 927ms
+ ○ Compiling /api/inngest ...
+ ✓ Compiled /api/inngest in 721ms (549 modules)
+Warning: UNIPILE_API_KEY not set
+ GET /api/inngest 200 in 876ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1182ms (1079 modules)
+ GET /x/inngest 404 in 1230ms
+ ✓ Compiled in 108ms (1056 modules)
+ GET /.netlify/functions/inngest 404 in 90ms
+ GET /.redwood/functions/inngest 404 in 9ms
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 18ms
+ ✓ Compiled in 160ms (282 modules)
+
+> ps-campaign-manager@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use, trying 3001 instead.
+ ⚠ Port 3001 is in use, trying 3002 instead.
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3002
+  - Environments: .env.local, .env
+
+ ✓ Starting...
+ ✓ Ready in 1107ms
+ ○ Compiling /api/inngest ...
+ ✓ Compiled /api/inngest in 798ms (549 modules)
+Warning: UNIPILE_API_KEY not set
+ GET /api/inngest 200 in 939ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1259ms (1079 modules)
+ GET /x/inngest 404 in 1310ms
+ ✓ Compiled in 104ms (1056 modules)
+ GET /.netlify/functions/inngest 404 in 87ms
+ GET /.redwood/functions/inngest 404 in 9ms
+ GET /api/inngest 200 in 17ms
+ ✓ Compiled /_not-found in 369ms (1056 modules)
+ GET /x/inngest 404 in 413ms
+ GET /.netlify/functions/inngest 404 in 9ms
+ GET /.redwood/functions/inngest 404 in 9ms
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 20ms
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 83ms
+ PUT /api/inngest 200 in 21ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/andrewabbott/Development/ps-campaign-manager/.next/cache/webpack/client-development/1.pack.gz_' -> '/Users/andrewabbott/Development/ps-campaign-manager/.next/cache/webpack/client-development/1.pack.gz'
+./start.sh: line 42: 64603 Killed: 9               npm run dev
+ ✓ Compiled in 824ms (282 modules)
+ ✓ Compiled in 826ms (282 modules)
+
+> ps-campaign-manager@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3000
+  - Environments: .env.local, .env
+
+ ✓ Starting...
+ ✓ Ready in 1168ms
+ ○ Compiling /api/inngest ...
+ ✓ Compiled /api/inngest in 681ms (549 modules)
+Warning: UNIPILE_API_KEY not set
+ GET /api/inngest 200 in 832ms
+ PUT /api/inngest 200 in 839ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1267ms (1079 modules)
+ GET /x/inngest 404 in 1315ms
+ ✓ Compiled in 99ms (1056 modules)
+ GET /.netlify/functions/inngest 404 in 83ms
+ GET /.redwood/functions/inngest 404 in 9ms
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 41ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 32ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 27ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 38ms
+ PUT /api/inngest 200 in 29ms
+ PUT /api/inngest 200 in 48ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 28ms
+ PUT /api/inngest 200 in 140ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 27ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 27ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 26ms
+ PUT /api/inngest 200 in 13ms
+ PUT /api/inngest 200 in 30ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 29ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 28ms
+ PUT /api/inngest 200 in 26ms
+ PUT /api/inngest 200 in 58ms
+ PUT /api/inngest 200 in 28ms
+ PUT /api/inngest 200 in 33ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 33ms
+ PUT /api/inngest 200 in 33ms
+ PUT /api/inngest 200 in 48ms
+ PUT /api/inngest 200 in 48ms
+ PUT /api/inngest 200 in 27ms
+ PUT /api/inngest 200 in 40ms
+ PUT /api/inngest 200 in 31ms
+ PUT /api/inngest 200 in 36ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 26ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 26ms
+ PUT /api/inngest 200 in 27ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 39ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 27ms
+ PUT /api/inngest 200 in 38ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 40ms
+ PUT /api/inngest 200 in 40ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 31ms
+ PUT /api/inngest 200 in 28ms
+ PUT /api/inngest 200 in 32ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 28ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 31ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 27ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 36ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 32ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 26ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 26ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 26ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 26ms
+ PUT /api/inngest 200 in 39ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 26ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 30ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 29ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 31ms
+ PUT /api/inngest 200 in 46ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 33ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 27ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 121ms
+ PUT /api/inngest 200 in 27ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 26ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 26ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 13ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 27ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 11ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 29ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 13ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 31ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 31ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 37ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 10ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 36ms
+ PUT /api/inngest 200 in 39ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 26ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 31ms
+ PUT /api/inngest 200 in 26ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 27ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 35ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 26ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 30ms
+ PUT /api/inngest 200 in 34ms
+ PUT /api/inngest 200 in 42ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 33ms
+ PUT /api/inngest 200 in 28ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 38ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 26ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 32ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 13ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 26ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 29ms
+ PUT /api/inngest 200 in 27ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 27ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 26ms
+ PUT /api/inngest 200 in 27ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 13ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 54ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 13ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 31ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 33ms
+ PUT /api/inngest 200 in 33ms
+ PUT /api/inngest 200 in 27ms
+ PUT /api/inngest 200 in 30ms
+ PUT /api/inngest 200 in 28ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 29ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 30ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 26ms
+ PUT /api/inngest 200 in 7ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 26ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 45ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 18ms
+
+> ps-campaign-manager@0.1.0 dev
+> next dev
+
+ PUT /api/inngest 200 in 5ms
+ ⚠ Port 3000 is in use, trying 3001 instead.
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3001
+  - Environments: .env.local, .env
+
+ ✓ Starting...
+ ✓ Ready in 1100ms
+ ○ Compiling /api/inngest ...
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 801ms (1282 modules)
+ PUT /api/inngest 404 in 850ms
+ ✓ Compiled /api/inngest in 954ms (549 modules)
+Warning: UNIPILE_API_KEY not set
+ GET /api/inngest 200 in 1111ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1478ms (1079 modules)
+ GET /x/inngest 404 in 1543ms
+ ✓ Compiled in 125ms (1056 modules)
+ GET /.netlify/functions/inngest 404 in 95ms
+ GET /.redwood/functions/inngest 404 in 10ms
+Warning: UNIPILE_API_KEY not set
+ GET /api/inngest 200 in 114ms
+ GET /x/inngest 404 in 29ms
+ GET /.netlify/functions/inngest 404 in 8ms
+ GET /.redwood/functions/inngest 404 in 9ms
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 23ms
+ ✓ Compiled / in 285ms (1291 modules)
+ GET / 307 in 367ms
+ ○ Compiling /campaigns ...
+ ✓ Compiled /campaigns in 1279ms (3548 modules)
+ GET /campaigns 200 in 2508ms
+ ✓ Compiled /api/auth/[...nextauth] in 234ms (2449 modules)
+ GET /api/auth/session 200 in 454ms
+ GET /api/auth/session 200 in 3ms
+ GET /api/auth/session 200 in 4ms
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 26ms
+ PUT /api/inngest 200 in 19ms
+ ✓ Compiled /campaigns/[id] in 178ms (3553 modules)
+ GET /campaigns/cmneu34yd0004rnm1it9avb0o?_rsc=1in2r 200 in 86ms
+ ✓ Compiled /campaigns/[id]/upload in 230ms (3563 modules)
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 12ms
+ ✓ Compiled /api/campaigns/[id]/upload in 434ms (2607 modules)
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 41ms
+Error uploading file: BlobError: Vercel Blob: Cannot use public access on a private store. The store is configured with private access.
+    at getBlobError (webpack-internal:///(rsc)/./node_modules/@vercel/blob/dist/chunk-QRRHJ574.js:170:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async eval (webpack-internal:///(rsc)/./node_modules/@vercel/blob/dist/chunk-QRRHJ574.js:218:31)
+    at async requestApi (webpack-internal:///(rsc)/./node_modules/@vercel/blob/dist/chunk-QRRHJ574.js:193:23)
+    at async put (webpack-internal:///(rsc)/./node_modules/@vercel/blob/dist/chunk-QRRHJ574.js:768:22)
+    at async POST (webpack-internal:///(rsc)/./app/api/campaigns/[id]/upload/route.ts:104:22)
+    at async /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:1576:40)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/start-server.js:141:13)
+ POST /api/campaigns/cmneu34yd0004rnm1it9avb0o/upload 500 in 1148ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 12ms
+ PUT /api/inngest 200 in 28ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 42ms
+ PUT /api/inngest 200 in 27ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 13ms
+ PUT /api/inngest 200 in 6ms
+ PUT /api/inngest 200 in 7ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 27ms
+ PUT /api/inngest 200 in 18ms
+ GET /api/auth/session 200 in 43ms
+ GET /api/auth/session 200 in 5ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 13ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 14ms
+Error uploading file: BlobError: Vercel Blob: Cannot use public access on a private store. The store is configured with private access.
+    at getBlobError (webpack-internal:///(rsc)/./node_modules/@vercel/blob/dist/chunk-QRRHJ574.js:170:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async eval (webpack-internal:///(rsc)/./node_modules/@vercel/blob/dist/chunk-QRRHJ574.js:218:31)
+    at async requestApi (webpack-internal:///(rsc)/./node_modules/@vercel/blob/dist/chunk-QRRHJ574.js:193:23)
+    at async put (webpack-internal:///(rsc)/./node_modules/@vercel/blob/dist/chunk-QRRHJ574.js:768:22)
+    at async POST (webpack-internal:///(rsc)/./app/api/campaigns/[id]/upload/route.ts:104:22)
+    at async /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:1576:40)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/start-server.js:141:13)
+ POST /api/campaigns/cmneu34yd0004rnm1it9avb0o/upload 500 in 178ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 13ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 12ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 13ms
+ PUT /api/inngest 200 in 8ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 14ms
+ ✓ Compiled in 550ms (282 modules)
+ ✓ Compiled in 583ms (3053 modules)
+ GET /campaigns/cmneu34yd0004rnm1it9avb0o/upload?_rsc=i16ap 200 in 64ms
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 125ms
+ PUT /api/inngest 200 in 7ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 27ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 28ms
+ PUT /api/inngest 200 in 10ms
+ PUT /api/inngest 200 in 35ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 12ms
+ PUT /api/inngest 200 in 30ms
+ PUT /api/inngest 200 in 9ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 400 in 258ms
+
+> ps-campaign-manager@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use, trying 3001 instead.
+ ⚠ Port 3001 is in use, trying 3002 instead.
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3002
+  - Environments: .env.local, .env
+
+ ✓ Starting...
+ ✓ Ready in 1088ms
+ ✓ Compiled /_not-found in 202ms (2893 modules)
+ GET /api/inngest 404 in 271ms
+ PUT /api/inngest 404 in 273ms
+ GET /x/inngest 404 in 7ms
+ GET /.netlify/functions/inngest 404 in 7ms
+ GET /.redwood/functions/inngest 404 in 13ms
+ GET /api/inngest 200 in 31ms
+ ✓ Compiled /_not-found in 224ms (1056 modules)
+ GET /x/inngest 404 in 273ms
+ GET /.netlify/functions/inngest 404 in 8ms
+ GET /.redwood/functions/inngest 404 in 9ms
+ ○ Compiling /api/inngest ...
+ ✓ Compiled /api/inngest in 684ms (549 modules)
+Warning: UNIPILE_API_KEY not set
+ GET /api/inngest 200 in 819ms
+ ○ Compiling /_not-found ...
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 28ms
+ ✓ Compiled /_not-found in 1252ms (1079 modules)
+ GET /x/inngest 404 in 1300ms
+ ✓ Compiled in 122ms (1056 modules)
+ GET /.netlify/functions/inngest 404 in 105ms
+ GET /.redwood/functions/inngest 404 in 9ms
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 88ms
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 22ms
+ ✓ Compiled /campaigns in 355ms (2449 modules)
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 525ms
+ PUT /api/inngest 200 in 17ms
+ ✓ Compiled /campaigns/[id] in 283ms (2452 modules)
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 37ms
+ ⨯ Failed to generate static paths for /campaigns/[id]:
+Error: Cannot find module './vendor-chunks/openid-client.js'
+Require stack:
+- /Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js
+- /Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/campaigns/[id]/page.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/static-paths-worker.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/jest-worker/processChild.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1475:15)
+    at /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:55:36
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1048:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1072:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1093:12)
+    at Module._load (node:internal/modules/cjs/loader:1261:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at mod.require (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:191:16) {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/campaigns/[id]/page.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/static-paths-worker.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/jest-worker/processChild.js'
+  ]
+}
+ ⨯ Failed to generate static paths for /campaigns/[id]/upload:
+Error: Cannot find module './vendor-chunks/openid-client.js'
+Require stack:
+- /Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js
+- /Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/campaigns/[id]/upload/page.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/static-paths-worker.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/jest-worker/processChild.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1475:15)
+    at /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:55:36
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1048:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1072:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1093:12)
+    at Module._load (node:internal/modules/cjs/loader:1261:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at mod.require (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:191:16) {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/campaigns/[id]/upload/page.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/static-paths-worker.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/jest-worker/processChild.js'
+  ]
+}
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 17ms
+ ✓ Compiled /api/campaigns/[id]/upload in 281ms (2601 modules)
+Error uploading file: BlobError: Vercel Blob: access must be "public"
+    at createPutOptions (webpack-internal:///(rsc)/./node_modules/@vercel/blob/dist/chunk-QRRHJ574.js:284:11)
+    at put (webpack-internal:///(rsc)/./node_modules/@vercel/blob/dist/chunk-QRRHJ574.js:757:27)
+    at POST (webpack-internal:///(rsc)/./app/api/campaigns/[id]/upload/route.ts:104:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:1576:40)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/start-server.js:141:13)
+ POST /api/campaigns/cmneu34yd0004rnm1it9avb0o/upload 500 in 448ms
+ ⨯ Failed to generate static paths for /api/campaigns/[id]/upload:
+Error: Cannot find module './vendor-chunks/openid-client.js'
+Require stack:
+- /Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js
+- /Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/api/campaigns/[id]/upload/route.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/static-paths-worker.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/jest-worker/processChild.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1475:15)
+    at /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:55:36
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1048:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1072:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1093:12)
+    at Module._load (node:internal/modules/cjs/loader:1261:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at mod.require (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:191:16) {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/api/campaigns/[id]/upload/route.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/static-paths-worker.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/compiled/jest-worker/processChild.js'
+  ]
+}
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 51ms
+ PUT /api/inngest 200 in 13ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 27ms
+ PUT /api/inngest 200 in 12ms
+ PUT /api/inngest 200 in 12ms
+ PUT /api/inngest 200 in 13ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 30ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 12ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 11ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 12ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 26ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 29ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 8ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 12ms
+ PUT /api/inngest 200 in 28ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 26ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 29ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 28ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 38ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 46ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 227ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 31ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 13ms
+ PUT /api/inngest 200 in 49ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 55ms
+ PUT /api/inngest 200 in 26ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 36ms
+ PUT /api/inngest 200 in 42ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 27ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 26ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 11ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 14ms
+ PUT /api/inngest 200 in 32ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 44ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 26ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 35ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 27ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 17ms
+ PUT /api/inngest 200 in 27ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 12ms
+ PUT /api/inngest 200 in 12ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 15ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 13ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 16ms
+ PUT /api/inngest 200 in 48ms
+ PUT /api/inngest 200 in 11ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 11ms
