@@ -188,16 +188,16 @@ export default function NewCampaignPage() {
             <div className="space-y-2">
               <Label htmlFor="cadence">SalesLoft Cadence (Optional)</Label>
               <Select
-                value={formData.salesloftCadenceId}
+                value={formData.salesloftCadenceId || "none"}
                 onValueChange={(value) =>
-                  setFormData({ ...formData, salesloftCadenceId: value })
+                  setFormData({ ...formData, salesloftCadenceId: value === "none" ? "" : value })
                 }
               >
                 <SelectTrigger>
                   <SelectValue placeholder={loadingCadences ? "Loading cadences..." : "Select a cadence..."} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">No cadence</SelectItem>
+                  <SelectItem value="none">No cadence (optional)</SelectItem>
                   {cadences.map((cadence) => (
                     <SelectItem key={cadence.id} value={cadence.id.toString()}>
                       {cadence.name}

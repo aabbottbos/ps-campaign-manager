@@ -60,3 +60,18 @@ npm warn exec The following package was not found and will be installed: inngest
 {"time":"2026-03-31T16:19:27.067682Z","level":"INFO","msg":"starting connect gateway grpc server","caller":"connect-gateway","addr":":50052"}
 {"time":"2026-03-31T16:19:27.069307Z","level":"INFO","msg":"apps synced, disabling auto-discovery"}
 {"time":"2026-03-31T16:19:27.073209Z","level":"INFO","msg":"subscribing to events","topic":"events"}
+{"time":"2026-03-31T16:41:12.73384Z","level":"INFO","msg":"shutting down server","caller":"api"}
+{"time":"2026-03-31T16:47:59.424953Z","level":"INFO","msg":"starting executor grpc server","svc":"executor","addr":":50053"}
+{"time":"2026-03-31T16:47:59.426967Z","level":"INFO","msg":"service starting","caller":"executor","service":"executor"}
+{"time":"2026-03-31T16:47:59.426999Z","level":"INFO","msg":"autodiscovering locally hosted SDKs"}
+{"time":"2026-03-31T16:47:59.42697Z","level":"INFO","msg":"service starting","caller":"devserver","service":"devserver"}
+{"time":"2026-03-31T16:47:59.42717Z","level":"INFO","msg":"starting event stream","backend":"redis"}
+{"time":"2026-03-31T16:47:59.42723Z","level":"INFO","msg":"service starting","caller":"runner","service":"runner"}
+{"time":"2026-03-31T16:47:59.427286Z","level":"INFO","msg":"subscribing to function queue"}
+{"time":"2026-03-31T16:47:59.427346Z","level":"INFO","msg":"service starting","caller":"api","service":"api"}
+{"time":"2026-03-31T16:47:59.427358Z","level":"INFO","msg":"starting server","caller":"api","addr":"0.0.0.0:8288"}
+{"time":"2026-03-31T16:47:59.427558Z","level":"INFO","msg":"Executor started in assignedQueueShard Mode","queue_shard":"default"}
+{"time":"2026-03-31T16:47:59.427991Z","level":"INFO","msg":"service starting","caller":"connect-gateway","service":"connect-gateway"}
+{"time":"2026-03-31T16:47:59.428144Z","level":"INFO","msg":"starting connect gateway grpc server","caller":"connect-gateway","addr":":50052"}
+{"time":"2026-03-31T16:47:59.432949Z","level":"INFO","msg":"subscribing to events","topic":"events"}
+{"time":"2026-03-31T16:48:08.219167Z","level":"INFO","msg":"apps synced, disabling auto-discovery"}

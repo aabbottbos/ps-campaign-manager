@@ -834,3 +834,47 @@ digest: "1495819746"
  ✓ Starting...
  ✓ Ready in 1228ms
 [?25h
+
+> ps-campaign-manager@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use, trying 3001 instead.
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3001
+  - Environments: .env.local, .env
+
+ ✓ Starting...
+ ✓ Ready in 1323ms
+ ○ Compiling /api/inngest ...
+ ✓ Compiled /api/inngest in 1117ms (549 modules)
+Warning: UNIPILE_API_KEY not set
+ GET /api/inngest 200 in 1339ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 2s (1079 modules)
+ GET /.netlify/functions/inngest 404 in 95ms
+ ✓ Compiled in 259ms (1056 modules)
+ GET /.redwood/functions/inngest 404 in 244ms
+Warning: UNIPILE_API_KEY not set
+ PUT /api/inngest 200 in 33ms
+ PUT /api/inngest 200 in 38ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 28ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 27ms
+ PUT /api/inngest 200 in 30ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 26ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 23ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 25ms
