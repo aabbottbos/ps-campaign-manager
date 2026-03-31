@@ -1,0 +1,240 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Auth ─────────────────────────────────────────────
+// NextAuth.js managed tables
+model User {
+  id             String     @id @default(cuid())
+  name           String?
+  email          String     @unique
+  emailVerified  DateTime?
+  image          String?
+  accounts       Account[]
+  sessions       Session[]
+  campaigns      Campaign[]
+  linkedinAccounts LinkedInAccount[]
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ─── LinkedIn Accounts (Unipile) ──────────────────────
+
+model LinkedInAccount {
+  id                String   @id @default(cuid())
+  userId            String
+  user              User     @relation(fields: [userId], references: [id])
+  unipileAccountId  String   @unique  // Unipile's internal account ID
+  linkedinName      String?            // Display name from LinkedIn
+  linkedinProfileUrl String?           // User's own LinkedIn profile URL
+  status            String   @default("active") // active, disconnected, error
+  connectedAt       DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+// ─── Campaigns ────────────────────────────────────────
+
+model Campaign {
+  id                  String          @id @default(cuid())
+  userId              String
+  user                User            @relation(fields: [userId], references: [id])
+  name                String          // e.g. "Q2 AI OS Outreach"
+  description         String          @db.Text // Campaign pitch / value prop (used for message generation)
+  outreachType        OutreachType    // CONNECT or INMAIL
+  status              CampaignStatus  @default(DRAFT)
+  messageTemplate     String?         @db.Text // Optional: base prompt/instructions for message generation
+  uploadedFileName    String?
+  uploadedFileUrl     String?         // Blob/S3 URL of the original upload
+  columnMapping       Json?           // Stored mapping: { firstName: "col_A", lastName: "col_B", ... }
+
+  prospects           Prospect[]
+
+  // SalesLoft Cadence to enroll prospects into
+  salesloftCadenceId  String?
+
+  // Unipile LinkedIn account used for sending
+  unipileAccountId    String?  // References LinkedInAccount.unipileAccountId
+
+  createdAt           DateTime        @default(now())
+  updatedAt           DateTime        @updatedAt
+}
+
+enum OutreachType {
+  CONNECT   // 300 character limit
+  INMAIL    // ~1900 character limit
+}
+
+enum CampaignStatus {
+  DRAFT               // Campaign created, no file uploaded yet
+  FILE_UPLOADED       // File uploaded, column mapping pending
+  MAPPING_COMPLETE    // Columns mapped, ready for enrichment
+  ENRICHING           // Proxycurl enrichment in progress
+  ENRICHMENT_COMPLETE // All prospects processed (some may have failed)
+  MESSAGES_GENERATED  // Claude has drafted messages for all enriched prospects
+  REVIEW              // User is reviewing/editing messages
+  CRM_SYNCING         // Pushing to Salesforce + SalesLoft
+  CRM_SYNCED          // CRM sync complete
+  SENDING             // Unipile is programmatically sending messages
+  PAUSED              // User paused the send campaign — can be resumed
+  COMPLETE            // Campaign finished
+}
+
+// ─── Prospects ────────────────────────────────────────
+
+model Prospect {
+  id                  String          @id @default(cuid())
+  campaignId          String
+  campaign            Campaign        @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+
+  // --- Raw data from uploaded file ---
+  rawData             Json            // Full row from the CSV/XLSX as key-value pairs
+
+  // --- Parsed fields (from column mapping) ---
+  firstName           String?
+  lastName            String?
+  email               String?
+  company             String?
+  title               String?
+  phone               String?
+
+  // --- Enrichment results (from Proxycurl) ---
+  enrichmentStatus    EnrichmentStatus @default(PENDING)
+  enrichmentConfidence Float?          // 0.0 - 1.0 confidence score
+  linkedinUrl         String?
+  linkedinHeadline    String?
+  linkedinSummary     String?         @db.Text
+  linkedinLocation    String?
+  currentCompany      String?         // Validated current company from LinkedIn
+  currentTitle        String?         // Validated current title from LinkedIn
+  profileImageUrl     String?
+  enrichmentError     String?         // Error message if enrichment failed
+  enrichedAt          DateTime?
+
+  // --- Message generation ---
+  generatedMessage    String?         @db.Text
+  editedMessage       String?         @db.Text  // User's edited version (null = no edits)
+  messageStatus       MessageStatus   @default(PENDING)
+  characterCount      Int?
+
+  // --- CRM sync ---
+  salesforceContactId String?
+  salesloftPersonId   String?
+  salesloftCadenceEnrollmentId String?
+  crmSyncStatus       CrmSyncStatus   @default(NOT_SYNCED)
+  crmSyncError        String?
+
+  // --- Send status ---
+  sendStatus          SendStatus      @default(NOT_SENT)
+  sentAt              DateTime?
+  sendError           String?
+  unipileMessageId    String?          // Unipile's message/invitation ID for tracking
+  linkedinProviderId  String?          // LinkedIn's internal user ID (from Proxycurl or Unipile)
+
+  createdAt           DateTime        @default(now())
+  updatedAt           DateTime        @updatedAt
+
+  @@index([campaignId, enrichmentStatus])
+  @@index([campaignId, sendStatus])
+}
+
+enum EnrichmentStatus {
+  PENDING
+  PROCESSING
+  FOUND           // Successfully resolved to a LinkedIn profile
+  NOT_FOUND       // Could not identify the person
+  STALE           // Found but employment data doesn't match (may have left company)
+  ERROR           // API error during enrichment
+}
+
+enum MessageStatus {
+  PENDING
+  GENERATED
+  EDITED          // User has manually edited the message
+  APPROVED        // User has approved (explicit or implicit)
+  SKIPPED         // User chose to skip this prospect
+}
+
+enum CrmSyncStatus {
+  NOT_SYNCED
+  SYNCING
+  SYNCED
+  ERROR
+}
+
+enum SendStatus {
+  NOT_SENT
+  QUEUED          // In the send queue, waiting to be processed
+  SENDING         // Unipile API call in progress
+  SENT            // Successfully sent via Unipile
+  DELIVERED       // Delivery confirmed by Unipile webhook (if available)
+  FAILED          // Unipile API returned an error
+  RATE_LIMITED    // Hit LinkedIn daily limit, will retry next day
+  MANUAL_FALLBACK // Automated send failed, user needs to send manually
+  SKIPPED         // User chose to skip
+}
+
+// ─── Campaign Templates (Improvement) ─────────────────
+
+model CampaignTemplate {
+  id          String   @id @default(cuid())
+  userId      String
+  name        String
+  description String   @db.Text
+  outreachType OutreachType
+  createdAt   DateTime @default(now())
+}
+
+// ─── Daily Send Tracking (Unipile) ────────────────────
+
+model DailySendLog {
+  id                String   @id @default(cuid())
+  unipileAccountId  String   // Which LinkedIn account
+  date              String   // YYYY-MM-DD format for easy querying
+  sendCount         Int      @default(0)
+  lastSendAt        DateTime?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@unique([unipileAccountId, date])
+  @@index([unipileAccountId, date])
+}
