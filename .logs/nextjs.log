@@ -93,3 +93,6 @@ Import trace for requested module:
  PUT /api/inngest 500 in 15ms
  PUT /api/inngest 500 in 10ms
  PUT /api/inngest 500 in 16ms
+ PUT /api/inngest 500 in 16ms
+ PUT /api/inngest 500 in 13ms
+ PUT /api/inngest 500 in 9ms
