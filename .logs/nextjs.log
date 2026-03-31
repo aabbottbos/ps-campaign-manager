@@ -1,0 +1,95 @@
+
+> ps-campaign-manager@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3000
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1471ms
+ ○ Compiling /api/inngest ...
+ ⨯ ./lib/inngest/send-messages.ts:1:1
+Module not found: Can't resolve '../inngest'
+[0m[31m[1m>[22m[39m[90m 1 |[39m [36mimport[39m { inngest } [36mfrom[39m [32m"../inngest"[39m[0m
+[0m [90m   |[39m [31m[1m^[22m[39m[0m
+[0m [90m 2 |[39m [36mimport[39m { prisma } [36mfrom[39m [32m"../prisma"[39m[0m
+[0m [90m 3 |[39m [36mimport[39m { sendConnectionRequest[33m,[39m sendInMail } [36mfrom[39m [32m"../unipile"[39m[0m
+[0m [90m 4 |[39m [36mimport[39m { logActivity } [36mfrom[39m [32m"../salesloft"[39m[0m
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./app/api/inngest/route.ts
+ ⨯ ./lib/inngest/send-messages.ts:1:1
+Module not found: Can't resolve '../inngest'
+[0m[31m[1m>[22m[39m[90m 1 |[39m [36mimport[39m { inngest } [36mfrom[39m [32m"../inngest"[39m[0m
+[0m [90m   |[39m [31m[1m^[22m[39m[0m
+[0m [90m 2 |[39m [36mimport[39m { prisma } [36mfrom[39m [32m"../prisma"[39m[0m
+[0m [90m 3 |[39m [36mimport[39m { sendConnectionRequest[33m,[39m sendInMail } [36mfrom[39m [32m"../unipile"[39m[0m
+[0m [90m 4 |[39m [36mimport[39m { logActivity } [36mfrom[39m [32m"../salesloft"[39m[0m
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./app/api/inngest/route.ts
+ ✓ Compiled /_not-found in 74ms (284 modules)
+ ○ Compiling /_error ...
+ ⨯ ./lib/inngest/send-messages.ts:1:1
+Module not found: Can't resolve '../inngest'
+[0m[31m[1m>[22m[39m[90m 1 |[39m [36mimport[39m { inngest } [36mfrom[39m [32m"../inngest"[39m[0m
+[0m [90m   |[39m [31m[1m^[22m[39m[0m
+[0m [90m 2 |[39m [36mimport[39m { prisma } [36mfrom[39m [32m"../prisma"[39m[0m
+[0m [90m 3 |[39m [36mimport[39m { sendConnectionRequest[33m,[39m sendInMail } [36mfrom[39m [32m"../unipile"[39m[0m
+[0m [90m 4 |[39m [36mimport[39m { logActivity } [36mfrom[39m [32m"../salesloft"[39m[0m
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./app/api/inngest/route.ts
+ PUT /api/inngest 500 in 4660ms
+ GET /.netlify/functions/inngest 500 in 586ms
+ GET /.redwood/functions/inngest 500 in 10ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/andrewabbott/Development/ps-campaign-manager/.next/cache/webpack/client-development-fallback/0.pack.gz_' -> '/Users/andrewabbott/Development/ps-campaign-manager/.next/cache/webpack/client-development-fallback/0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/andrewabbott/Development/ps-campaign-manager/.next/cache/webpack/client-development-fallback/0.pack.gz_' -> '/Users/andrewabbott/Development/ps-campaign-manager/.next/cache/webpack/client-development-fallback/0.pack.gz'
+ ⨯ ./lib/inngest/send-messages.ts:1:1
+Module not found: Can't resolve '../inngest'
+[0m[31m[1m>[22m[39m[90m 1 |[39m [36mimport[39m { inngest } [36mfrom[39m [32m"../inngest"[39m[0m
+[0m [90m   |[39m [31m[1m^[22m[39m[0m
+[0m [90m 2 |[39m [36mimport[39m { prisma } [36mfrom[39m [32m"../prisma"[39m[0m
+[0m [90m 3 |[39m [36mimport[39m { sendConnectionRequest[33m,[39m sendInMail } [36mfrom[39m [32m"../unipile"[39m[0m
+[0m [90m 4 |[39m [36mimport[39m { logActivity } [36mfrom[39m [32m"../salesloft"[39m[0m
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./app/api/inngest/route.ts
+ GET / 500 in 132ms
+ GET / 500 in 16ms
+ PUT /api/inngest 500 in 21ms
+ PUT /api/inngest 500 in 16ms
+ PUT /api/inngest 500 in 26ms
+ PUT /api/inngest 500 in 19ms
+ PUT /api/inngest 500 in 16ms
+ PUT /api/inngest 500 in 16ms
+ PUT /api/inngest 500 in 21ms
+ PUT /api/inngest 500 in 22ms
+ PUT /api/inngest 500 in 14ms
+ PUT /api/inngest 500 in 21ms
+ PUT /api/inngest 500 in 18ms
+ PUT /api/inngest 500 in 21ms
+ PUT /api/inngest 500 in 20ms
+ PUT /api/inngest 500 in 15ms
+ PUT /api/inngest 500 in 19ms
+ PUT /api/inngest 500 in 18ms
+ PUT /api/inngest 500 in 13ms
+ PUT /api/inngest 500 in 30ms
+ PUT /api/inngest 500 in 15ms
+ PUT /api/inngest 500 in 32ms
+ PUT /api/inngest 500 in 21ms
+ PUT /api/inngest 500 in 17ms
+ PUT /api/inngest 500 in 42ms
+ PUT /api/inngest 500 in 20ms
+ PUT /api/inngest 500 in 15ms
+ PUT /api/inngest 500 in 10ms
+ PUT /api/inngest 500 in 16ms

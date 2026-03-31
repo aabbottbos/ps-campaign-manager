@@ -1,0 +1,15 @@
+npm warn exec The following package was not found and will be installed: inngest-cli@1.17.6
+{"time":"2026-03-31T15:50:16.677601Z","level":"INFO","msg":"starting executor grpc server","svc":"executor","addr":":50053"}
+{"time":"2026-03-31T15:50:16.678425Z","level":"INFO","msg":"service starting","caller":"executor","service":"executor"}
+{"time":"2026-03-31T15:50:16.678492Z","level":"INFO","msg":"subscribing to function queue"}
+{"time":"2026-03-31T15:50:16.678502Z","level":"INFO","msg":"service starting","caller":"devserver","service":"devserver"}
+{"time":"2026-03-31T15:50:16.67851Z","level":"INFO","msg":"autodiscovering locally hosted SDKs"}
+{"time":"2026-03-31T15:50:16.678556Z","level":"INFO","msg":"Executor started in assignedQueueShard Mode","queue_shard":"default"}
+{"time":"2026-03-31T15:50:16.678596Z","level":"INFO","msg":"starting event stream","backend":"redis"}
+{"time":"2026-03-31T15:50:16.67864Z","level":"INFO","msg":"service starting","caller":"runner","service":"runner"}
+{"time":"2026-03-31T15:50:16.678644Z","level":"INFO","msg":"service starting","caller":"api","service":"api"}
+{"time":"2026-03-31T15:50:16.678677Z","level":"INFO","msg":"starting server","caller":"api","addr":"0.0.0.0:8288"}
+{"time":"2026-03-31T15:50:16.678986Z","level":"INFO","msg":"service starting","caller":"connect-gateway","service":"connect-gateway"}
+{"time":"2026-03-31T15:50:16.679056Z","level":"INFO","msg":"starting connect gateway grpc server","caller":"connect-gateway","addr":":50052"}
+{"time":"2026-03-31T15:50:16.680827Z","level":"INFO","msg":"subscribing to events","topic":"events"}
+{"time":"2026-03-31T15:50:26.362996Z","level":"INFO","msg":"apps synced, disabling auto-discovery"}
