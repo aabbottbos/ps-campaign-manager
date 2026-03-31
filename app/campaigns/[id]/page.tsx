@@ -65,6 +65,18 @@ function getNextStepInfo(status: string, campaignId: string) {
         action: "Start Enrichment",
         href: `/campaigns/${campaignId}/enrichment`,
       }
+    case "ENRICHMENT_COMPLETE":
+      return {
+        message: "Generate personalized messages for your prospects",
+        action: "Review Messages",
+        href: `/campaigns/${campaignId}/review`,
+      }
+    case "MESSAGES_GENERATED":
+      return {
+        message: "Review and approve messages before sending",
+        action: "Review Messages",
+        href: `/campaigns/${campaignId}/review`,
+      }
     default:
       return null
   }
