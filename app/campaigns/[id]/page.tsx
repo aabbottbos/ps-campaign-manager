@@ -77,6 +77,18 @@ function getNextStepInfo(status: string, campaignId: string) {
         action: "Review Messages",
         href: `/campaigns/${campaignId}/review`,
       }
+    case "REVIEW":
+      return {
+        message: "Sync approved prospects to Salesforce and SalesLoft",
+        action: "Sync to CRM",
+        href: `/campaigns/${campaignId}/crm-sync`,
+      }
+    case "CRM_SYNCED":
+      return {
+        message: "Ready to send messages via LinkedIn",
+        action: "Send Campaign",
+        href: `/campaigns/${campaignId}/send`,
+      }
     default:
       return null
   }

@@ -115,16 +115,15 @@ INNGEST_SIGNING_KEY=your-inngest-signing-key
 # Message Generation (required for Sprint 4)
 ANTHROPIC_API_KEY=your-anthropic-api-key
 
-# The following are placeholders for future sprints:
-SALESFORCE_CLIENT_ID=
-SALESFORCE_CLIENT_SECRET=
-SALESFORCE_REFRESH_TOKEN=
-SALESFORCE_INSTANCE_URL=
-SALESLOFT_API_KEY=
-UNIPILE_API_KEY=
-UNIPILE_BASE_URL=
-INNGEST_EVENT_KEY=
-INNGEST_SIGNING_KEY=
+# CRM Integration (required for Sprints 5-6)
+SALESFORCE_CLIENT_ID=your-salesforce-client-id
+SALESFORCE_CLIENT_SECRET=your-salesforce-client-secret
+SALESFORCE_REFRESH_TOKEN=your-salesforce-refresh-token
+SALESFORCE_INSTANCE_URL=https://your-instance.salesforce.com
+SALESLOFT_API_KEY=your-salesloft-api-key
+
+# LinkedIn Sending (required for Sprint 7)
+UNIPILE_API_KEY=your-unipile-api-key
 ```
 
 ### 3. Database Setup
@@ -612,27 +611,319 @@ GET    /api/campaigns/[id]                    — Get campaign details
 3. **Upload File** → CSV/Excel prospects
 4. **Map Columns** → Auto-detected mapping
 5. **Enrich Prospects** → LinkedIn data pull (~1 sec/prospect)
-6. **Generate Messages** → AI personalization (~1.2 sec/prospect) ← **NEW**
+6. **Generate Messages** → AI personalization (~1.2 sec/prospect)
    - Auto-starts on review page
    - Claude writes personalized messages
    - Character validation ensures compliance
-7. **Review & Edit Messages** → ← **NEW**
+7. **Review & Edit Messages** →
    - Inline editing
    - Character counter
    - Approve/Skip per prospect
    - Bulk approve option
 8. **CRM Sync & Send** → (Ready for Sprints 5-7)
 
-## What's Next: Sprints 5-6 (CRM Integration)
+## Sprints 5-6: CRM Integration — ✅ Complete
 
-The next sprints will implement:
+### What's Been Built
 
-1. Salesforce Contact creation/update
-2. SalesLoft People creation/update
-3. Cadence enrollment in SalesLoft
-4. CRM sync background job
-5. Sync progress UI with error handling
-6. Duplicate detection and handling
+#### 1. Salesforce Integration
+- **API Client** (`lib/salesforce.ts`)
+  - jsforce library for Salesforce REST API
+  - OAuth 2.0 with refresh token flow
+  - Connection caching with automatic token refresh
+  - Account and Contact management
+
+- **Contact Sync Logic**
+  - **Duplicate Detection**: Search by email first, then by name + company
+  - **Account Lookup/Create**: Find existing Account or create new one
+  - **Contact Create/Update**:
+    - Creates new Contact if none exists
+    - Updates existing Contact with enriched data (non-destructive)
+    - Links to Account (company)
+    - Stores LinkedIn URL in custom field `LinkedIn_Profile__c`
+  - **Smart Updates**: Only updates fields if existing value is empty
+
+- **Fields Synced**:
+  - FirstName, LastName
+  - Email, Phone
+  - Title (from LinkedIn)
+  - AccountId (company)
+  - LinkedIn_Profile__c (custom field)
+  - LeadSource: "LinkedIn Outreach"
+  - Description: "Enriched via PS Campaign Manager"
+
+#### 2. SalesLoft Integration
+- **API Client** (`lib/salesloft.ts`)
+  - API key authentication (Bearer token)
+  - Person and Cadence management
+  - Activity logging
+
+- **Person Sync Logic**
+  - **Duplicate Detection**: Search by email first, then by LinkedIn URL
+  - **Person Create/Update**:
+    - Creates new Person if none exists
+    - Updates existing Person with enriched data
+    - Links to Salesforce Contact via `crm_id` field
+  - **Cadence Enrollment**: Automatically adds Person to specified cadence
+  - **Smart Updates**: Non-destructive updates for existing records
+
+- **Fields Synced**:
+  - first_name, last_name
+  - email_address, phone
+  - title (from LinkedIn)
+  - company_name
+  - linkedin_url
+  - crm_id (Salesforce Contact ID for bidirectional sync)
+
+#### 3. CRM Sync Background Job
+- **Inngest Function** (`lib/inngest/sync-crm.ts`)
+  - Processes all APPROVED prospects
+  - Concurrency: 2 campaigns can sync simultaneously
+  - Campaign status: MESSAGES_GENERATED/REVIEW → CRM_SYNCING → CRM_SYNCED
+
+- **Sync Process Per Prospect**:
+  1. Mark as SYNCING
+  2. **Salesforce**: Find or create Contact + Account
+  3. **SalesLoft**: Find or create Person (linked to SFDC Contact)
+  4. **Cadence**: Enroll in cadence if campaign has one specified
+  5. Store all CRM IDs on Prospect record
+  6. Mark as SYNCED or ERROR
+
+- **Error Handling**:
+  - Salesforce failure doesn't block SalesLoft sync
+  - SalesLoft failure stores error but doesn't fail batch
+  - Per-prospect error logging with messages
+  - Continues processing remaining prospects
+
+- **Returns**:
+  - Total processed, synced, errors
+  - Salesforce: created vs updated counts
+  - SalesLoft: created vs updated, cadence enrolled count
+
+#### 4. Campaign Creation Enhancement
+- **Cadence Selector** added to campaign form
+  - Fetches available cadences from SalesLoft API
+  - Optional field (can create campaign without cadence)
+  - Stored on `Campaign.salesloftCadenceId`
+  - Used during CRM sync for auto-enrollment
+
+#### 5. CRM Sync API
+- **POST /api/campaigns/[id]/crm-sync**
+  - Triggers Inngest CRM sync job
+  - Validates approved prospects exist
+  - Returns job started confirmation
+
+- **GET /api/campaigns/[id]/crm-sync**
+  - Real-time sync statistics
+  - Grouped by crmSyncStatus
+  - Totals for: not_synced, syncing, synced, error
+
+- **GET /api/salesloft/cadences**
+  - Lists available SalesLoft cadences
+  - Used by campaign creation form dropdown
+
+#### 6. CRM Sync Progress UI
+- **Auto-Start Sync** (`/campaigns/[id]/crm-sync`)
+  - Automatically triggers sync on page load if prospects ready
+  - Real-time progress tracking with 2-second polling
+  - Progress bar with percentage
+  - Status badges (In Progress, Complete)
+
+- **Stats Display**:
+  - Synced count (green, success)
+  - Error count (red, with error messages)
+  - Auto-refresh during sync
+
+- **Info Card**:
+  - Explains Salesforce Contact creation
+  - Explains SalesLoft Person creation + Cadence enrollment
+  - Documents duplicate detection logic
+  - User education about the sync process
+
+#### 7. Workflow Integration
+- Campaign detail page updated with CRM sync next step
+- Status transitions: REVIEW → CRM_SYNCING → CRM_SYNCED → Ready to Send
+- Graceful error handling with retry capability
+
+### API Routes Added
+
+```
+POST   /api/campaigns/[id]/crm-sync    — Trigger CRM sync
+GET    /api/campaigns/[id]/crm-sync    — Get sync stats
+GET    /api/salesloft/cadences         — List available cadences
+```
+
+### Duplicate Detection Strategy
+
+**Salesforce Contact:**
+1. Search by email (exact match)
+2. If not found, search by firstName + lastName + Account.Name
+3. If found → update with enriched data (non-destructive)
+4. If not found → create new Contact
+
+**SalesLoft Person:**
+1. Search by email_address (exact match)
+2. If not found, search by linkedin_url
+3. If found → update with enriched data
+4. If not found → create new Person
+
+This prevents creating duplicate records across multiple campaign syncs.
+
+### Complete User Flow (Sprints 1-6)
+
+1. **Login** with Google
+2. **Create Campaign** → Details, outreach type, **SalesLoft cadence (optional)** ← **NEW**
+3. **Upload File** → CSV/Excel prospects
+4. **Map Columns** → Auto-detected mapping
+5. **Enrich Prospects** → LinkedIn data pull (~1 sec/prospect)
+6. **Generate Messages** → AI personalization (~1.2 sec/prospect)
+7. **Review & Edit Messages** → Inline editing, approve/skip
+8. **Sync to CRM** → ← **NEW**
+   - Auto-starts on CRM sync page
+   - Creates/updates Salesforce Contacts
+   - Creates/updates SalesLoft People
+   - Enrolls in SalesLoft Cadence (if selected)
+   - Links SFDC ↔ SalesLoft via crm_id
+   - Real-time progress tracking
+9. **Sync to CRM** → ← **Sprint 5-6**
+   - Auto-starts on CRM sync page
+   - Creates/updates Salesforce Contacts
+   - Creates/updates SalesLoft People
+   - Enrolls in SalesLoft Cadence (if selected)
+   - Links SFDC ↔ SalesLoft via crm_id
+   - Real-time progress tracking
+10. **Send Messages** → ← **Sprint 7** 🎉
+   - Connect LinkedIn account via Unipile
+   - Automated sending with human-like pacing
+   - Daily send limits per account
+   - Pause/resume controls
+   - Activity logging to SalesLoft
+
+## Sprint 7: LinkedIn Sending — ✅ Complete
+
+Sprint 7 implements automated LinkedIn message delivery using Unipile as a proxy to LinkedIn. Messages are sent with randomized human-like pacing and daily send limits to avoid triggering LinkedIn's spam detection.
+
+### Key Features
+
+1. **LinkedIn Account Connection (Unipile):**
+   - OAuth flow via Unipile hosted auth
+   - Multiple account support per user
+   - Account status tracking (ACTIVE, DISCONNECTED, RATE_LIMITED)
+   - Daily send limit visualization (50 messages/day per account)
+
+2. **Intelligent Account Rotation:**
+   - System selects account with most remaining daily sends
+   - Automatic load distribution across multiple accounts
+   - Prevents any single account from hitting limits
+
+3. **Human-like Send Pacing:**
+   - Randomized delays: 30-90 seconds between sends
+   - Mimics natural human behavior on LinkedIn
+   - Reduces risk of spam detection
+
+4. **Send Progress Tracking:**
+   - Real-time progress UI with auto-refresh (3s polling)
+   - Pause/resume controls
+   - Sent/Failed/Pending statistics
+   - Campaign status badges (SENDING, PAUSED, COMPLETE)
+
+5. **SalesLoft Activity Logging:**
+   - Automatic activity creation on successful send
+   - Type: `linkedin_connection` or `linkedin_inmail`
+   - Message content logged as notes
+   - Linked to Person record via salesloftPersonId
+
+6. **Error Handling:**
+   - Individual send failures don't stop the entire campaign
+   - Failed sends marked with error message
+   - Rate limit detection with automatic retry support
+   - Campaign can be paused and resumed at any time
+
+### Implementation Details
+
+**Files Created:**
+
+```
+lib/unipile.ts                              — Unipile API client
+lib/inngest/send-messages.ts                — Background send job
+app/api/linkedin/accounts/route.ts          — List LinkedIn accounts
+app/api/linkedin/connect/route.ts           — Generate auth URL
+app/api/linkedin/accounts/[id]/route.ts     — Disconnect account
+app/api/linkedin/callback/route.ts          — Complete OAuth connection
+app/api/campaigns/[id]/send/route.ts        — Send API (GET/POST/PATCH)
+app/settings/page.tsx                       — Settings UI (updated)
+app/settings/linkedin/callback/page.tsx     — OAuth callback handler
+app/campaigns/[id]/send/page.tsx            — Send progress UI (updated)
+```
+
+**Database Changes:**
+
+Updated `LinkedInAccount` model:
+- Added `email` field (from Unipile)
+- Added `dailySendCount` (resets daily)
+- Added `lastSendDate` (tracks last send time)
+- Changed `status` default to "ACTIVE"
+
+**API Endpoints:**
+
+```
+GET    /api/linkedin/accounts              — List connected LinkedIn accounts
+POST   /api/linkedin/connect               — Generate Unipile auth URL
+DELETE /api/linkedin/accounts/[id]         — Disconnect account
+POST   /api/linkedin/callback              — Complete OAuth and store account
+
+GET    /api/campaigns/[id]/send            — Get send statistics
+POST   /api/campaigns/[id]/send            — Start sending messages
+PATCH  /api/campaigns/[id]/send            — Pause/resume sending
+```
+
+**Unipile API Integration:**
+
+The Unipile client supports:
+- `listAccounts()` — Get all connected LinkedIn accounts
+- `getAuthUrl()` — Generate hosted OAuth URL
+- `sendConnectionRequest()` — Send connection request with note (300 chars)
+- `sendInMail()` — Send InMail message (~1900 chars)
+- `disconnectAccount()` — Remove LinkedIn account
+- `checkAccountStatus()` — Verify account is active
+
+**Send Job Logic:**
+
+1. Select prospects with `messageStatus = APPROVED`, `crmSyncStatus = SYNCED`, `sendStatus = NOT_SENT`
+2. For each prospect:
+   - Check if campaign is paused (break if paused)
+   - Select best LinkedIn account (most remaining sends)
+   - Send message via Unipile (connection request or InMail)
+   - Update prospect `sendStatus` to SENT or FAILED
+   - Increment account's `dailySendCount`
+   - Log activity to SalesLoft
+   - Add randomized delay (30-90s)
+3. Update campaign to COMPLETE if no prospects remain
+
+**Daily Send Limit Tracking:**
+
+- Each LinkedIn account limited to 50 sends/day
+- `dailySendCount` resets when date changes
+- Account selection prioritizes accounts with most remaining sends
+- Settings page shows progress bar for each account
+
+### Complete User Flow (Sprints 1-7)
+
+1. **Login** with Google
+2. **Create Campaign** → Details, outreach type, SalesLoft cadence (optional)
+3. **Upload File** → CSV/Excel prospects
+4. **Map Columns** → Auto-detected mapping
+5. **Enrich Prospects** → LinkedIn data pull (~1 sec/prospect)
+6. **Generate Messages** → AI personalization (~1.2 sec/prospect)
+7. **Review & Edit Messages** → Inline editing, approve/skip
+8. **Sync to CRM** → Salesforce + SalesLoft sync with cadence enrollment
+9. **Send Messages** → 🎉
+   - Navigate to Settings → Connect LinkedIn account
+   - Campaign page → "Send Campaign" button
+   - Auto-starts sending with human-like pacing
+   - Monitor real-time progress
+   - Pause/resume as needed
+   - Activity automatically logged to SalesLoft
 
 ## Design Decisions & Insights
 

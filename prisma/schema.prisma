@@ -65,9 +65,12 @@ model LinkedInAccount {
   userId            String
   user              User     @relation(fields: [userId], references: [id])
   unipileAccountId  String   @unique  // Unipile's internal account ID
+  email             String             // LinkedIn account email
   linkedinName      String?            // Display name from LinkedIn
   linkedinProfileUrl String?           // User's own LinkedIn profile URL
-  status            String   @default("active") // active, disconnected, error
+  status            String   @default("ACTIVE") // ACTIVE, DISCONNECTED, RATE_LIMITED
+  dailySendCount    Int      @default(0)        // Number of messages sent today
+  lastSendDate      DateTime?                   // Last time a message was sent
   connectedAt       DateTime @default(now())
   updatedAt         DateTime @updatedAt
 }

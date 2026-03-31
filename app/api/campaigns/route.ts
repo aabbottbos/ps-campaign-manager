@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json()
-    const { name, description, outreachType, messageTemplate } = body
+    const { name, description, outreachType, messageTemplate, salesloftCadenceId } = body
 
     // Validation
     if (!name || !description || !outreachType) {
@@ -63,6 +63,7 @@ export async function POST(request: NextRequest) {
         description,
         outreachType,
         messageTemplate: messageTemplate || null,
+        salesloftCadenceId: salesloftCadenceId || null,
         status: "DRAFT",
       },
     })

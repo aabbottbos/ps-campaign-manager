@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -8,18 +8,52 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { ArrowRight, Loader2 } from "lucide-react"
 import { toast } from "sonner"
+
+interface Cadence {
+  id: number
+  name: string
+}
 
 export default function NewCampaignPage() {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
+  const [cadences, setCadences] = useState<Cadence[]>([])
+  const [loadingCadences, setLoadingCadences] = useState(true)
   const [formData, setFormData] = useState({
     name: "",
     description: "",
     outreachType: "CONNECT" as "CONNECT" | "INMAIL",
     messageTemplate: "",
+    salesloftCadenceId: "",
   })
+
+  useEffect(() => {
+    fetchCadences()
+  }, [])
+
+  const fetchCadences = async () => {
+    try {
+      const response = await fetch("/api/salesloft/cadences")
+      if (response.ok) {
+        const data = await response.json()
+        setCadences(data)
+      }
+    } catch (error) {
+      console.error("Error fetching cadences:", error)
+      // Non-blocking error - user can still create campaign without cadence
+    } finally {
+      setLoadingCadences(false)
+    }
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -148,6 +182,31 @@ export default function NewCampaignPage() {
               <p className="text-xs text-gray-500">
                 Example: "Keep tone casual and friendly. Always mention our upcoming cohort start
                 date. End with a question, not a hard CTA."
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="cadence">SalesLoft Cadence (Optional)</Label>
+              <Select
+                value={formData.salesloftCadenceId}
+                onValueChange={(value) =>
+                  setFormData({ ...formData, salesloftCadenceId: value })
+                }
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder={loadingCadences ? "Loading cadences..." : "Select a cadence..."} />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="">No cadence</SelectItem>
+                  {cadences.map((cadence) => (
+                    <SelectItem key={cadence.id} value={cadence.id.toString()}>
+                      {cadence.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <p className="text-xs text-gray-500">
+                Prospects will be added to this SalesLoft cadence after CRM sync. Leave blank if you don't want to enroll prospects in a cadence.
               </p>
             </div>
 
