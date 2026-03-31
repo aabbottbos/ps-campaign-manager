@@ -1,13 +1,13 @@
 # PS Campaign Manager - Development Handoff
 
 **Last Updated:** March 31, 2026
-**Current Status:** All sprints implemented, actively debugging file upload functionality
+**Current Status:** File upload issue RESOLVED - All sprints implemented and ready for testing
 
 ---
 
 ## Executive Summary
 
-The PS Campaign Manager is a LinkedIn outreach automation tool for Product School. All 7 sprints have been implemented in code, including authentication, campaign management, file uploads, data enrichment, message generation, CRM integration, and LinkedIn automation. However, we are currently debugging the file upload functionality - **no prospect file has been successfully uploaded yet**.
+The PS Campaign Manager is a LinkedIn outreach automation tool for Product School. All 7 sprints have been implemented in code, including authentication, campaign management, file uploads, data enrichment, message generation, CRM integration, and LinkedIn automation. **File upload functionality is now working** after upgrading the @vercel/blob package from v0.23.0 to v2.3.2.
 
 ---
 
@@ -19,11 +19,11 @@ The PS Campaign Manager is a LinkedIn outreach automation tool for Product Schoo
 - Campaign creation with basic details
 - **Status:** Working
 
-### ⚠️ Sprint 2: File Upload & Column Mapping
+### ✅ Sprint 2: File Upload & Column Mapping
 - Vercel Blob storage integration
 - CSV/Excel file parsing
 - File validation (type, size, row count)
-- **Status:** Implemented but NOT working - debugging Blob access configuration
+- **Status:** FIXED - Working after package upgrade
 
 ### ✅ Sprint 3: Data Enrichment (ProxyCurl)
 - Background jobs with Inngest
@@ -59,30 +59,30 @@ The PS Campaign Manager is a LinkedIn outreach automation tool for Product Schoo
 
 ## Current Issues
 
-### 🔴 CRITICAL: File Upload Not Working
+### ✅ RESOLVED: File Upload Now Working
 
-**Problem:** File uploads to Vercel Blob storage failing with access configuration errors.
+**Problem:** File uploads to Vercel Blob storage were failing with contradictory access configuration errors.
 
-**Root Cause:** Mismatch between Blob store configuration and code parameters.
+**Root Cause:** Outdated @vercel/blob package (v0.23.0) with buggy private storage support.
 
-**What We Know:**
-- User created a PRIVATE Blob store in Vercel dashboard
-- Code now correctly uses `access: "private"` parameter
-- BLOB_READ_WRITE_TOKEN is properly configured in .env.local
-- Server is running cleanly on port 3000
+**Solution:** Upgraded @vercel/blob from v0.23.0 to v2.3.2
 
-**Recent Changes:**
-1. Changed from `access: "public"` to `access: "private"` in `/app/api/campaigns/[id]/upload/route.ts:95`
-2. Cleaned up environment variable conflicts (.env.local now takes precedence)
-3. Restarted dev server
+**What Was Fixed:**
+- The v0.23.0 package had a bug causing contradictory errors:
+  - `access: "private"` → Error: "access must be 'public'"
+  - `access: "public"` → Error: "Cannot use public access on a private store"
+- Version 2.x properly implements private storage support
+- File uploads now work correctly with `access: "private"` parameter
+
+**Verification:**
+- Test upload with private access: ✅ Success
+- Test upload with public access: ✅ Correctly rejected
+- Upload route: `app/api/campaigns/[id]/upload/route.ts:91-99`
 
 **Next Steps:**
-1. Test file upload with current configuration
-2. If still failing, check Blob store configuration in Vercel dashboard
-3. Verify BLOB_READ_WRITE_TOKEN has correct permissions
-4. Check server logs for specific error messages
-
-**File:** `app/api/campaigns/[id]/upload/route.ts:91-99`
+1. Test file upload through UI
+2. Test column mapping interface
+3. Begin testing downstream features (enrichment, message generation)
 
 ---
 
@@ -92,7 +92,7 @@ The PS Campaign Manager is a LinkedIn outreach automation tool for Product Schoo
 - **Framework:** Next.js 14 (App Router)
 - **Database:** PostgreSQL (Neon) with Prisma ORM
 - **Authentication:** NextAuth v4 with Google OAuth
-- **File Storage:** Vercel Blob (private storage)
+- **File Storage:** Vercel Blob v2.3.2 (private storage)
 - **Background Jobs:** Inngest
 - **AI:** Anthropic Claude
 - **CRM:** Salesforce + SalesLoft
@@ -175,17 +175,19 @@ UNIPILE_BASE_URL=
 - **Error:** "Cannot find module './vendor-chunks/openid-client.js'"
 - **Fix:** Killed servers, removed .next directory, restarted
 
-### 8. Vercel Blob Access Configuration (ONGOING)
-- **Error:** Various access control errors
-- **Fix:** Changed to `access: "private"` to match Blob store config
-- **Status:** Awaiting test results
+### 8. Vercel Blob Package Outdated (RESOLVED)
+- **Error:** Contradictory access errors - "access must be 'public'" with private parameter, "Cannot use public access on a private store" with public parameter
+- **Root Cause:** @vercel/blob v0.23.0 had buggy private storage support
+- **Fix:** Upgraded @vercel/blob from v0.23.0 to v2.3.2
+- **Verification:** Test uploads successful with correct access control
+- **Files:** package.json, app/api/campaigns/[id]/upload/route.ts
 
 ---
 
 ## Key Files Modified This Session
 
-### Authentication
-- `package.json` - NextAuth version, adapter, postbuild script
+### Authentication & Dependencies
+- `package.json` - NextAuth version, adapter, postbuild script, @vercel/blob upgrade
 - `lib/auth.ts` - NextAuth v4 compatibility, added secret field
 
 ### Pages
@@ -204,8 +206,8 @@ UNIPILE_BASE_URL=
 
 ## Testing Checklist
 
-### Not Yet Tested
-- [ ] File upload (CSV/Excel)
+### Ready to Test (Fixed Issues)
+- [ ] File upload through UI (CSV/Excel) - Backend verified working
 - [ ] Column mapping interface
 - [ ] ProxyCurl enrichment
 - [ ] Message generation with Claude
@@ -218,6 +220,7 @@ UNIPILE_BASE_URL=
 - [x] Campaign creation
 - [x] Database schema sync (local and remote)
 - [x] Server startup on port 3000
+- [x] Vercel Blob upload (API level - tested with direct upload)
 
 ---
 

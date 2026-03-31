@@ -4,6 +4,7 @@ import { authOptions } from "@/lib/auth"
 import { prisma } from "@/lib/prisma"
 import { validateMapping, extractMappedValues, type ColumnMapping } from "@/lib/column-mapper"
 import { parseFile } from "@/lib/file-parser"
+import { get } from "@vercel/blob"
 
 export async function POST(
   request: NextRequest,
@@ -52,9 +53,21 @@ export async function POST(
       )
     }
 
-    // Fetch and re-parse the uploaded file
-    const fileResponse = await fetch(campaign.uploadedFileUrl)
-    const fileBuffer = Buffer.from(await fileResponse.arrayBuffer())
+    // Download and re-parse the uploaded file from private Blob storage
+    const blobResult = await get(campaign.uploadedFileUrl, {
+      access: 'private',
+    })
+
+    if (!blobResult || blobResult.statusCode !== 200) {
+      throw new Error("Failed to download file from storage")
+    }
+
+    // Convert ReadableStream to Buffer
+    const chunks = []
+    for await (const chunk of blobResult.stream) {
+      chunks.push(chunk)
+    }
+    const fileBuffer = Buffer.concat(chunks)
     const parsedData = await parseFile(fileBuffer, campaign.uploadedFileName)
 
     // Delete existing prospects if any (in case user re-uploads)
@@ -142,9 +155,21 @@ export async function GET(
       )
     }
 
-    // Fetch and parse the uploaded file to get headers and preview
-    const fileResponse = await fetch(campaign.uploadedFileUrl)
-    const fileBuffer = Buffer.from(await fileResponse.arrayBuffer())
+    // Download and parse the uploaded file from private Blob storage to get headers and preview
+    const blobResult = await get(campaign.uploadedFileUrl, {
+      access: 'private',
+    })
+
+    if (!blobResult || blobResult.statusCode !== 200) {
+      throw new Error("Failed to download file from storage")
+    }
+
+    // Convert ReadableStream to Buffer
+    const chunks = []
+    for await (const chunk of blobResult.stream) {
+      chunks.push(chunk)
+    }
+    const fileBuffer = Buffer.concat(chunks)
     const parsedData = await parseFile(fileBuffer, campaign.uploadedFileName)
 
     return NextResponse.json({
