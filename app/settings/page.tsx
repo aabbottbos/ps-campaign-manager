@@ -21,6 +21,7 @@ export default function SettingsPage() {
   const [loading, setLoading] = useState(true)
   const [accounts, setAccounts] = useState<LinkedInAccount[]>([])
   const [connecting, setConnecting] = useState(false)
+  const [deleting, setDeleting] = useState(false)
 
   useEffect(() => {
     fetchAccounts()
@@ -86,6 +87,55 @@ export default function SettingsPage() {
     } catch (error) {
       console.error("Error disconnecting account:", error)
       toast.error("Failed to disconnect account")
+    }
+  }
+
+  const deleteAllCampaigns = async () => {
+    // First confirmation
+    const firstConfirm = confirm(
+      "⚠️ WARNING: This will permanently delete ALL of your campaigns and all associated data (prospects, messages, enrichments, etc.).\n\nThis action CANNOT be reversed.\n\nAre you absolutely sure you want to continue?"
+    )
+
+    if (!firstConfirm) {
+      return
+    }
+
+    // Second confirmation for extra safety
+    const secondConfirm = confirm(
+      "🚨 FINAL WARNING 🚨\n\nYou are about to delete EVERYTHING. This includes:\n• All campaigns\n• All prospects\n• All enrichment data\n• All generated messages\n• All CRM sync data\n\nType DELETE in the next prompt to confirm."
+    )
+
+    if (!secondConfirm) {
+      return
+    }
+
+    // Third confirmation with text input
+    const userInput = prompt('Type "DELETE" in all caps to confirm deletion:')
+
+    if (userInput !== "DELETE") {
+      toast.error("Deletion cancelled - confirmation text did not match")
+      return
+    }
+
+    setDeleting(true)
+
+    try {
+      const response = await fetch("/api/campaigns/delete-all", {
+        method: "DELETE",
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to delete campaigns")
+      }
+
+      toast.success(data.message || "All campaigns deleted successfully")
+    } catch (error) {
+      console.error("Error deleting campaigns:", error)
+      toast.error(error instanceof Error ? error.message : "Failed to delete campaigns")
+    } finally {
+      setDeleting(false)
     }
   }
 
@@ -260,6 +310,56 @@ export default function SettingsPage() {
               <strong>Account Rotation:</strong> If multiple accounts are connected, the system
               will automatically rotate between them to distribute the sending load.
             </p>
+          </CardContent>
+        </Card>
+
+        {/* Danger Zone */}
+        <Card className="border-red-200 bg-red-50">
+          <CardHeader>
+            <CardTitle className="text-red-900 flex items-center gap-2">
+              <AlertCircle className="h-5 w-5" />
+              Danger Zone
+            </CardTitle>
+            <CardDescription className="text-red-700">
+              Irreversible and destructive actions
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="rounded-lg border border-red-300 bg-white p-4">
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex-1">
+                  <h3 className="font-semibold text-red-900 mb-1">Delete All Campaigns</h3>
+                  <p className="text-sm text-red-700 mb-3">
+                    Permanently delete all campaigns and associated data including prospects,
+                    enrichments, messages, and sync history. This action cannot be undone.
+                  </p>
+                  <div className="flex items-center gap-2 text-xs text-red-600">
+                    <AlertCircle className="h-4 w-4" />
+                    <span className="font-medium">
+                      You will be asked to confirm this action multiple times
+                    </span>
+                  </div>
+                </div>
+                <Button
+                  variant="destructive"
+                  onClick={deleteAllCampaigns}
+                  disabled={deleting}
+                  className="shrink-0"
+                >
+                  {deleting ? (
+                    <>
+                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                      Deleting...
+                    </>
+                  ) : (
+                    <>
+                      <Trash2 className="h-4 w-4 mr-2" />
+                      Delete All Campaigns
+                    </>
+                  )}
+                </Button>
+              </div>
+            </div>
           </CardContent>
         </Card>
       </div>

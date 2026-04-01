@@ -1,32 +1,56 @@
-{"time":"2026-04-01T02:51:02.186677Z","level":"INFO","msg":"Port conflict, using new port","name":"dev server api","from":8288,"to":8296}
-{"time":"2026-04-01T02:51:02.186736Z","level":"INFO","msg":"Port conflict, using new port","name":"connect gateway","from":8289,"to":8297}
-{"time":"2026-04-01T02:51:02.186742Z","level":"INFO","msg":"Port conflict, using new port","name":"connect gateway grpc","from":50052,"to":50060}
-{"time":"2026-04-01T02:51:02.186746Z","level":"INFO","msg":"Port conflict, using new port","name":"connect executor grpc","from":50053,"to":50061}
-{"time":"2026-04-01T02:51:02.194521Z","level":"INFO","msg":"starting executor grpc server","svc":"executor","addr":":50061"}
-{"time":"2026-04-01T02:51:02.195511Z","level":"INFO","msg":"service starting","caller":"devserver","service":"devserver"}
-{"time":"2026-04-01T02:51:02.195745Z","level":"INFO","msg":"starting event stream","backend":"redis"}
-{"time":"2026-04-01T02:51:02.195768Z","level":"INFO","msg":"service starting","caller":"runner","service":"runner"}
-{"time":"2026-04-01T02:51:02.195784Z","level":"INFO","msg":"service starting","caller":"api","service":"api"}
-{"time":"2026-04-01T02:51:02.195798Z","level":"INFO","msg":"starting server","caller":"api","addr":"0.0.0.0:8296"}
-{"time":"2026-04-01T02:51:02.195763Z","level":"INFO","msg":"autodiscovering locally hosted SDKs"}
-{"time":"2026-04-01T02:51:02.195745Z","level":"INFO","msg":"service starting","caller":"executor","service":"executor"}
-{"time":"2026-04-01T02:51:02.19587Z","level":"INFO","msg":"service starting","caller":"connect-gateway","service":"connect-gateway"}
-{"time":"2026-04-01T02:51:02.195893Z","level":"INFO","msg":"subscribing to function queue"}
-{"time":"2026-04-01T02:51:02.195891Z","level":"INFO","msg":"apps synced, disabling auto-discovery"}
-{"time":"2026-04-01T02:51:02.19593Z","level":"INFO","msg":"Executor started in assignedQueueShard Mode","queue_shard":"default"}
-{"time":"2026-04-01T02:51:02.196241Z","level":"INFO","msg":"starting connect gateway grpc server","caller":"connect-gateway","addr":":50060"}
-{"time":"2026-04-01T02:51:02.197219Z","level":"INFO","msg":"subscribing to events","topic":"events"}
-{"time":"2026-04-01T02:53:50.146888Z","level":"INFO","msg":"starting executor grpc server","svc":"executor","addr":":50053"}
-{"time":"2026-04-01T02:53:50.148818Z","level":"INFO","msg":"service starting","caller":"executor","service":"executor"}
-{"time":"2026-04-01T02:53:50.148866Z","level":"INFO","msg":"service starting","caller":"devserver","service":"devserver"}
-{"time":"2026-04-01T02:53:50.148876Z","level":"INFO","msg":"autodiscovering locally hosted SDKs"}
-{"time":"2026-04-01T02:53:50.148882Z","level":"INFO","msg":"service starting","caller":"api","service":"api"}
-{"time":"2026-04-01T02:53:50.148952Z","level":"INFO","msg":"starting server","caller":"api","addr":"0.0.0.0:8288"}
-{"time":"2026-04-01T02:53:50.148881Z","level":"INFO","msg":"subscribing to function queue"}
-{"time":"2026-04-01T02:53:50.14882Z","level":"INFO","msg":"starting event stream","backend":"redis"}
-{"time":"2026-04-01T02:53:50.149023Z","level":"INFO","msg":"Executor started in assignedQueueShard Mode","queue_shard":"default"}
-{"time":"2026-04-01T02:53:50.149065Z","level":"INFO","msg":"service starting","caller":"connect-gateway","service":"connect-gateway"}
-{"time":"2026-04-01T02:53:50.149038Z","level":"INFO","msg":"service starting","caller":"runner","service":"runner"}
-{"time":"2026-04-01T02:53:50.149183Z","level":"INFO","msg":"starting connect gateway grpc server","caller":"connect-gateway","addr":":50052"}
-{"time":"2026-04-01T02:53:50.149551Z","level":"INFO","msg":"apps synced, disabling auto-discovery"}
-{"time":"2026-04-01T02:53:50.150661Z","level":"INFO","msg":"subscribing to events","topic":"events"}
+{"time":"2026-04-01T03:12:00.948505Z","level":"INFO","msg":"starting executor grpc server","svc":"executor","addr":":50053"}
+{"time":"2026-04-01T03:12:00.951613Z","level":"INFO","msg":"service starting","caller":"devserver","service":"devserver"}
+{"time":"2026-04-01T03:12:00.951748Z","level":"INFO","msg":"service starting","caller":"executor","service":"executor"}
+{"time":"2026-04-01T03:12:00.951793Z","level":"INFO","msg":"autodiscovering locally hosted SDKs"}
+{"time":"2026-04-01T03:12:00.952085Z","level":"INFO","msg":"subscribing to function queue"}
+{"time":"2026-04-01T03:12:00.952117Z","level":"INFO","msg":"starting event stream","backend":"redis"}
+{"time":"2026-04-01T03:12:00.952132Z","level":"INFO","msg":"service starting","caller":"runner","service":"runner"}
+{"time":"2026-04-01T03:12:00.95217Z","level":"INFO","msg":"service starting","caller":"api","service":"api"}
+{"time":"2026-04-01T03:12:00.952179Z","level":"INFO","msg":"starting server","caller":"api","addr":"0.0.0.0:8288"}
+{"time":"2026-04-01T03:12:00.952541Z","level":"INFO","msg":"Executor started in assignedQueueShard Mode","queue_shard":"default"}
+{"time":"2026-04-01T03:12:00.952687Z","level":"INFO","msg":"service starting","caller":"connect-gateway","service":"connect-gateway"}
+{"time":"2026-04-01T03:12:00.953135Z","level":"INFO","msg":"starting connect gateway grpc server","caller":"connect-gateway","addr":":50052"}
+{"time":"2026-04-01T03:12:00.965637Z","level":"INFO","msg":"subscribing to events","topic":"events"}
+{"time":"2026-04-01T03:12:09.014395Z","level":"INFO","msg":"apps synced, disabling auto-discovery"}
+{"time":"2026-04-01T03:12:19.481856Z","level":"INFO","msg":"publishing event","caller":"api","event_name":"campaign/enrich-prospects","internal_id":"01KN3GE50QVQ8N8Q144Y7YPE3Q","external_id":"01KN3GE50QVQ8N8Q144Y7YPE3Q","event":{"id":"01KN3GE50QVQ8N8Q144Y7YPE3Q","name":"campaign/enrich-prospects","data":{"campaignId":"cmnfgcq920001f73grb1k7em8"},"ts":1775013139479}}
+{"time":"2026-04-01T03:12:19.545855Z","level":"INFO","msg":"received event","event":"campaign/enrich-prospects","event_id":"01KN3GE50QVQ8N8Q144Y7YPE3Q","internal_id":"01KN3GE50QVQ8N8Q144Y7YPE3Q"}
+{"time":"2026-04-01T03:12:19.546538Z","level":"INFO","msg":"initializing fn","event":"campaign/enrich-prospects","event_id":"01KN3GE50QVQ8N8Q144Y7YPE3Q","internal_id":"01KN3GE50QVQ8N8Q144Y7YPE3Q","function":"Enrich Campaign Prospects","function_id":"ec7893c7-1580-52f7-9826-f782a4d6f10f"}
+{"time":"2026-04-01T03:12:19.692181Z","level":"INFO","msg":"publishing event","caller":"api","event_name":"campaign/enrich-prospects","internal_id":"01KN3GE57AT184FANAGY5TTR44","external_id":"01KN3GE57AT184FANAGY5TTR44","event":{"id":"01KN3GE57AT184FANAGY5TTR44","name":"campaign/enrich-prospects","data":{"campaignId":"cmnfgcq920001f73grb1k7em8"},"ts":1775013139690}}
+{"time":"2026-04-01T03:12:19.796373Z","level":"INFO","msg":"received event","event":"campaign/enrich-prospects","event_id":"01KN3GE57AT184FANAGY5TTR44","internal_id":"01KN3GE57AT184FANAGY5TTR44"}
+{"time":"2026-04-01T03:12:19.796618Z","level":"INFO","msg":"initializing fn","event":"campaign/enrich-prospects","event_id":"01KN3GE57AT184FANAGY5TTR44","internal_id":"01KN3GE57AT184FANAGY5TTR44","function":"Enrich Campaign Prospects","function_id":"ec7893c7-1580-52f7-9826-f782a4d6f10f"}
+{"time":"2026-04-01T03:12:19.876536Z","level":"INFO","msg":"publishing event","caller":"api","event_name":"campaign/enrich-prospects","internal_id":"01KN3GE5D3K59S0A545J807M08","external_id":"01KN3GE5D3K59S0A545J807M08","event":{"id":"01KN3GE5D3K59S0A545J807M08","name":"campaign/enrich-prospects","data":{"campaignId":"cmnfgcq920001f73grb1k7em8"},"ts":1775013139875}}
+{"time":"2026-04-01T03:12:20.022856Z","level":"INFO","msg":"publishing event","caller":"api","event_name":"campaign/enrich-prospects","internal_id":"01KN3GE5HN8DSBQYXSXC4F55EH","external_id":"01KN3GE5HN8DSBQYXSXC4F55EH","event":{"id":"01KN3GE5HN8DSBQYXSXC4F55EH","name":"campaign/enrich-prospects","data":{"campaignId":"cmnfgcq920001f73grb1k7em8"},"ts":1775013140021}}
+{"time":"2026-04-01T03:12:20.047689Z","level":"INFO","msg":"received event","event":"campaign/enrich-prospects","event_id":"01KN3GE5D3K59S0A545J807M08","internal_id":"01KN3GE5D3K59S0A545J807M08"}
+{"time":"2026-04-01T03:12:20.047773Z","level":"INFO","msg":"received event","event":"campaign/enrich-prospects","event_id":"01KN3GE5HN8DSBQYXSXC4F55EH","internal_id":"01KN3GE5HN8DSBQYXSXC4F55EH"}
+{"time":"2026-04-01T03:12:20.048201Z","level":"INFO","msg":"initializing fn","event":"campaign/enrich-prospects","event_id":"01KN3GE5D3K59S0A545J807M08","internal_id":"01KN3GE5D3K59S0A545J807M08","function":"Enrich Campaign Prospects","function_id":"ec7893c7-1580-52f7-9826-f782a4d6f10f"}
+{"time":"2026-04-01T03:12:20.048208Z","level":"INFO","msg":"initializing fn","event":"campaign/enrich-prospects","event_id":"01KN3GE5HN8DSBQYXSXC4F55EH","internal_id":"01KN3GE5HN8DSBQYXSXC4F55EH","function":"Enrich Campaign Prospects","function_id":"ec7893c7-1580-52f7-9826-f782a4d6f10f"}
+{"time":"2026-04-01T03:12:23.559636Z","level":"INFO","msg":"received event","event":"inngest/function.finished","event_id":"01KN3GE8XFKE97YY4VRTTCXQGE","internal_id":"01KN3GE8XFNBGWENRHQX95W5GT"}
+{"time":"2026-04-01T03:12:23.823604Z","level":"INFO","msg":"received event","event":"inngest/function.finished","event_id":"01KN3GE96W7Y1NJGCWQKA659PY","internal_id":"01KN3GE96WWT313NTA99V89KS2"}
+{"time":"2026-04-01T03:12:24.325625Z","level":"INFO","msg":"received event","event":"inngest/function.finished","event_id":"01KN3GE9MJ1H1N8EE3ETGX7XQP","internal_id":"01KN3GE9MJXY5W9FXMZTQ04Y2C"}
+{"time":"2026-04-01T03:12:24.576334Z","level":"INFO","msg":"received event","event":"inngest/function.finished","event_id":"01KN3GE9T0WG5PSCD4DHP2SVEH","internal_id":"01KN3GE9T0R03T3TAEH1VC6D0Y"}
+{"time":"2026-04-01T03:19:05.362117Z","level":"INFO","msg":"starting executor grpc server","svc":"executor","addr":":50053"}
+{"time":"2026-04-01T03:19:05.364474Z","level":"INFO","msg":"service starting","caller":"devserver","service":"devserver"}
+{"time":"2026-04-01T03:19:05.364478Z","level":"INFO","msg":"service starting","caller":"executor","service":"executor"}
+{"time":"2026-04-01T03:19:05.364496Z","level":"INFO","msg":"autodiscovering locally hosted SDKs"}
+{"time":"2026-04-01T03:19:05.36458Z","level":"INFO","msg":"subscribing to function queue"}
+{"time":"2026-04-01T03:19:05.364632Z","level":"INFO","msg":"Executor started in assignedQueueShard Mode","queue_shard":"default"}
+{"time":"2026-04-01T03:19:05.364491Z","level":"INFO","msg":"starting event stream","backend":"redis"}
+{"time":"2026-04-01T03:19:05.36468Z","level":"INFO","msg":"service starting","caller":"runner","service":"runner"}
+{"time":"2026-04-01T03:19:05.364529Z","level":"INFO","msg":"service starting","caller":"api","service":"api"}
+{"time":"2026-04-01T03:19:05.364756Z","level":"INFO","msg":"starting server","caller":"api","addr":"0.0.0.0:8288"}
+{"time":"2026-04-01T03:19:05.364606Z","level":"INFO","msg":"service starting","caller":"connect-gateway","service":"connect-gateway"}
+{"time":"2026-04-01T03:19:05.365014Z","level":"INFO","msg":"starting connect gateway grpc server","caller":"connect-gateway","addr":":50052"}
+{"time":"2026-04-01T03:19:05.365124Z","level":"INFO","msg":"apps synced, disabling auto-discovery"}
+{"time":"2026-04-01T03:19:05.366136Z","level":"INFO","msg":"subscribing to events","topic":"events"}
+{"time":"2026-04-01T03:20:31.776321Z","level":"INFO","msg":"publishing event","caller":"api","event_name":"campaign/enrich-prospects","internal_id":"01KN3GX5RYRMSYXQANJARSHV4Y","external_id":"01KN3GX5RYRMSYXQANJARSHV4Y","event":{"id":"01KN3GX5RYRMSYXQANJARSHV4Y","name":"campaign/enrich-prospects","data":{"campaignId":"cmnfh9ok9000112aeazp4972k"},"ts":1775013631774}}
+{"time":"2026-04-01T03:20:31.98188Z","level":"INFO","msg":"received event","event":"campaign/enrich-prospects","event_id":"01KN3GX5RYRMSYXQANJARSHV4Y","internal_id":"01KN3GX5RYRMSYXQANJARSHV4Y"}
+{"time":"2026-04-01T03:20:31.982126Z","level":"INFO","msg":"initializing fn","event":"campaign/enrich-prospects","event_id":"01KN3GX5RYRMSYXQANJARSHV4Y","internal_id":"01KN3GX5RYRMSYXQANJARSHV4Y","function":"Enrich Campaign Prospects","function_id":"ec7893c7-1580-52f7-9826-f782a4d6f10f"}
+{"time":"2026-04-01T03:20:32.051078Z","level":"INFO","msg":"publishing event","caller":"api","event_name":"campaign/enrich-prospects","internal_id":"01KN3GX61JKHEBHSH7T5Z0FKTB","external_id":"01KN3GX61JKHEBHSH7T5Z0FKTB","event":{"id":"01KN3GX61JKHEBHSH7T5Z0FKTB","name":"campaign/enrich-prospects","data":{"campaignId":"cmnfh9ok9000112aeazp4972k"},"ts":1775013632050}}
+{"time":"2026-04-01T03:20:32.233005Z","level":"INFO","msg":"received event","event":"campaign/enrich-prospects","event_id":"01KN3GX61JKHEBHSH7T5Z0FKTB","internal_id":"01KN3GX61JKHEBHSH7T5Z0FKTB"}
+{"time":"2026-04-01T03:20:32.233395Z","level":"INFO","msg":"initializing fn","event":"campaign/enrich-prospects","event_id":"01KN3GX61JKHEBHSH7T5Z0FKTB","internal_id":"01KN3GX61JKHEBHSH7T5Z0FKTB","function":"Enrich Campaign Prospects","function_id":"ec7893c7-1580-52f7-9826-f782a4d6f10f"}
+{"time":"2026-04-01T03:20:32.238202Z","level":"INFO","msg":"publishing event","caller":"api","event_name":"campaign/enrich-prospects","internal_id":"01KN3GX67DMQHJ6BS6E1SJE8VD","external_id":"01KN3GX67DMQHJ6BS6E1SJE8VD","event":{"id":"01KN3GX67DMQHJ6BS6E1SJE8VD","name":"campaign/enrich-prospects","data":{"campaignId":"cmnfh9ok9000112aeazp4972k"},"ts":1775013632237}}
+{"time":"2026-04-01T03:20:32.484103Z","level":"INFO","msg":"received event","event":"campaign/enrich-prospects","event_id":"01KN3GX67DMQHJ6BS6E1SJE8VD","internal_id":"01KN3GX67DMQHJ6BS6E1SJE8VD"}
+{"time":"2026-04-01T03:20:32.484338Z","level":"INFO","msg":"initializing fn","event":"campaign/enrich-prospects","event_id":"01KN3GX67DMQHJ6BS6E1SJE8VD","internal_id":"01KN3GX67DMQHJ6BS6E1SJE8VD","function":"Enrich Campaign Prospects","function_id":"ec7893c7-1580-52f7-9826-f782a4d6f10f"}
+{"time":"2026-04-01T03:20:34.994377Z","level":"INFO","msg":"received event","event":"inngest/function.finished","event_id":"01KN3GX8PZNXHY2XF7SWDAJZ3J","internal_id":"01KN3GX8PZ1XA8HD564JH9Q3TM"}
+{"time":"2026-04-01T03:20:35.24517Z","level":"INFO","msg":"received event","event":"inngest/function.finished","event_id":"01KN3GX90C5WV7DVFGT3FYAJZK","internal_id":"01KN3GX90CVKAJX2D7R15TABME"}
+{"time":"2026-04-01T03:20:35.746287Z","level":"INFO","msg":"received event","event":"inngest/function.finished","event_id":"01KN3GX9K2QKZ04VJ30P94A1MG","internal_id":"01KN3GX9K2GRBHHFZ3RSVCNV40"}
