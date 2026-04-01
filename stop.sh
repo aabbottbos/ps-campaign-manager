@@ -63,13 +63,21 @@ stop_service "nextjs"
 echo ""
 echo "  Checking for orphaned processes..."
 
-for port in 3000 8288; do
-  local_pid=$(lsof -ti tcp:$port 2>/dev/null)
-  if [ -n "$local_pid" ]; then
-    echo -e "${YELLOW}  ⚠  Orphaned process on port $port (PID $local_pid) — killing${RESET}"
-    kill "$local_pid" 2>/dev/null || true
+# Kill all Next.js processes by name (catches child processes too)
+pkill -9 -f "next dev" 2>/dev/null || true
+pkill -9 -f "next-server" 2>/dev/null || true
+pkill -9 -f "inngest-cli" 2>/dev/null || true
+
+# Sweep ports 3000-3010 (Next.js bumps up if 3000 is taken)
+for port in $(seq 3000 3010) 8288; do
+  local_pids=$(lsof -ti tcp:$port 2>/dev/null)
+  if [ -n "$local_pids" ]; then
+    echo -e "${YELLOW}  ⚠  Killing processes on port $port (PIDs: $local_pids)${RESET}"
+    echo "$local_pids" | xargs kill -9 2>/dev/null || true
   fi
 done
+
+sleep 1
 
 # ── Done ─────────────────────────────────────────────────────────────────────
 echo ""
