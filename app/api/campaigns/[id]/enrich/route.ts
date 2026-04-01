@@ -53,20 +53,44 @@ export async function POST(
       )
     }
 
-    // Trigger the Inngest enrichment job
-    await inngest.send({
-      name: "campaign/enrich-prospects",
-      data: {
-        campaignId,
-      },
-    })
+    // Check if Inngest is configured
+    if (!process.env.INNGEST_EVENT_KEY) {
+      return NextResponse.json(
+        {
+          error: "Enrichment service not configured",
+          message: "INNGEST_EVENT_KEY environment variable is missing. Please configure Inngest to enable prospect enrichment.",
+          requiresSetup: true,
+        },
+        { status: 503 }
+      )
+    }
 
-    return NextResponse.json({
-      success: true,
-      message: "Enrichment started",
-      campaignId,
-      prospectCount: campaign._count.prospects,
-    })
+    // Trigger the Inngest enrichment job
+    try {
+      await inngest.send({
+        name: "campaign/enrich-prospects",
+        data: {
+          campaignId,
+        },
+      })
+
+      return NextResponse.json({
+        success: true,
+        message: "Enrichment started",
+        campaignId,
+        prospectCount: campaign._count.prospects,
+      })
+    } catch (inngestError: any) {
+      console.error("Inngest error:", inngestError)
+      return NextResponse.json(
+        {
+          error: "Failed to start enrichment job",
+          message: inngestError.message || "Unknown error with background job service",
+          requiresSetup: true,
+        },
+        { status: 503 }
+      )
+    }
   } catch (error) {
     console.error("Error starting enrichment:", error)
     return NextResponse.json(

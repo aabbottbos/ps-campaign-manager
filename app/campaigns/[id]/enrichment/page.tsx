@@ -86,7 +86,18 @@ export default function EnrichmentPage({ params }: EnrichmentPageProps) {
       const data = await response.json()
 
       if (!response.ok) {
-        throw new Error(data.error || "Failed to start enrichment")
+        // Show user-friendly message for service unavailable
+        if (response.status === 503 && data.requiresSetup) {
+          toast.error("Enrichment Service Not Configured", {
+            description: "Please configure INNGEST_EVENT_KEY and PROXYCURL_API_KEY environment variables to enable prospect enrichment.",
+            duration: 8000,
+          })
+        } else {
+          toast.error(data.error || "Failed to start enrichment", {
+            description: data.message,
+          })
+        }
+        return
       }
 
       toast.success("Enrichment started")

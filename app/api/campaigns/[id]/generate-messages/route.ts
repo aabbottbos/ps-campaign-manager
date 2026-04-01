@@ -54,20 +54,55 @@ export async function POST(
       )
     }
 
-    // Trigger the Inngest message generation job
-    await inngest.send({
-      name: "campaign/generate-messages",
-      data: {
-        campaignId,
-      },
-    })
+    // Check if required services are configured
+    if (!process.env.INNGEST_EVENT_KEY) {
+      return NextResponse.json(
+        {
+          error: "Message generation service not configured",
+          message: "INNGEST_EVENT_KEY environment variable is missing. Please configure Inngest to enable message generation.",
+          requiresSetup: true,
+        },
+        { status: 503 }
+      )
+    }
 
-    return NextResponse.json({
-      success: true,
-      message: "Message generation started",
-      campaignId,
-      prospectCount: campaign.prospects.length,
-    })
+    if (!process.env.ANTHROPIC_API_KEY) {
+      return NextResponse.json(
+        {
+          error: "AI service not configured",
+          message: "ANTHROPIC_API_KEY environment variable is missing. Please configure Anthropic Claude to enable message generation.",
+          requiresSetup: true,
+        },
+        { status: 503 }
+      )
+    }
+
+    // Trigger the Inngest message generation job
+    try {
+      await inngest.send({
+        name: "campaign/generate-messages",
+        data: {
+          campaignId,
+        },
+      })
+
+      return NextResponse.json({
+        success: true,
+        message: "Message generation started",
+        campaignId,
+        prospectCount: campaign.prospects.length,
+      })
+    } catch (inngestError: any) {
+      console.error("Inngest error:", inngestError)
+      return NextResponse.json(
+        {
+          error: "Failed to start message generation job",
+          message: inngestError.message || "Unknown error with background job service",
+          requiresSetup: true,
+        },
+        { status: 503 }
+      )
+    }
   } catch (error) {
     console.error("Error starting message generation:", error)
     return NextResponse.json(
