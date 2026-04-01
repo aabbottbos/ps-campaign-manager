@@ -33,7 +33,7 @@ export const sendMessages = inngest.createFunction(
         include: {
           user: {
             include: {
-              linkedInAccounts: {
+              linkedinAccounts: {
                 where: { status: "ACTIVE" },
                 orderBy: { lastSendDate: "asc" },
               },
@@ -48,7 +48,7 @@ export const sendMessages = inngest.createFunction(
     }
 
     // Check if we have any active LinkedIn accounts
-    const activeAccounts = campaign.user.linkedInAccounts
+    const activeAccounts = campaign.user.linkedinAccounts
     if (activeAccounts.length === 0) {
       throw new Error("No active LinkedIn accounts available for sending")
     }
@@ -135,6 +135,8 @@ export const sendMessages = inngest.createFunction(
 
       // Update prospect status
       await step.run(`update-prospect-${prospect.id}`, async () => {
+        const message = prospect.editedMessage || prospect.generatedMessage
+
         if (result.success) {
           sentCount++
 
@@ -152,13 +154,12 @@ export const sendMessages = inngest.createFunction(
           await incrementDailySendCount(account.id)
 
           // Log activity to SalesLoft
-          if (prospect.salesloftPersonId) {
+          if (prospect.salesloftPersonId && message) {
             try {
               await logActivity({
-                personId: prospect.salesloftPersonId,
-                type: campaign.outreachType === "CONNECT" ? "linkedin_connection" : "linkedin_inmail",
+                personId: parseInt(prospect.salesloftPersonId!),
                 subject: `LinkedIn ${campaign.outreachType === "CONNECT" ? "Connection Request" : "InMail"} Sent`,
-                notes: message,
+                body: message,
               })
             } catch (error) {
               console.error("Failed to log SalesLoft activity:", error)

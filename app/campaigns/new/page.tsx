@@ -162,9 +162,9 @@ export default function NewCampaignPage() {
                 required
               />
               <p className="text-xs text-gray-500">
-                Example: "Promoting our Product Management certification program to mid-level PMs
+                Example: &quot;Promoting our Product Management certification program to mid-level PMs
                 at tech companies. Focus on career advancement, hands-on learning, and the
-                certificate's industry recognition."
+                certificate&apos;s industry recognition.&quot;
               </p>
             </div>
 
@@ -180,8 +180,8 @@ export default function NewCampaignPage() {
                 rows={4}
               />
               <p className="text-xs text-gray-500">
-                Example: "Keep tone casual and friendly. Always mention our upcoming cohort start
-                date. End with a question, not a hard CTA."
+                Example: &quot;Keep tone casual and friendly. Always mention our upcoming cohort start
+                date. End with a question, not a hard CTA.&quot;
               </p>
             </div>
 
@@ -206,7 +206,7 @@ export default function NewCampaignPage() {
                 </SelectContent>
               </Select>
               <p className="text-xs text-gray-500">
-                Prospects will be added to this SalesLoft cadence after CRM sync. Leave blank if you don't want to enroll prospects in a cadence.
+                Prospects will be added to this SalesLoft cadence after CRM sync. Leave blank if you don&apos;t want to enroll prospects in a cadence.
               </p>
             </div>
 

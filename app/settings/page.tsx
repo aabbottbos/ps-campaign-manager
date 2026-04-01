@@ -243,7 +243,7 @@ export default function SettingsPage() {
           <CardContent className="space-y-2 text-sm text-gray-600">
             <p>
               <strong>Daily Limit:</strong> Each LinkedIn account can send up to 50 messages per
-              day to avoid triggering LinkedIn's spam detection.
+              day to avoid triggering LinkedIn&apos;s spam detection.
             </p>
             <p>
               <strong>Sending Pace:</strong> Messages are sent with randomized delays (30-90

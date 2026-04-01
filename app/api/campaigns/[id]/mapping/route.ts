@@ -62,11 +62,16 @@ export async function POST(
       throw new Error("Failed to download file from storage")
     }
 
-    // Convert ReadableStream to Buffer
-    const chunks = []
-    for await (const chunk of blobResult.stream) {
-      chunks.push(chunk)
+    // Convert Web ReadableStream to Buffer
+    const reader = blobResult.stream.getReader()
+    const chunks: Uint8Array[] = []
+
+    while (true) {
+      const { done, value } = await reader.read()
+      if (done) break
+      chunks.push(value)
     }
+
     const fileBuffer = Buffer.concat(chunks)
     const parsedData = await parseFile(fileBuffer, campaign.uploadedFileName)
 
@@ -104,7 +109,7 @@ export async function POST(
     await prisma.campaign.update({
       where: { id: campaignId },
       data: {
-        columnMapping: mapping,
+        columnMapping: mapping as any,
         status: "MAPPING_COMPLETE",
       },
     })
@@ -164,11 +169,16 @@ export async function GET(
       throw new Error("Failed to download file from storage")
     }
 
-    // Convert ReadableStream to Buffer
-    const chunks = []
-    for await (const chunk of blobResult.stream) {
-      chunks.push(chunk)
+    // Convert Web ReadableStream to Buffer
+    const reader = blobResult.stream.getReader()
+    const chunks: Uint8Array[] = []
+
+    while (true) {
+      const { done, value } = await reader.read()
+      if (done) break
+      chunks.push(value)
     }
+
     const fileBuffer = Buffer.concat(chunks)
     const parsedData = await parseFile(fileBuffer, campaign.uploadedFileName)
 

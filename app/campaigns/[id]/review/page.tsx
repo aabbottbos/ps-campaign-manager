@@ -14,7 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { Loader2, CheckCircle2, XCircle, Edit2, Undo2, Search, ArrowRight } from "lucide-react"
+import { Loader2, CheckCircle2, XCircle, Edit2, Undo, Search, ArrowRight } from "lucide-react"
 import { toast } from "sonner"
 
 interface ReviewPageProps {
@@ -488,7 +488,7 @@ export default function ReviewPage({ params }: ReviewPageProps) {
                             size="sm"
                             onClick={() => handleResetMessage(prospect.id)}
                           >
-                            <Undo2 className="h-4 w-4 mr-1" />
+                            <Undo className="h-4 w-4 mr-1" />
                             Reset
                           </Button>
                         )}

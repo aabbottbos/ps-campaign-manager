@@ -79,7 +79,7 @@ export default function MappingPage({ params }: MappingPageProps) {
     const validation = validateMapping(mapping)
 
     if (!validation.valid) {
-      toast.error(`Please map required fields: ${validation.missingFields.map(getFieldLabel).join(", ")}`)
+      toast.error(`Please map required fields: ${validation.missingFields.map((field) => getFieldLabel(field as any)).join(", ")}`)
       return
     }
 
@@ -191,7 +191,7 @@ export default function MappingPage({ params }: MappingPageProps) {
                 <div className="text-sm text-red-900">
                   <p className="font-medium">Required fields missing:</p>
                   <p className="mt-1">
-                    {validation.missingFields.map(getFieldLabel).join(", ")}
+                    {validation.missingFields.map((field) => getFieldLabel(field as any)).join(", ")}
                   </p>
                 </div>
               </div>

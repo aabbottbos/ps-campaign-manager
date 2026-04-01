@@ -256,3 +256,36 @@ npm warn exec The following package was not found and will be installed: inngest
 {"time":"2026-03-31T21:32:12.064421Z","level":"INFO","msg":"subscribing to events","topic":"events"}
 {"time":"2026-03-31T21:32:30.822484Z","level":"INFO","msg":"apps synced, disabling auto-discovery"}
 ./start.sh: line 42: 77244 Killed: 9               npx inngest-cli@latest dev -u http://localhost:3000/api/inngest
+{"time":"2026-03-31T23:56:10.022688Z","level":"INFO","msg":"starting executor grpc server","svc":"executor","addr":":50053"}
+{"time":"2026-03-31T23:56:10.026971Z","level":"INFO","msg":"service starting","caller":"devserver","service":"devserver"}
+{"time":"2026-03-31T23:56:10.026978Z","level":"INFO","msg":"service starting","caller":"executor","service":"executor"}
+{"time":"2026-03-31T23:56:10.027082Z","level":"INFO","msg":"autodiscovering locally hosted SDKs"}
+{"time":"2026-03-31T23:56:10.027442Z","level":"INFO","msg":"service starting","caller":"api","service":"api"}
+{"time":"2026-03-31T23:56:10.027455Z","level":"INFO","msg":"starting server","caller":"api","addr":"0.0.0.0:8288"}
+{"time":"2026-03-31T23:56:10.027629Z","level":"INFO","msg":"starting event stream","backend":"redis"}
+{"time":"2026-03-31T23:56:10.027643Z","level":"INFO","msg":"service starting","caller":"runner","service":"runner"}
+{"time":"2026-03-31T23:56:10.027672Z","level":"INFO","msg":"subscribing to function queue"}
+{"time":"2026-03-31T23:56:10.02782Z","level":"INFO","msg":"service starting","caller":"connect-gateway","service":"connect-gateway"}
+{"time":"2026-03-31T23:56:10.027841Z","level":"INFO","msg":"Executor started in assignedQueueShard Mode","queue_shard":"default"}
+{"time":"2026-03-31T23:56:10.028329Z","level":"INFO","msg":"starting connect gateway grpc server","caller":"connect-gateway","addr":":50052"}
+{"time":"2026-03-31T23:56:10.034031Z","level":"INFO","msg":"subscribing to events","topic":"events"}
+{"time":"2026-03-31T23:56:19.537856Z","level":"INFO","msg":"apps synced, disabling auto-discovery"}
+{"time":"2026-04-01T00:21:04.684131Z","level":"INFO","msg":"Port conflict, using new port","name":"dev server api","from":8288,"to":8290}
+{"time":"2026-04-01T00:21:04.68427Z","level":"INFO","msg":"Port conflict, using new port","name":"connect gateway","from":8289,"to":8291}
+{"time":"2026-04-01T00:21:04.684278Z","level":"INFO","msg":"Port conflict, using new port","name":"connect gateway grpc","from":50052,"to":50054}
+{"time":"2026-04-01T00:21:04.684283Z","level":"INFO","msg":"Port conflict, using new port","name":"connect executor grpc","from":50053,"to":50055}
+{"time":"2026-04-01T00:21:04.698836Z","level":"INFO","msg":"starting executor grpc server","svc":"executor","addr":":50055"}
+{"time":"2026-04-01T00:21:04.70285Z","level":"INFO","msg":"service starting","caller":"devserver","service":"devserver"}
+{"time":"2026-04-01T00:21:04.702884Z","level":"INFO","msg":"autodiscovering locally hosted SDKs"}
+{"time":"2026-04-01T00:21:04.702873Z","level":"INFO","msg":"service starting","caller":"api","service":"api"}
+{"time":"2026-04-01T00:21:04.702959Z","level":"INFO","msg":"starting server","caller":"api","addr":"0.0.0.0:8290"}
+{"time":"2026-04-01T00:21:04.702875Z","level":"INFO","msg":"service starting","caller":"executor","service":"executor"}
+{"time":"2026-04-01T00:21:04.702986Z","level":"INFO","msg":"subscribing to function queue"}
+{"time":"2026-04-01T00:21:04.702997Z","level":"INFO","msg":"Executor started in assignedQueueShard Mode","queue_shard":"default"}
+{"time":"2026-04-01T00:21:04.703048Z","level":"INFO","msg":"starting event stream","backend":"redis"}
+{"time":"2026-04-01T00:21:04.70306Z","level":"INFO","msg":"service starting","caller":"runner","service":"runner"}
+{"time":"2026-04-01T00:21:04.703092Z","level":"INFO","msg":"service starting","caller":"connect-gateway","service":"connect-gateway"}
+{"time":"2026-04-01T00:21:04.703342Z","level":"INFO","msg":"starting connect gateway grpc server","caller":"connect-gateway","addr":":50054"}
+{"time":"2026-04-01T00:21:04.706482Z","level":"INFO","msg":"subscribing to events","topic":"events"}
+{"time":"2026-04-01T00:21:12.720239Z","level":"INFO","msg":"apps synced, disabling auto-discovery"}
+{"time":"2026-04-01T00:25:25.441799Z","level":"INFO","msg":"waiting for service run to finish","caller":"devserver","service":"devserver"}

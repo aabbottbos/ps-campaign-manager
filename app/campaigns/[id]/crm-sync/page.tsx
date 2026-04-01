@@ -246,7 +246,7 @@ export default function CRMSyncPage({ params }: CRMSyncPageProps) {
           <CardContent className="space-y-2 text-sm text-gray-600">
             <p>
               <strong>Salesforce:</strong> Each prospect is created or updated as a Contact. If the
-              company doesn't exist in Salesforce, a new Account is created automatically.
+              company doesn&apos;t exist in Salesforce, a new Account is created automatically.
             </p>
             <p>
               <strong>SalesLoft:</strong> Each prospect is created or updated as a Person. The

@@ -361,7 +361,7 @@ export default function SendPage({ params }: SendPageProps) {
             </p>
             <p>
               <strong>Error Handling:</strong> If a message fails to send, the prospect will be
-              marked as "Send Failed" and you can retry manually.
+              marked as &quot;Send Failed&quot; and you can retry manually.
             </p>
           </CardContent>
         </Card>

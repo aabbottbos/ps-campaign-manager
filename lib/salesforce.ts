@@ -5,14 +5,14 @@ const SALESFORCE_CLIENT_SECRET = process.env.SALESFORCE_CLIENT_SECRET!
 const SALESFORCE_REFRESH_TOKEN = process.env.SALESFORCE_REFRESH_TOKEN!
 const SALESFORCE_INSTANCE_URL = process.env.SALESFORCE_INSTANCE_URL!
 
-let cachedConnection: jsforce.Connection | null = null
+let cachedConnection: any | null = null
 let tokenExpiresAt: number | null = null
 
 /**
  * Get authenticated Salesforce connection
  * Uses cached connection if token is still valid
  */
-export async function getSalesforceConnection(): Promise<jsforce.Connection> {
+export async function getSalesforceConnection(): Promise<any> {
   // Return cached connection if token is still valid (with 5 min buffer)
   if (cachedConnection && tokenExpiresAt && Date.now() < tokenExpiresAt - 300000) {
     return cachedConnection
@@ -75,7 +75,7 @@ export async function findContactByEmail(
                  WHERE Email = '${email.replace(/'/g, "\\'")}'
                  LIMIT 1`
 
-  const result = await conn.query<SalesforceContact>(query)
+  const result = await conn.query(query) as any
 
   return result.records.length > 0 ? result.records[0] : null
 }
@@ -97,7 +97,7 @@ export async function findContactByNameAndCompany(
                  AND Account.Name = '${companyName.replace(/'/g, "\\'")}'
                  LIMIT 1`
 
-  const result = await conn.query<SalesforceContact>(query)
+  const result = await conn.query(query) as any
 
   return result.records.length > 0 ? result.records[0] : null
 }
@@ -113,7 +113,7 @@ export async function findOrCreateAccount(
   // Search for existing Account
   const query = `SELECT Id, Name FROM Account WHERE Name = '${companyName.replace(/'/g, "\\'")}'LIMIT 1`
 
-  const result = await conn.query<SalesforceAccount>(query)
+  const result = await conn.query(query) as any
 
   if (result.records.length > 0) {
     return result.records[0].Id!
