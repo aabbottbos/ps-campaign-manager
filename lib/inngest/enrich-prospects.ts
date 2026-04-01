@@ -1,13 +1,9 @@
 import { inngest } from "./client"
 import { prisma } from "@/lib/prisma"
-import { searchPerson, getLinkedInProfile, delay } from "@/lib/proxycurl"
+import { enrichPerson, delay } from "@/lib/enrichment-provider"
 import {
-  calculateConfidenceScore,
   validateEmployment,
-  extractLocation,
   determineEnrichmentStatus,
-  companiesMatch,
-  titlesMatch,
 } from "@/lib/enrichment"
 
 export const enrichProspects = inngest.createFunction(
@@ -69,22 +65,21 @@ export const enrichProspects = inngest.createFunction(
             data: { enrichmentStatus: "PROCESSING" },
           })
 
-          // Search for the person on LinkedIn
-          const searchResult = await searchPerson({
-            first_name: prospect.firstName!,
-            last_name: prospect.lastName!,
-            company_name: prospect.company || undefined,
-            title: prospect.title || undefined,
+          // Enrich person using Apify
+          const enrichmentResult = await enrichPerson({
+            firstName: prospect.firstName!,
+            lastName: prospect.lastName!,
+            company: prospect.company!,
             email: prospect.email || undefined,
           })
 
-          // If no LinkedIn profile found
-          if (!searchResult || !searchResult.url) {
+          // If no match found or confidence too low
+          if (!enrichmentResult) {
             await prisma.prospect.update({
               where: { id: prospect.id },
               data: {
                 enrichmentStatus: "NOT_FOUND",
-                enrichmentError: "Could not find LinkedIn profile",
+                enrichmentError: "Could not find LinkedIn profile or confidence too low",
                 enrichedAt: new Date(),
               },
             })
@@ -92,42 +87,27 @@ export const enrichProspects = inngest.createFunction(
             return
           }
 
-          // Get full profile data
-          const profile = await getLinkedInProfile(searchResult.url)
+          // Validate employment (check if still at the company)
+          const employment = validateEmployment(
+            {
+              experiences: enrichmentResult.currentCompany
+                ? [
+                    {
+                      company: enrichmentResult.currentCompany,
+                      title: enrichmentResult.currentTitle,
+                      ends_at: null, // Assume current if returned by Apify
+                    },
+                  ]
+                : [],
+            } as any,
+            prospect.company!
+          )
 
-          if (!profile) {
-            await prisma.prospect.update({
-              where: { id: prospect.id },
-              data: {
-                enrichmentStatus: "NOT_FOUND",
-                enrichmentError: "LinkedIn profile not accessible",
-                enrichedAt: new Date(),
-              },
-            })
-            notFoundCount++
-            return
-          }
-
-          // Validate employment
-          const employment = validateEmployment(profile, prospect.company!)
-
-          // Calculate confidence score
-          const confidenceScore = calculateConfidenceScore({
-            nameSimilarity: searchResult.name_similarity_score,
-            emailMatch: prospect.email
-              ? profile.public_identifier.includes(prospect.email.split("@")[0])
-              : false,
-            companyMatch: employment.isCurrentEmployee,
-            titleMatch: prospect.title && employment.currentTitle
-              ? titlesMatch(prospect.title, employment.currentTitle)
-              : false,
-          })
-
-          // Determine final status
+          // Determine final status using existing logic
           const enrichmentStatus = determineEnrichmentStatus(
-            true,
+            true, // profileFound
             employment.isCurrentEmployee,
-            confidenceScore
+            enrichmentResult.confidenceScore
           )
 
           // Update prospect with enrichment data
@@ -135,15 +115,14 @@ export const enrichProspects = inngest.createFunction(
             where: { id: prospect.id },
             data: {
               enrichmentStatus,
-              enrichmentConfidence: confidenceScore,
-              linkedinUrl: searchResult.url,
-              linkedinHeadline: profile.headline,
-              linkedinSummary: profile.summary,
-              linkedinLocation: extractLocation(profile),
-              currentCompany: employment.currentCompany,
-              currentTitle: employment.currentTitle,
-              profileImageUrl: profile.profile_pic_url,
-              linkedinProviderId: profile.public_identifier,
+              enrichmentConfidence: enrichmentResult.confidenceScore,
+              linkedinUrl: enrichmentResult.linkedinUrl,
+              linkedinHeadline: enrichmentResult.linkedinHeadline,
+              linkedinSummary: enrichmentResult.linkedinSummary,
+              linkedinLocation: enrichmentResult.linkedinLocation,
+              currentCompany: enrichmentResult.currentCompany,
+              currentTitle: enrichmentResult.currentTitle,
+              linkedinProviderId: enrichmentResult.linkedinProviderId,
               enrichedAt: new Date(),
             },
           })
@@ -167,9 +146,10 @@ export const enrichProspects = inngest.createFunction(
           errorCount++
         }
 
-        // Rate limiting: wait 1 second between requests to respect Proxycurl limits
-        // Proxycurl standard plan: ~300 req/min = 1 req every 200ms, but we'll be conservative
-        await delay(1000)
+        // Rate limiting: wait between requests to respect Apify Actor limits
+        // Apify Actors can take 2-10 seconds to run, so no additional delay needed
+        // The Actor polling already provides natural rate limiting
+        await delay(100)
       })
     }
 

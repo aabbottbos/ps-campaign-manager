@@ -1,7 +1,7 @@
 # PS Campaign Manager - Development Handoff
 
-**Last Updated:** March 31, 2026
-**Current Status:** File upload & mapping WORKING - Production build ready - Awaiting Vercel deployment
+**Last Updated:** April 1, 2026
+**Current Status:** ⚠️ BLOCKED - Enrichment provider (Apify) non-functional - Need alternative solution
 
 ---
 
@@ -9,11 +9,20 @@
 
 The PS Campaign Manager is a LinkedIn outreach automation tool for Product School. All 7 sprints have been implemented in code, including authentication, campaign management, file uploads, data enrichment, message generation, CRM integration, and LinkedIn automation.
 
-**Major Milestones This Session:**
+**Major Milestones Previous Session:**
 - ✅ File upload fully functional (fixed Vercel Blob integration)
 - ✅ Column mapping API working (fixed private Blob access)
 - ✅ Production build passing (fixed 15+ TypeScript/ESLint errors)
-- 🔄 Ready for Vercel deployment (environment variables needed)
+- ✅ Deployed to Vercel successfully
+
+**Current Session (April 1, 2026):**
+- ✅ Added "Delete All Campaigns" feature with triple confirmation
+- ✅ Attempted migration from Proxycurl to Apify Actor enrichment
+- ❌ **BLOCKER:** Apify Actor (ryanclinton/person-enrichment-lookup) is non-functional
+  - Cannot find well-known CEOs (Satya Nadella, Tim Cook, Sundar Pichai)
+  - Returns "not_found" for all queries
+  - Actor appears broken or requires special configuration
+- ⚠️ **DECISION NEEDED:** Choose alternative enrichment provider
 
 ---
 
@@ -32,11 +41,15 @@ The PS Campaign Manager is a LinkedIn outreach automation tool for Product Schoo
 - Column mapping with auto-detection
 - **Status:** ✅ FULLY WORKING - Fixed this session
 
-### ✅ Sprint 3: Data Enrichment (ProxyCurl)
-- Background jobs with Inngest
-- ProxyCurl API integration
-- LinkedIn profile enrichment
-- **Status:** Implemented (not tested - needs API key)
+### ⚠️ Sprint 3: Data Enrichment (BLOCKED)
+- Background jobs with Inngest ✅
+- LinkedIn profile enrichment logic ✅
+- ❌ **Enrichment Provider Issue:**
+  - Attempted migration from Proxycurl to Apify Actor
+  - Apify Actor (ryanclinton/person-enrichment-lookup) is non-functional
+  - Cannot find any profiles (tested with CEOs, known LinkedIn users)
+  - **Status:** BLOCKED - Need to choose working enrichment provider
+  - **Options:** People Data Labs direct API, RocketReach, or different approach
 
 ### ✅ Sprint 4: AI Message Generation
 - Anthropic Claude API integration
@@ -168,7 +181,79 @@ const fileBuffer = Buffer.concat(chunks)
 
 ---
 
-## Current Status: Ready for Deployment
+## Current Session Issues (April 1, 2026)
+
+### 1. ✅ Delete All Campaigns Feature
+**Request:** Add settings option to delete all campaigns with confirmation
+
+**Implementation:**
+- Created `/app/api/campaigns/delete-all/route.ts` DELETE endpoint
+- Uses Prisma cascade delete to remove all related data
+- Added "Danger Zone" section to settings page
+- Triple confirmation UI:
+  1. First confirm dialog with warning
+  2. Second confirm dialog (final warning)
+  3. Text input requiring user to type "DELETE"
+
+**Files Changed:**
+- `app/api/campaigns/delete-all/route.ts` (NEW)
+- `app/settings/page.tsx` (added Danger Zone with delete functionality)
+
+**Status:** ✅ Complete and tested
+
+---
+
+### 2. ❌ BLOCKER: Apify Actor Enrichment Non-Functional
+
+**Background:**
+- User requested migration from Proxycurl to Apify Actor (ryanclinton/person-enrichment-lookup)
+- Created new `lib/enrichment-provider.ts` to replace `lib/proxycurl.ts`
+
+**Problem:** Apify Actor does not work at all
+
+**Evidence:**
+- Tested with well-known CEOs (Satya Nadella at Microsoft, Tim Cook at Apple, Sundar Pichai at Google)
+- All queries return `source: "not_found"` with null data
+- Actor accepts input correctly but fails to find any LinkedIn profiles
+- Initial issue: Wrong input format (firstName/lastName instead of persons array) - FIXED
+- After fixing input format: Still returns not_found for everyone
+
+**Root Cause Analysis:**
+1. ✅ Fixed input format - Actor expects `persons: [{ name, company }]` array
+2. ✅ Actor executes successfully (status: SUCCEEDED)
+3. ✅ Returns dataset with proper structure
+4. ❌ Always returns `source: "not_found"` regardless of input
+5. **Conclusion:** Actor appears broken or requires special configuration/API key we don't have access to
+
+**Testing Created:**
+- `test-apify-enrichment.js` - Standalone test script for quick iteration
+- `test-known-person.js` - Tests with famous CEOs to verify Actor works
+- Both scripts confirm Actor is non-functional
+
+**Files Modified:**
+- `lib/enrichment-provider.ts` (NEW - Apify integration)
+- `lib/inngest/enrich-prospects.ts` (updated imports from proxycurl to enrichment-provider)
+- `app/api/campaigns/[id]/enrich/route.ts` (checks for APIFY_API_TOKEN)
+- `app/campaigns/[id]/enrichment/page.tsx` (updated error messages)
+- `.env.local` (added APIFY_API_TOKEN=***REDACTED_APIFY_TOKEN***)
+
+**Current State:**
+- Code is ready to use enrichment provider
+- Apify Actor integration is correctly implemented
+- Actor itself does not return data for ANY queries
+- **BLOCKED on choosing alternative enrichment provider**
+
+**Alternative Options:**
+1. **People Data Labs API (direct)** - What Apify uses underneath
+2. **RocketReach API** - Alternative B2B enrichment
+3. **Proxycurl** - Original provider (user said not viable - reason unclear)
+4. Different Apify Actor (if available)
+
+**Status:** ❌ BLOCKED - Awaiting decision on enrichment provider
+
+---
+
+## Current Status: Blocked on Enrichment Provider
 
 ### ✅ Working Locally
 - Authentication (Google OAuth)
@@ -195,10 +280,12 @@ GOOGLE_CLIENT_SECRET=***REDACTED_GOOGLE_CLIENT_SECRET***
 # File Storage (REQUIRED)
 BLOB_READ_WRITE_TOKEN=***REDACTED_VERCEL_BLOB_TOKEN***
 
-# Enrichment (OPTIONAL - for Sprint 3)
-PROXYCURL_API_KEY=1aa3f1c574c348698c03c999dea542f5
-INNGEST_EVENT_KEY=
-INNGEST_SIGNING_KEY=
+# Enrichment (BLOCKED - for Sprint 3)
+# ⚠️ Apify Actor non-functional - need alternative provider
+APIFY_API_TOKEN=***REDACTED_APIFY_TOKEN***
+INNGEST_EVENT_KEY=your-inngest-event-key
+INNGEST_SIGNING_KEY=your-inngest-signing-key
+# PROXYCURL_API_KEY=  # Original provider (reason for removal unclear)
 
 # Message Generation (OPTIONAL - for Sprint 4)
 ANTHROPIC_API_KEY=
@@ -263,12 +350,17 @@ UNIPILE_BASE_URL=
 - [ ] Column mapping interface
 - [ ] End-to-end: Upload → Map → Create Prospects
 
-### ⏳ Not Yet Testable (Missing API Keys)
-- [ ] ProxyCurl enrichment (needs PROXYCURL_API_KEY)
-- [ ] Message generation with Claude (needs ANTHROPIC_API_KEY)
+### ⏳ Not Yet Testable (Blocked or Missing API Keys)
+- [ ] ❌ **BLOCKED:** Enrichment (Apify Actor non-functional - need alternative provider)
+- [ ] Message generation with Claude (needs ANTHROPIC_API_KEY - but should work)
 - [ ] Salesforce sync (needs OAuth credentials)
 - [ ] SalesLoft cadence enrollment (needs API key)
 - [ ] LinkedIn message sending (needs Unipile credentials)
+
+### ✅ Added This Session
+- [x] Delete All Campaigns feature (triple confirmation working)
+- [x] Apify Actor integration code (correctly implemented but Actor is broken)
+- [x] Test scripts for faster enrichment iteration
 
 ---
 
@@ -290,6 +382,10 @@ npm run build                    # Test production build locally
 pkill -9 -f "next dev"           # Kill all dev servers
 rm -rf .next                     # Clear build cache
 npm run dev                      # Start fresh
+
+# Test scripts (enrichment debugging)
+node test-apify-enrichment.js    # Test Apify Actor with custom input
+node test-known-person.js        # Test Apify Actor with famous CEOs
 ```
 
 ---
@@ -328,20 +424,35 @@ npm run dev                      # Start fresh
 
 ## Next Steps
 
-### Immediate (Deploy to Vercel)
-1. ✅ Production build passes locally
-2. 🔄 Configure environment variables in Vercel dashboard
-3. 🔄 Update `NEXTAUTH_URL` to Vercel deployment URL
-4. 🔄 Update Google OAuth redirect URIs
-5. 🔄 Deploy to Vercel
-6. 🔄 Test deployed application
+### IMMEDIATE - BLOCKER (Choose Enrichment Provider)
+**Current Issue:** Apify Actor is non-functional
 
-### After Successful Deployment
-1. Test file upload through UI
-2. Test column mapping and prospect creation
-3. Add Inngest webhook endpoint (for background jobs)
-4. Test ProxyCurl enrichment with real API key
-5. Test Claude message generation with real API key
+**Options:**
+1. **People Data Labs (PDL) API** - Direct integration (what Apify uses)
+   - Pros: Reliable, same data source as Apify
+   - Cons: Requires PDL API key, potentially expensive
+
+2. **RocketReach API** - Alternative B2B enrichment
+   - Pros: Good match rates, reasonable pricing
+   - Cons: Different data format, requires new integration
+
+3. **Clarify Proxycurl status** - Original provider
+   - File still exists: `lib/proxycurl.ts`
+   - Need to understand why it was rejected (cost? API access? other?)
+   - Could revert to Proxycurl if issue is resolved
+
+4. **Try different Apify Actor** - If other options available
+   - Current actor (ryanclinton/person-enrichment-lookup) is broken
+   - May be alternatives on Apify marketplace
+
+**Action Required:** User decision on which provider to use
+
+### After Provider Decision
+1. ✅ Production build passes locally
+2. ✅ Deployed to Vercel
+3. 🔄 Implement chosen enrichment provider
+4. 🔄 Test enrichment with real data
+5. 🔄 Test Claude message generation with real API key
 
 ### Before Production
 1. Switch from `db push` to proper migrations
@@ -402,9 +513,25 @@ npm run dev                      # Start fresh
 **Security:** Files not publicly accessible via URL - requires authenticated server-side access
 **Status:** ✅ Implemented and verified
 
+### 6. Proxycurl → Apify Migration Attempted (April 1, 2026)
+**Decision:** Attempted to replace Proxycurl with Apify Actor enrichment
+**Reason:** User requested migration (reason for Proxycurl removal unclear)
+**Implementation:** Created new `lib/enrichment-provider.ts` with Apify integration
+**Outcome:** ❌ FAILED - Apify Actor (ryanclinton/person-enrichment-lookup) is non-functional
+**Evidence:** Cannot find any LinkedIn profiles, even for well-known CEOs
+**Current Status:** BLOCKED - Need to decide on alternative enrichment provider
+**Next Steps:** Choose between People Data Labs direct API, RocketReach, or other provider
+
+### 7. Delete All Campaigns with Triple Confirmation (April 1, 2026)
+**Decision:** Implement destructive operation with multiple confirmation steps
+**Reason:** User requested ability to delete all campaigns with strong warning
+**Implementation:** 3-step confirmation (2 dialogs + text input requiring "DELETE")
+**Security:** Prevents accidental deletion with progressive confirmation levels
+**Status:** ✅ Implemented and working
+
 ---
 
-## Files Modified This Session
+## Files Modified Previous Session (March 31, 2026)
 
 ### Package Dependencies
 - `package.json` - Upgraded @vercel/blob to v2.3.2, removed postbuild script
@@ -424,6 +551,32 @@ npm run dev                      # Start fresh
 ### Library Files
 - `lib/inngest/send-messages.ts` - Fixed variable scope, linkedinAccounts typo, logActivity params
 - `lib/salesforce.ts` - Removed generic type parameters causing build errors
+
+---
+
+## Files Modified Current Session (April 1, 2026)
+
+### New Files Created
+- `app/api/campaigns/delete-all/route.ts` - DELETE endpoint for removing all campaigns
+- `lib/enrichment-provider.ts` - Apify Actor enrichment integration (replacing proxycurl.ts)
+- `test-apify-enrichment.js` - Standalone test script for Apify enrichment
+- `test-known-person.js` - Test script to verify Actor works with known CEOs
+
+### API Routes Modified
+- `app/api/campaigns/[id]/enrich/route.ts` - Updated to check APIFY_API_TOKEN instead of PROXYCURL_API_KEY
+
+### Client Pages Modified
+- `app/settings/page.tsx` - Added "Danger Zone" with Delete All Campaigns feature (triple confirmation)
+- `app/campaigns/[id]/enrichment/page.tsx` - Updated error messages for APIFY_API_TOKEN
+
+### Library Files Modified
+- `lib/inngest/enrich-prospects.ts` - Updated imports from proxycurl to enrichment-provider
+
+### Configuration Files Modified
+- `.env.local` - Added APIFY_API_TOKEN, updated INNGEST keys
+
+### Existing Files (Not Modified, Available for Rollback)
+- `lib/proxycurl.ts` - Original Proxycurl integration (still exists, not deleted)
 
 ---
 

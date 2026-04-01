@@ -89,7 +89,7 @@ export default function EnrichmentPage({ params }: EnrichmentPageProps) {
         // Show user-friendly message for service unavailable
         if (response.status === 503 && data.requiresSetup) {
           toast.error("Enrichment Service Not Configured", {
-            description: "Please configure INNGEST_EVENT_KEY and PROXYCURL_API_KEY environment variables to enable prospect enrichment.",
+            description: "Please configure INNGEST_EVENT_KEY and APIFY_API_TOKEN environment variables to enable prospect enrichment.",
             duration: 8000,
           })
         } else {

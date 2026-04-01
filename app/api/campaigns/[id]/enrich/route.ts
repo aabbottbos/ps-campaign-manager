@@ -53,12 +53,23 @@ export async function POST(
       )
     }
 
-    // Check if Inngest is configured
+    // Check if required services are configured
     if (!process.env.INNGEST_EVENT_KEY) {
       return NextResponse.json(
         {
           error: "Enrichment service not configured",
           message: "INNGEST_EVENT_KEY environment variable is missing. Please configure Inngest to enable prospect enrichment.",
+          requiresSetup: true,
+        },
+        { status: 503 }
+      )
+    }
+
+    if (!process.env.APIFY_API_TOKEN) {
+      return NextResponse.json(
+        {
+          error: "Enrichment provider not configured",
+          message: "APIFY_API_TOKEN environment variable is missing. Please configure Apify to enable prospect enrichment.",
           requiresSetup: true,
         },
         { status: 503 }
