@@ -289,3 +289,17 @@ npm warn exec The following package was not found and will be installed: inngest
 {"time":"2026-04-01T00:21:04.706482Z","level":"INFO","msg":"subscribing to events","topic":"events"}
 {"time":"2026-04-01T00:21:12.720239Z","level":"INFO","msg":"apps synced, disabling auto-discovery"}
 {"time":"2026-04-01T00:25:25.441799Z","level":"INFO","msg":"waiting for service run to finish","caller":"devserver","service":"devserver"}
+{"time":"2026-04-01T00:26:07.066109Z","level":"INFO","msg":"starting executor grpc server","svc":"executor","addr":":50053"}
+{"time":"2026-04-01T00:26:07.067315Z","level":"INFO","msg":"service starting","caller":"devserver","service":"devserver"}
+{"time":"2026-04-01T00:26:07.067322Z","level":"INFO","msg":"starting event stream","backend":"redis"}
+{"time":"2026-04-01T00:26:07.067358Z","level":"INFO","msg":"autodiscovering locally hosted SDKs"}
+{"time":"2026-04-01T00:26:07.06746Z","level":"INFO","msg":"service starting","caller":"api","service":"api"}
+{"time":"2026-04-01T00:26:07.067481Z","level":"INFO","msg":"service starting","caller":"connect-gateway","service":"connect-gateway"}
+{"time":"2026-04-01T00:26:07.067462Z","level":"INFO","msg":"service starting","caller":"runner","service":"runner"}
+{"time":"2026-04-01T00:26:07.067543Z","level":"INFO","msg":"starting connect gateway grpc server","caller":"connect-gateway","addr":":50052"}
+{"time":"2026-04-01T00:26:07.067486Z","level":"INFO","msg":"starting server","caller":"api","addr":"0.0.0.0:8288"}
+{"time":"2026-04-01T00:26:07.06731Z","level":"INFO","msg":"service starting","caller":"executor","service":"executor"}
+{"time":"2026-04-01T00:26:07.067632Z","level":"INFO","msg":"subscribing to function queue"}
+{"time":"2026-04-01T00:26:07.067645Z","level":"INFO","msg":"Executor started in assignedQueueShard Mode","queue_shard":"default"}
+{"time":"2026-04-01T00:26:07.068085Z","level":"INFO","msg":"apps synced, disabling auto-discovery"}
+{"time":"2026-04-01T00:26:07.069522Z","level":"INFO","msg":"subscribing to events","topic":"events"}
