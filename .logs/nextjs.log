@@ -11869,3 +11869,387 @@ Require stack:
   ]
 }
  PUT /api/inngest 500 in 45ms
+ ⨯ Error: Cannot find module './8948.js'
+Require stack:
+- /Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js
+- /Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/api/inngest/route.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/start-server.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1475:15)
+    at /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:55:36
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1048:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1072:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1093:12)
+    at Module._load (node:internal/modules/cjs/loader:1261:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at mod.require (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:191:16)
+    at __webpack_require__.f.require (/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js:198:28)
+    at /Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js:162:22)
+    at /Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/api/inngest/route.js:75:167522
+    at Object.<anonymous> (/Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/api/inngest/route.js:75:167575)
+    at Module._compile (node:internal/modules/cjs/loader:1829:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1969:10)
+    at Module.load (node:internal/modules/cjs/loader:1552:32)
+    at Module._load (node:internal/modules/cjs/loader:1354:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at mod.require (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:191:16)
+    at requirePage (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js:109:84)
+    at /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js:103:84
+    at async loadComponentsImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js:103:26)
+    at async DevServer.findPageComponentsImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/next-server.js:714:36)
+    at async DevServer.findPageComponents (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/next-dev-server.js:577:20)
+    at async DevServer.renderPageComponent (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:1910:24)
+    at async DevServer.renderToResponseImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/start-server.js:141:13) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/api/inngest/route.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/start-server.js'
+  ],
+  page: '/api/inngest'
+}
+ ⨯ Error: Cannot find module './1682.js'
+Require stack:
+- /Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js
+- /Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/api/inngest/route.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/start-server.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1475:15)
+    at /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:55:36
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1048:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1072:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1093:12)
+    at Module._load (node:internal/modules/cjs/loader:1261:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at mod.require (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:191:16)
+    at __webpack_require__.f.require (/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js:198:28)
+    at /Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js:162:22)
+    at /Users/andrewabbott/Development/ps-campaign-manager/.next/server/pages/_document.js:1:340
+    at Object.<anonymous> (/Users/andrewabbott/Development/ps-campaign-manager/.next/server/pages/_document.js:1:383)
+    at Module._compile (node:internal/modules/cjs/loader:1829:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1969:10)
+    at Module.load (node:internal/modules/cjs/loader:1552:32)
+    at Module._load (node:internal/modules/cjs/loader:1354:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at mod.require (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:191:16)
+    at requirePage (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js:109:84)
+    at /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js:72:65
+    at async Promise.all (index 0)
+    at async loadComponentsImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js:71:33)
+    at async DevServer.findPageComponentsImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/next-server.js:714:36) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/api/inngest/route.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/start-server.js'
+  ]
+}
+ PUT /api/inngest 500 in 34ms
+ ⨯ Error: Cannot find module './8948.js'
+Require stack:
+- /Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js
+- /Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/api/inngest/route.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/start-server.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1475:15)
+    at /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:55:36
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1048:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1072:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1093:12)
+    at Module._load (node:internal/modules/cjs/loader:1261:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at mod.require (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:191:16)
+    at __webpack_require__.f.require (/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js:198:28)
+    at /Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js:162:22)
+    at /Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/api/inngest/route.js:75:167522
+    at Object.<anonymous> (/Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/api/inngest/route.js:75:167575)
+    at Module._compile (node:internal/modules/cjs/loader:1829:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1969:10)
+    at Module.load (node:internal/modules/cjs/loader:1552:32)
+    at Module._load (node:internal/modules/cjs/loader:1354:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at mod.require (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:191:16)
+    at requirePage (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js:109:84)
+    at /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js:103:84
+    at async loadComponentsImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js:103:26)
+    at async DevServer.findPageComponentsImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/next-server.js:714:36)
+    at async DevServer.findPageComponents (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/next-dev-server.js:577:20)
+    at async DevServer.renderPageComponent (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:1910:24)
+    at async DevServer.renderToResponseImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/start-server.js:141:13) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/api/inngest/route.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/start-server.js'
+  ],
+  page: '/api/inngest'
+}
+ ⨯ Error: Cannot find module './1682.js'
+Require stack:
+- /Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js
+- /Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/api/inngest/route.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/start-server.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1475:15)
+    at /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:55:36
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1048:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1072:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1093:12)
+    at Module._load (node:internal/modules/cjs/loader:1261:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at mod.require (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:191:16)
+    at __webpack_require__.f.require (/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js:198:28)
+    at /Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js:162:22)
+    at /Users/andrewabbott/Development/ps-campaign-manager/.next/server/pages/_document.js:1:340
+    at Object.<anonymous> (/Users/andrewabbott/Development/ps-campaign-manager/.next/server/pages/_document.js:1:383)
+    at Module._compile (node:internal/modules/cjs/loader:1829:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1969:10)
+    at Module.load (node:internal/modules/cjs/loader:1552:32)
+    at Module._load (node:internal/modules/cjs/loader:1354:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at mod.require (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:191:16)
+    at requirePage (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js:109:84)
+    at /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js:72:65
+    at async Promise.all (index 0)
+    at async loadComponentsImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js:71:33)
+    at async DevServer.findPageComponentsImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/next-server.js:714:36) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/api/inngest/route.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/start-server.js'
+  ]
+}
+ PUT /api/inngest 500 in 42ms
+ ⨯ Error: Cannot find module './8948.js'
+Require stack:
+- /Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js
+- /Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/api/inngest/route.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/start-server.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1475:15)
+    at /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:55:36
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1048:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1072:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1093:12)
+    at Module._load (node:internal/modules/cjs/loader:1261:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at mod.require (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:191:16)
+    at __webpack_require__.f.require (/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js:198:28)
+    at /Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js:162:22)
+    at /Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/api/inngest/route.js:75:167522
+    at Object.<anonymous> (/Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/api/inngest/route.js:75:167575)
+    at Module._compile (node:internal/modules/cjs/loader:1829:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1969:10)
+    at Module.load (node:internal/modules/cjs/loader:1552:32)
+    at Module._load (node:internal/modules/cjs/loader:1354:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at mod.require (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:191:16)
+    at requirePage (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js:109:84)
+    at /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js:103:84
+    at async loadComponentsImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js:103:26)
+    at async DevServer.findPageComponentsImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/next-server.js:714:36)
+    at async DevServer.findPageComponents (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/next-dev-server.js:577:20)
+    at async DevServer.renderPageComponent (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:1910:24)
+    at async DevServer.renderToResponseImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/start-server.js:141:13) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/api/inngest/route.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/start-server.js'
+  ],
+  page: '/api/inngest'
+}
+ ⨯ Error: Cannot find module './1682.js'
+Require stack:
+- /Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js
+- /Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/api/inngest/route.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/hot-middleware.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/hot-reloader-webpack.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js
+- /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/start-server.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1475:15)
+    at /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:55:36
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1048:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1072:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1093:12)
+    at Module._load (node:internal/modules/cjs/loader:1261:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at mod.require (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:191:16)
+    at __webpack_require__.f.require (/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js:198:28)
+    at /Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js:162:22)
+    at /Users/andrewabbott/Development/ps-campaign-manager/.next/server/pages/_document.js:1:340
+    at Object.<anonymous> (/Users/andrewabbott/Development/ps-campaign-manager/.next/server/pages/_document.js:1:383)
+    at Module._compile (node:internal/modules/cjs/loader:1829:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1969:10)
+    at Module.load (node:internal/modules/cjs/loader:1552:32)
+    at Module._load (node:internal/modules/cjs/loader:1354:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at mod.require (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require-hook.js:65:28)
+    at require (node:internal/modules/helpers:191:16)
+    at requirePage (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js:109:84)
+    at /Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js:72:65
+    at async Promise.all (index 0)
+    at async loadComponentsImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js:71:33)
+    at async DevServer.findPageComponentsImpl (/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/next-server.js:714:36) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/webpack-runtime.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/.next/server/app/api/inngest/route.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/require.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/load-components.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/build/utils.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/hot-middleware.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/dev/hot-reloader-webpack.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/router-server.js',
+    '/Users/andrewabbott/Development/ps-campaign-manager/node_modules/next/dist/server/lib/start-server.js'
+  ]
+}
+ PUT /api/inngest 500 in 40ms
