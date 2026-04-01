@@ -1,0 +1,67 @@
+# Pre-commit hooks configuration
+# See https://pre-commit.com for more information
+# To install: pre-commit install
+# To run manually: pre-commit run --all-files
+
+repos:
+  # detect-secrets - Prevents committing secrets and credentials
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.5.0
+    hooks:
+      - id: detect-secrets
+        name: 'Detect secrets'
+        args:
+          - '--baseline'
+          - '.secrets.baseline'
+          - '--exclude-files'
+          - '\.git/.*'
+          - '--exclude-files'
+          - '\.next/.*'
+          - '--exclude-files'
+          - 'node_modules/.*'
+          - '--exclude-files'
+          - 'package-lock\.json'
+          - '--exclude-files'
+          - 'pnpm-lock\.yaml'
+          - '--exclude-files'
+          - '.*\.log'
+        exclude: |
+          (?x)^(
+            \.env\.local|
+            \.secrets\.baseline|
+            ps-campaign-manager-backup-.*
+          )$
+
+  # Additional helpful hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      # Prevent committing to main branch directly
+      - id: no-commit-to-branch
+        args: ['--branch', 'main']
+
+      # Check for files that would conflict in case-insensitive filesystems
+      - id: check-case-conflict
+
+      # Check for merge conflicts
+      - id: check-merge-conflict
+
+      # Check for large files (>500KB)
+      - id: check-added-large-files
+        args: ['--maxkb=500']
+
+      # Ensure files end with newline
+      - id: end-of-file-fixer
+        exclude: |
+          (?x)^(
+            \.next/.*|
+            node_modules/.*
+          )$
+
+      # Trim trailing whitespace
+      - id: trailing-whitespace
+        exclude: |
+          (?x)^(
+            \.next/.*|
+            node_modules/.*
+          )$
