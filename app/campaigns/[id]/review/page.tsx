@@ -40,6 +40,11 @@ interface Prospect {
   enrichmentStatus: string
 }
 
+interface Campaign {
+  messageGenerationStrategy: string
+  enableCrmSync: boolean
+}
+
 export default function ReviewPage({ params }: ReviewPageProps) {
   const router = useRouter()
   const [loading, setLoading] = useState(true)
@@ -51,6 +56,7 @@ export default function ReviewPage({ params }: ReviewPageProps) {
   const [searchTerm, setSearchTerm] = useState("")
   const [statusFilter, setStatusFilter] = useState("all")
   const [outreachType, setOutreachType] = useState<"CONNECT" | "INMAIL">("CONNECT")
+  const [campaign, setCampaign] = useState<Campaign | null>(null)
 
   useEffect(() => {
     fetchProspects()
@@ -78,7 +84,26 @@ export default function ReviewPage({ params }: ReviewPageProps) {
 
   const fetchProspects = async () => {
     try {
-      const response = await fetch(`/api/campaigns/${params.id}/prospects?enrichmentStatus=FOUND`)
+      // First, get campaign to determine message generation strategy
+      const campaignResponse = await fetch(`/api/campaigns/${params.id}`)
+      if (!campaignResponse.ok) {
+        throw new Error("Failed to fetch campaign")
+      }
+
+      const campaignData = await campaignResponse.json()
+      setOutreachType(campaignData.outreachType)
+      setCampaign({
+        messageGenerationStrategy: campaignData.messageGenerationStrategy,
+        enableCrmSync: campaignData.enableCrmSync
+      })
+
+      // For FIXED_MESSAGE campaigns, don't filter by enrichmentStatus (they skip enrichment)
+      // For AI_PERSONALIZED campaigns, only show enriched prospects (enrichmentStatus=FOUND)
+      const enrichmentFilter = campaignData.messageGenerationStrategy === "FIXED_MESSAGE"
+        ? ""
+        : "?enrichmentStatus=FOUND"
+
+      const response = await fetch(`/api/campaigns/${params.id}/prospects${enrichmentFilter}`)
 
       if (!response.ok) {
         throw new Error("Failed to fetch prospects")
@@ -86,13 +111,6 @@ export default function ReviewPage({ params }: ReviewPageProps) {
 
       const data = await response.json()
       setProspects(data)
-
-      // Get campaign to determine outreach type
-      const campaignResponse = await fetch(`/api/campaigns/${params.id}`)
-      if (campaignResponse.ok) {
-        const campaign = await campaignResponse.json()
-        setOutreachType(campaign.outreachType)
-      }
     } catch (error) {
       console.error("Error fetching prospects:", error)
       toast.error("Failed to load prospects")
@@ -294,8 +312,8 @@ export default function ReviewPage({ params }: ReviewPageProps) {
   return (
     <div className="max-w-7xl mx-auto">
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">Review Messages</h1>
-        <p className="text-gray-600 mt-1">
+        <h1 className="text-3xl font-bold text-ps-text-primary">Review Messages</h1>
+        <p className="text-ps-text-secondary mt-1">
           {generating
             ? "Generating personalized messages..."
             : "Review and edit AI-generated messages before sending"}
@@ -313,6 +331,15 @@ export default function ReviewPage({ params }: ReviewPageProps) {
             </div>
           </CardContent>
         </Card>
+      )}
+
+      {campaign?.messageGenerationStrategy === "FIXED_MESSAGE" && !generating && (
+        <div className="mb-6 bg-blue-500/10 border border-blue-500/20 rounded-lg p-4">
+          <p className="text-sm text-blue-400">
+            📝 <strong>Fixed Message Campaign:</strong> The same message has been sent to all{" "}
+            {prospects.length} prospects. You can still edit individual messages if needed before sending.
+          </p>
+        </div>
       )}
 
       {/* Filters */}
@@ -352,10 +379,10 @@ export default function ReviewPage({ params }: ReviewPageProps) {
       </Card>
 
       {/* Stats Bar */}
-      <div className="flex items-center justify-between mb-6 p-4 bg-white rounded-lg border">
+      <div className="flex items-center justify-between mb-6 p-4 bg-surface rounded-lg border">
         <div className="text-sm">
-          <span className="font-medium text-gray-900">{approvedCount}</span>
-          <span className="text-gray-600"> of {prospects.length} prospects approved</span>
+          <span className="font-medium text-ps-text-primary">{approvedCount}</span>
+          <span className="text-ps-text-secondary"> of {prospects.length} prospects approved</span>
         </div>
         {canContinue && (
           <Button onClick={() => router.push(`/campaigns/${params.id}`)}>
@@ -439,7 +466,7 @@ export default function ReviewPage({ params }: ReviewPageProps) {
                             ? "text-red-600"
                             : isNearLimit
                             ? "text-yellow-600"
-                            : "text-gray-600"
+                            : "text-ps-text-secondary"
                         }`}
                       >
                         {charCount} / {characterLimit} characters
@@ -465,7 +492,7 @@ export default function ReviewPage({ params }: ReviewPageProps) {
                   </div>
                 ) : (
                   <div>
-                    <p className="text-sm text-gray-900 whitespace-pre-wrap font-mono">
+                    <p className="text-sm text-ps-text-primary whitespace-pre-wrap font-mono">
                       {finalMessage || "No message generated"}
                     </p>
                     <div className="flex items-center justify-between mt-3 pt-3 border-t">
@@ -475,7 +502,7 @@ export default function ReviewPage({ params }: ReviewPageProps) {
                             ? "text-red-600"
                             : isNearLimit
                             ? "text-yellow-600"
-                            : "text-gray-500"
+                            : "text-ps-text-secondary"
                         }`}
                       >
                         {charCount} / {characterLimit} characters
@@ -541,7 +568,7 @@ export default function ReviewPage({ params }: ReviewPageProps) {
       {filteredProspects.length === 0 && (
         <Card>
           <CardContent className="pt-6 text-center">
-            <p className="text-gray-600">No prospects match your filters</p>
+            <p className="text-ps-text-secondary">No prospects match your filters</p>
           </CardContent>
         </Card>
       )}

@@ -5,9 +5,10 @@ export interface ColumnMapping {
   company?: string
   title?: string
   phone?: string
+  linkedinUrl?: string
 }
 
-export const REQUIRED_FIELDS = ['firstName', 'lastName', 'company'] as const
+export const REQUIRED_FIELDS = ['firstName', 'lastName', 'company', 'linkedinUrl'] as const
 export const OPTIONAL_FIELDS = ['email', 'title', 'phone'] as const
 export const ALL_FIELDS = [...REQUIRED_FIELDS, ...OPTIONAL_FIELDS] as const
 
@@ -56,6 +57,14 @@ const FIELD_PATTERNS: Record<MappingField, RegExp[]> = {
     /^tel$/i,
     /^telephone$/i,
     /^contact[\s_-]?number$/i,
+  ],
+  linkedinUrl: [
+    /^linkedin[\s_-]?url$/i,
+    /^linkedin[\s_-]?profile$/i,
+    /^linkedin[\s_-]?link$/i,
+    /^linkedin$/i,
+    /^profile[\s_-]?url$/i,
+    /^li[\s_-]?url$/i,
   ],
 }
 
@@ -118,15 +127,27 @@ export function extractMappedValues(
   company: string | null
   title: string | null
   phone: string | null
+  linkedinUrl: string | null
 } {
-  return {
+  console.log(`[COLUMN_MAPPER] Extracting values from row:`, row)
+  console.log(`[COLUMN_MAPPER] Using mapping:`, mapping)
+  console.log(`[COLUMN_MAPPER] Row keys:`, Object.keys(row))
+  console.log(`[COLUMN_MAPPER] LinkedIn URL mapping key:`, mapping.linkedinUrl)
+  console.log(`[COLUMN_MAPPER] LinkedIn URL value from row:`, mapping.linkedinUrl ? row[mapping.linkedinUrl] : 'NO MAPPING')
+
+  const extracted = {
     firstName: mapping.firstName ? (row[mapping.firstName] || null) : null,
     lastName: mapping.lastName ? (row[mapping.lastName] || null) : null,
     email: mapping.email ? (row[mapping.email] || null) : null,
     company: mapping.company ? (row[mapping.company] || null) : null,
     title: mapping.title ? (row[mapping.title] || null) : null,
     phone: mapping.phone ? (row[mapping.phone] || null) : null,
+    linkedinUrl: mapping.linkedinUrl ? (row[mapping.linkedinUrl] || null) : null,
   }
+
+  console.log(`[COLUMN_MAPPER] Extracted values:`, extracted)
+
+  return extracted
 }
 
 /**
@@ -140,6 +161,7 @@ export function getFieldLabel(field: MappingField): string {
     company: 'Company',
     title: 'Title / Role',
     phone: 'Phone',
+    linkedinUrl: 'LinkedIn URL',
   }
   return labels[field]
 }

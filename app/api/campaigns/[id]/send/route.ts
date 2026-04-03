@@ -27,13 +27,42 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
     }
 
     // Get send statistics
-    const total = await prisma.prospect.count({
-      where: {
-        campaignId: params.id,
-        messageStatus: "APPROVED",
-        crmSyncStatus: "SYNCED",
-      },
+    // For campaigns without CRM sync, we don't require SYNCED status
+    const baseWhereClause = {
+      campaignId: params.id,
+      messageStatus: "APPROVED" as const,
+    }
+
+    const totalWhereClause = campaign.enableCrmSync
+      ? { ...baseWhereClause, crmSyncStatus: "SYNCED" as const }
+      : baseWhereClause
+
+    console.log(`[SEND_STATS] Campaign ${params.id}:`, {
+      status: campaign.status,
+      messageGenerationStrategy: campaign.messageGenerationStrategy,
+      enableCrmSync: campaign.enableCrmSync,
     })
+    console.log(`[SEND_STATS] Total where clause:`, totalWhereClause)
+
+    // Debug: Get ALL prospects regardless of status
+    const allProspects = await prisma.prospect.findMany({
+      where: { campaignId: params.id },
+      select: {
+        id: true,
+        firstName: true,
+        lastName: true,
+        linkedinUrl: true,
+        messageStatus: true,
+        sendStatus: true,
+        crmSyncStatus: true,
+      }
+    })
+    console.log(`[SEND_STATS] All prospects in campaign (${allProspects.length}):`, JSON.stringify(allProspects, null, 2))
+
+    const total = await prisma.prospect.count({
+      where: totalWhereClause,
+    })
+    console.log(`[SEND_STATS] Total count with filter:`, total)
 
     const sent = await prisma.prospect.count({
       where: {
@@ -41,6 +70,7 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
         sendStatus: "SENT",
       },
     })
+    console.log(`[SEND_STATS] Sent count:`, sent)
 
     const failed = await prisma.prospect.count({
       where: {
@@ -48,15 +78,18 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
         sendStatus: "FAILED",
       },
     })
+    console.log(`[SEND_STATS] Failed count:`, failed)
+
+    const pendingWhereClause = campaign.enableCrmSync
+      ? { ...baseWhereClause, crmSyncStatus: "SYNCED" as const, sendStatus: "NOT_SENT" as const }
+      : { ...baseWhereClause, sendStatus: "NOT_SENT" as const }
+
+    console.log(`[SEND_STATS] Pending where clause:`, pendingWhereClause)
 
     const pending = await prisma.prospect.count({
-      where: {
-        campaignId: params.id,
-        messageStatus: "APPROVED",
-        crmSyncStatus: "SYNCED",
-        sendStatus: "NOT_SENT",
-      },
+      where: pendingWhereClause,
     })
+    console.log(`[SEND_STATS] Pending count:`, pending)
 
     // Check if user has any active LinkedIn accounts
     const activeAccounts = await prisma.linkedInAccount.count({
@@ -74,6 +107,7 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
       failed,
       pending,
       hasActiveAccounts: activeAccounts > 0,
+      enableCrmSync: campaign.enableCrmSync,
     })
   } catch (error) {
     console.error("Error fetching send stats:", error)
@@ -104,9 +138,14 @@ export async function POST(request: NextRequest, { params }: { params: { id: str
     }
 
     // Check if campaign is ready to send
-    if (campaign.status !== "CRM_SYNCED" && campaign.status !== "PAUSED") {
+    // Campaigns without CRM sync can send from REVIEW status
+    const validStatuses = campaign.enableCrmSync
+      ? ["CRM_SYNCED", "PAUSED"]
+      : ["REVIEW", "PAUSED", "CRM_SYNCED"]
+
+    if (!validStatuses.includes(campaign.status)) {
       return NextResponse.json(
-        { error: "Campaign must be in CRM_SYNCED or PAUSED status" },
+        { error: `Campaign must be in one of these statuses: ${validStatuses.join(", ")}` },
         { status: 400 }
       )
     }
@@ -127,13 +166,21 @@ export async function POST(request: NextRequest, { params }: { params: { id: str
     }
 
     // Check if there are prospects to send
+    const pendingWhereClause = campaign.enableCrmSync
+      ? {
+          campaignId: params.id,
+          messageStatus: "APPROVED" as const,
+          crmSyncStatus: "SYNCED" as const,
+          sendStatus: "NOT_SENT" as const,
+        }
+      : {
+          campaignId: params.id,
+          messageStatus: "APPROVED" as const,
+          sendStatus: "NOT_SENT" as const,
+        }
+
     const pendingCount = await prisma.prospect.count({
-      where: {
-        campaignId: params.id,
-        messageStatus: "APPROVED",
-        crmSyncStatus: "SYNCED",
-        sendStatus: "NOT_SENT",
-      },
+      where: pendingWhereClause,
     })
 
     if (pendingCount === 0) {

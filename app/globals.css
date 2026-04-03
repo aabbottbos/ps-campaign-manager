@@ -1,29 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+/* Sofia Pro is a premium font, using system font stack with similar characteristics as fallback */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
-    --radius: 0.5rem;
+    /* Product School Light Mode Design System (matching enterprise-pricing-app) */
+    --color-bg-primary: #F9FAFB; /* gray-50 */
+    --color-bg-surface: #FFFFFF;
+    --color-bg-elevated: #FFFFFF;
+    --color-text-primary: #111827; /* gray-900 */
+    --color-text-secondary: #6B7280; /* gray-500 */
+    --color-accent: #3B82F6; /* ps-blue */
+    --color-accent-hover: #1E3A8A; /* ps-navy */
+    --color-border: #E5E7EB; /* gray-200 */
+    --color-success: #22C55E;
+    --color-destructive: #EF4444;
+
+    /* Tailwind compatible HSL mappings (light mode) */
+    --background: 210 20% 98%; /* #F9FAFB gray-50 */
+    --foreground: 222 47% 11%; /* #111827 gray-900 */
+    --card: 0 0% 100%; /* #FFFFFF */
+    --card-foreground: 222 47% 11%; /* #111827 */
+    --popover: 0 0% 100%; /* #FFFFFF */
+    --popover-foreground: 222 47% 11%; /* #111827 */
+    --primary: 217 91% 60%; /* #3B82F6 ps-blue */
+    --primary-foreground: 0 0% 100%; /* #FFFFFF */
+    --secondary: 210 40% 96%; /* #F3F4F6 gray-100 */
+    --secondary-foreground: 222 47% 11%; /* #111827 */
+    --muted: 210 40% 96%; /* #F3F4F6 */
+    --muted-foreground: 215 16% 47%; /* #6B7280 gray-500 */
+    --accent: 217 91% 60%; /* #3B82F6 ps-blue */
+    --accent-foreground: 0 0% 100%; /* #FFFFFF */
+    --destructive: 0 84% 60%; /* #EF4444 */
+    --destructive-foreground: 0 0% 100%; /* #FFFFFF */
+    --border: 214 32% 91%; /* #E5E7EB gray-200 */
+    --input: 214 32% 91%; /* #E5E7EB gray-200 */
+    --ring: 217 91% 60%; /* #3B82F6 ps-blue */
+    --radius: 0.75rem; /* 12px */
+    --success: 142 71% 45%; /* #22C55E */
   }
 }
 
@@ -31,7 +48,77 @@
   * {
     @apply border-border;
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-gray-50 text-gray-900;
+    font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Typography Scale - Product School style */
+  h1 {
+    @apply text-5xl font-black leading-tight;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+    font-weight: 900;
+  }
+
+  h2 {
+    @apply text-3xl font-bold leading-tight;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+    font-weight: 700;
+  }
+
+  h3 {
+    @apply text-2xl font-semibold leading-snug;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+    font-weight: 600;
+  }
+
+  p {
+    @apply text-base leading-relaxed;
+  }
+
+  /* Light subtle shadows (enterprise-pricing-app style) */
+  .shadow-sm {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+  }
+}
+
+/* Custom utility classes for Product School */
+@layer utilities {
+  .text-meta {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--color-text-secondary);
+  }
+
+  .text-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .bg-surface {
+    background-color: var(--color-bg-surface);
+  }
+
+  .bg-elevated {
+    background-color: var(--color-bg-elevated);
+  }
+
+  .border-ps {
+    border-color: var(--color-border);
+  }
+
+  /* Purple glow for key CTAs */
+  .glow-accent {
+    box-shadow: 0 0 20px rgba(123, 47, 255, 0.3);
+  }
+
+  /* Smooth transitions */
+  .transition-ps {
+    transition: all 0.2s ease;
   }
 }

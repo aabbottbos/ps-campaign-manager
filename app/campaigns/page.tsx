@@ -22,7 +22,7 @@ async function getCampaigns(userId: string) {
 
 function getStatusColor(status: string) {
   const colors: Record<string, string> = {
-    DRAFT: "bg-gray-100 text-gray-800",
+    DRAFT: "bg-elevated text-ps-text-primary",
     FILE_UPLOADED: "bg-blue-100 text-blue-800",
     MAPPING_COMPLETE: "bg-blue-100 text-blue-800",
     ENRICHING: "bg-yellow-100 text-yellow-800",
@@ -32,10 +32,10 @@ function getStatusColor(status: string) {
     CRM_SYNCING: "bg-indigo-100 text-indigo-800",
     CRM_SYNCED: "bg-indigo-100 text-indigo-800",
     SENDING: "bg-orange-100 text-orange-800",
-    PAUSED: "bg-gray-100 text-gray-800",
+    PAUSED: "bg-elevated text-ps-text-primary",
     COMPLETE: "bg-green-100 text-green-800",
   }
-  return colors[status] || "bg-gray-100 text-gray-800"
+  return colors[status] || "bg-elevated text-ps-text-primary"
 }
 
 function getStatusLabel(status: string) {
@@ -55,8 +55,8 @@ export default async function CampaignsPage() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Your Campaigns</h1>
-          <p className="text-gray-600 mt-1">Manage your LinkedIn outreach campaigns</p>
+          <h1 className="text-3xl font-bold text-ps-text-primary">Your Campaigns</h1>
+          <p className="text-ps-text-secondary mt-1">Manage your LinkedIn outreach campaigns</p>
         </div>
         <Link href="/campaigns/new">
           <Button size="lg">
@@ -103,23 +103,37 @@ export default async function CampaignsPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex items-center justify-between text-sm text-gray-600">
+                  <div className="flex items-center justify-between text-sm text-ps-text-secondary mb-3">
                     <div>
                       <span className="font-medium">{campaign._count.prospects}</span> prospects
                     </div>
-                    <div className="flex items-center gap-2">
-                      <span
-                        className={`px-2 py-1 text-xs font-medium rounded ${
-                          campaign.outreachType === "CONNECT"
-                            ? "bg-blue-50 text-blue-700"
-                            : "bg-purple-50 text-purple-700"
-                        }`}
-                      >
-                        {campaign.outreachType}
-                      </span>
-                    </div>
                   </div>
-                  <div className="mt-3 text-xs text-gray-500">
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    <span
+                      className={`px-2 py-1 text-xs font-medium rounded ${
+                        campaign.outreachType === "CONNECT"
+                          ? "bg-blue-50 text-blue-700"
+                          : "bg-purple-50 text-purple-700"
+                      }`}
+                    >
+                      {campaign.outreachType}
+                    </span>
+                    <span
+                      className={`px-2 py-1 text-xs font-medium rounded ${
+                        campaign.messageGenerationStrategy === "AI_PERSONALIZED"
+                          ? "bg-purple-50 text-purple-700"
+                          : "bg-gray-100 text-gray-700"
+                      }`}
+                    >
+                      {campaign.messageGenerationStrategy === "AI_PERSONALIZED" ? "🤖 AI" : "📝 Fixed"}
+                    </span>
+                    {!campaign.enableCrmSync && (
+                      <span className="px-2 py-1 text-xs font-medium rounded border border-gray-300 text-gray-700">
+                        No CRM
+                      </span>
+                    )}
+                  </div>
+                  <div className="text-xs text-ps-text-secondary">
                     Created {format(new Date(campaign.createdAt), "MMM d, yyyy")}
                   </div>
                 </CardContent>

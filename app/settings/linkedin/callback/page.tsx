@@ -59,7 +59,7 @@ export default function LinkedInCallbackPage() {
             <div className="text-center py-12">
               <Loader2 className="h-16 w-16 mx-auto animate-spin text-primary mb-4" />
               <h2 className="text-xl font-semibold mb-2">Connecting LinkedIn Account</h2>
-              <p className="text-gray-600">Please wait while we complete the connection...</p>
+              <p className="text-ps-text-secondary">Please wait while we complete the connection...</p>
             </div>
           )}
 
@@ -67,10 +67,10 @@ export default function LinkedInCallbackPage() {
             <div className="text-center py-12">
               <CheckCircle2 className="h-16 w-16 mx-auto text-green-500 mb-4" />
               <h2 className="text-xl font-semibold mb-2">LinkedIn Account Connected!</h2>
-              <p className="text-gray-600 mb-4">
+              <p className="text-ps-text-secondary mb-4">
                 Your LinkedIn account has been successfully connected.
               </p>
-              <p className="text-sm text-gray-500">Redirecting to settings...</p>
+              <p className="text-sm text-ps-text-secondary">Redirecting to settings...</p>
             </div>
           )}
 
@@ -78,7 +78,7 @@ export default function LinkedInCallbackPage() {
             <div className="text-center py-12">
               <XCircle className="h-16 w-16 mx-auto text-red-500 mb-4" />
               <h2 className="text-xl font-semibold mb-2">Connection Failed</h2>
-              <p className="text-gray-600 mb-4">{error || "Failed to connect LinkedIn account"}</p>
+              <p className="text-ps-text-secondary mb-4">{error || "Failed to connect LinkedIn account"}</p>
               <Button onClick={() => router.push("/settings")}>Back to Settings</Button>
             </div>
           )}

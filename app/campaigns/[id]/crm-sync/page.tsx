@@ -110,7 +110,7 @@ export default function CRMSyncPage({ params }: CRMSyncPageProps) {
       <div className="max-w-3xl mx-auto">
         <Card>
           <CardContent className="pt-6">
-            <p className="text-center text-gray-600">Failed to load CRM sync data</p>
+            <p className="text-center text-ps-text-secondary">Failed to load CRM sync data</p>
           </CardContent>
         </Card>
       </div>
@@ -125,8 +125,8 @@ export default function CRMSyncPage({ params }: CRMSyncPageProps) {
   return (
     <div className="max-w-4xl mx-auto">
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">CRM Sync</h1>
-        <p className="text-gray-600 mt-1">
+        <h1 className="text-3xl font-bold text-ps-text-primary">CRM Sync</h1>
+        <p className="text-ps-text-secondary mt-1">
           {isComplete
             ? "CRM sync complete"
             : isSyncing
@@ -161,10 +161,10 @@ export default function CRMSyncPage({ params }: CRMSyncPageProps) {
           <CardContent className="space-y-4">
             <div>
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-gray-700">
+                <span className="text-sm font-medium text-ps-text-secondary">
                   {completed} of {stats.total} prospects synced
                 </span>
-                <span className="text-sm text-gray-500">
+                <span className="text-sm text-ps-text-secondary">
                   {progressPercentage.toFixed(0)}%
                 </span>
               </div>
@@ -172,7 +172,7 @@ export default function CRMSyncPage({ params }: CRMSyncPageProps) {
             </div>
 
             {polling && (
-              <p className="text-xs text-gray-500 flex items-center gap-2">
+              <p className="text-xs text-ps-text-secondary flex items-center gap-2">
                 <Loader2 className="h-3 w-3 animate-spin" />
                 Auto-refreshing every 2 seconds...
               </p>
@@ -186,12 +186,12 @@ export default function CRMSyncPage({ params }: CRMSyncPageProps) {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">Synced</p>
+                  <p className="text-sm text-ps-text-secondary">Synced</p>
                   <p className="text-2xl font-bold text-green-600">{stats.synced}</p>
                 </div>
                 <CheckCircle2 className="h-8 w-8 text-green-500" />
               </div>
-              <p className="text-xs text-gray-500 mt-1">Successfully synced to both CRMs</p>
+              <p className="text-xs text-ps-text-secondary mt-1">Successfully synced to both CRMs</p>
             </CardContent>
           </Card>
 
@@ -199,12 +199,12 @@ export default function CRMSyncPage({ params }: CRMSyncPageProps) {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">Errors</p>
+                  <p className="text-sm text-ps-text-secondary">Errors</p>
                   <p className="text-2xl font-bold text-red-600">{stats.error}</p>
                 </div>
                 <XCircle className="h-8 w-8 text-red-500" />
               </div>
-              <p className="text-xs text-gray-500 mt-1">Failed to sync</p>
+              <p className="text-xs text-ps-text-secondary mt-1">Failed to sync</p>
             </CardContent>
           </Card>
         </div>
@@ -243,7 +243,7 @@ export default function CRMSyncPage({ params }: CRMSyncPageProps) {
               About CRM Sync
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-2 text-sm text-gray-600">
+          <CardContent className="space-y-2 text-sm text-ps-text-secondary">
             <p>
               <strong>Salesforce:</strong> Each prospect is created or updated as a Contact. If the
               company doesn&apos;t exist in Salesforce, a new Account is created automatically.

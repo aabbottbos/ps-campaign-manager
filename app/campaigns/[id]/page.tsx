@@ -25,7 +25,7 @@ async function getCampaign(id: string, userId: string) {
 
 function getStatusColor(status: string) {
   const colors: Record<string, string> = {
-    DRAFT: "bg-gray-100 text-gray-800",
+    DRAFT: "bg-elevated text-ps-text-primary",
     FILE_UPLOADED: "bg-blue-100 text-blue-800",
     MAPPING_COMPLETE: "bg-blue-100 text-blue-800",
     ENRICHING: "bg-yellow-100 text-yellow-800",
@@ -35,17 +35,22 @@ function getStatusColor(status: string) {
     CRM_SYNCING: "bg-indigo-100 text-indigo-800",
     CRM_SYNCED: "bg-indigo-100 text-indigo-800",
     SENDING: "bg-orange-100 text-orange-800",
-    PAUSED: "bg-gray-100 text-gray-800",
+    PAUSED: "bg-elevated text-ps-text-primary",
     COMPLETE: "bg-green-100 text-green-800",
   }
-  return colors[status] || "bg-gray-100 text-gray-800"
+  return colors[status] || "bg-elevated text-ps-text-primary"
 }
 
 function getStatusLabel(status: string) {
   return status.replace(/_/g, " ").toLowerCase().replace(/\b\w/g, (l) => l.toUpperCase())
 }
 
-function getNextStepInfo(status: string, campaignId: string) {
+function getNextStepInfo(
+  status: string,
+  campaignId: string,
+  messageGenerationStrategy: string,
+  enableCrmSync: boolean
+) {
   switch (status) {
     case "DRAFT":
       return {
@@ -60,6 +65,13 @@ function getNextStepInfo(status: string, campaignId: string) {
         href: `/campaigns/${campaignId}/mapping`,
       }
     case "MAPPING_COMPLETE":
+      if (messageGenerationStrategy === "FIXED_MESSAGE") {
+        return {
+          message: "Review your fixed message before sending",
+          action: "Review Message",
+          href: `/campaigns/${campaignId}/review`,
+        }
+      }
       return {
         message: "Ready to enrich prospects with LinkedIn data",
         action: "Start Enrichment",
@@ -78,10 +90,18 @@ function getNextStepInfo(status: string, campaignId: string) {
         href: `/campaigns/${campaignId}/review`,
       }
     case "REVIEW":
+      if (enableCrmSync) {
+        return {
+          message: "Sync approved prospects to Salesforce and SalesLoft",
+          action: "Sync to CRM",
+          href: `/campaigns/${campaignId}/crm-sync`,
+        }
+      }
+      // No CRM sync - go straight to send
       return {
-        message: "Sync approved prospects to Salesforce and SalesLoft",
-        action: "Sync to CRM",
-        href: `/campaigns/${campaignId}/crm-sync`,
+        message: "Messages approved and ready to send via LinkedIn",
+        action: "Send Campaign",
+        href: `/campaigns/${campaignId}/send`,
       }
     case "CRM_SYNCED":
       return {
@@ -107,15 +127,20 @@ export default async function CampaignDetailPage({ params }: CampaignDetailPageP
     redirect("/campaigns")
   }
 
-  const nextStep = getNextStepInfo(campaign.status, campaign.id)
+  const nextStep = getNextStepInfo(
+    campaign.status,
+    campaign.id,
+    campaign.messageGenerationStrategy,
+    campaign.enableCrmSync
+  )
 
   return (
     <div className="max-w-4xl mx-auto">
       <div className="mb-6">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">{campaign.name}</h1>
-            <p className="text-gray-600 mt-1">
+            <h1 className="text-3xl font-bold text-ps-text-primary">{campaign.name}</h1>
+            <p className="text-ps-text-secondary mt-1">
               Created {format(new Date(campaign.createdAt), "MMMM d, yyyy")}
             </p>
           </div>
@@ -136,7 +161,7 @@ export default async function CampaignDetailPage({ params }: CampaignDetailPageP
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <label className="text-sm font-medium text-gray-500">Outreach Type</label>
+              <label className="text-sm font-medium text-ps-text-secondary">Outreach Type</label>
               <p className="mt-1">
                 <span
                   className={`inline-flex px-2 py-1 text-xs font-medium rounded ${
@@ -147,7 +172,7 @@ export default async function CampaignDetailPage({ params }: CampaignDetailPageP
                 >
                   {campaign.outreachType}
                 </span>
-                <span className="ml-2 text-sm text-gray-600">
+                <span className="ml-2 text-sm text-ps-text-secondary">
                   {campaign.outreachType === "CONNECT"
                     ? "(300 character limit)"
                     : "(~1,900 character limit)"}
@@ -156,25 +181,25 @@ export default async function CampaignDetailPage({ params }: CampaignDetailPageP
             </div>
 
             <div>
-              <label className="text-sm font-medium text-gray-500">Description</label>
-              <p className="mt-1 text-gray-900">{campaign.description}</p>
+              <label className="text-sm font-medium text-ps-text-secondary">Description</label>
+              <p className="mt-1 text-ps-text-primary">{campaign.description}</p>
             </div>
 
             {campaign.messageTemplate && (
               <div>
-                <label className="text-sm font-medium text-gray-500">
+                <label className="text-sm font-medium text-ps-text-secondary">
                   Message Instructions
                 </label>
-                <p className="mt-1 text-gray-900">{campaign.messageTemplate}</p>
+                <p className="mt-1 text-ps-text-primary">{campaign.messageTemplate}</p>
               </div>
             )}
 
             <div className="grid grid-cols-2 gap-4 pt-4 border-t">
               <div>
-                <label className="text-sm font-medium text-gray-500">Prospects</label>
+                <label className="text-sm font-medium text-ps-text-secondary">Prospects</label>
                 <div className="flex items-center gap-2 mt-1">
                   <Users className="h-5 w-5 text-gray-400" />
-                  <p className="text-2xl font-bold text-gray-900">
+                  <p className="text-2xl font-bold text-ps-text-primary">
                     {campaign._count.prospects}
                   </p>
                 </div>
@@ -182,10 +207,10 @@ export default async function CampaignDetailPage({ params }: CampaignDetailPageP
 
               {campaign.uploadedFileName && (
                 <div>
-                  <label className="text-sm font-medium text-gray-500">Uploaded File</label>
+                  <label className="text-sm font-medium text-ps-text-secondary">Uploaded File</label>
                   <div className="flex items-center gap-2 mt-1">
                     <FileText className="h-5 w-5 text-gray-400" />
-                    <p className="text-sm text-gray-900 truncate">
+                    <p className="text-sm text-ps-text-primary truncate">
                       {campaign.uploadedFileName}
                     </p>
                   </div>
@@ -236,14 +261,62 @@ export default async function CampaignDetailPage({ params }: CampaignDetailPageP
                     {campaign.status === "FILE_UPLOADED" ? "→ In Progress" : "✓ Complete"}
                   </span>
                 </div>
-                <div className="flex items-center justify-between text-sm">
-                  <span className="font-medium">Enrichment</span>
-                  <span className="text-gray-400">Pending</span>
-                </div>
-                <div className="flex items-center justify-between text-sm">
-                  <span className="font-medium">Message Generation</span>
-                  <span className="text-gray-400">Pending</span>
-                </div>
+                {campaign.messageGenerationStrategy === "AI_PERSONALIZED" && (
+                  <>
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="font-medium">Enrichment</span>
+                      <span
+                        className={
+                          ["ENRICHING", "ENRICHMENT_COMPLETE", "MESSAGES_GENERATED", "REVIEW", "CRM_SYNCING", "CRM_SYNCED", "SENDING", "COMPLETE"].includes(campaign.status)
+                            ? campaign.status === "ENRICHING"
+                              ? "text-orange-600"
+                              : "text-green-600"
+                            : "text-gray-400"
+                        }
+                      >
+                        {campaign.status === "ENRICHING"
+                          ? "→ In Progress"
+                          : ["ENRICHMENT_COMPLETE", "MESSAGES_GENERATED", "REVIEW", "CRM_SYNCING", "CRM_SYNCED", "SENDING", "COMPLETE"].includes(campaign.status)
+                          ? "✓ Complete"
+                          : "Pending"}
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="font-medium">Message Generation</span>
+                      <span
+                        className={
+                          ["MESSAGES_GENERATED", "REVIEW", "CRM_SYNCING", "CRM_SYNCED", "SENDING", "COMPLETE"].includes(campaign.status)
+                            ? "text-green-600"
+                            : "text-gray-400"
+                        }
+                      >
+                        {["MESSAGES_GENERATED", "REVIEW", "CRM_SYNCING", "CRM_SYNCED", "SENDING", "COMPLETE"].includes(campaign.status)
+                          ? "✓ Complete"
+                          : "Pending"}
+                      </span>
+                    </div>
+                  </>
+                )}
+                {campaign.messageGenerationStrategy === "FIXED_MESSAGE" && (
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="font-medium">Fixed Message Applied</span>
+                    <span
+                      className={
+                        ["REVIEW", "CRM_SYNCING", "CRM_SYNCED", "SENDING", "COMPLETE"].includes(campaign.status)
+                          ? "text-green-600"
+                          : campaign.status === "MAPPING_COMPLETE"
+                          ? "text-orange-600"
+                          : "text-gray-400"
+                      }
+                    >
+                      {["REVIEW", "CRM_SYNCING", "CRM_SYNCED", "SENDING", "COMPLETE"].includes(campaign.status)
+                        ? "✓ Complete"
+                        : campaign.status === "MAPPING_COMPLETE"
+                        ? "→ In Progress"
+                        : "Pending"}
+                    </span>
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>

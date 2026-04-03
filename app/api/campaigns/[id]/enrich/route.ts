@@ -36,6 +36,17 @@ export async function POST(
       return NextResponse.json({ error: "Forbidden" }, { status: 403 })
     }
 
+    // Check if enrichment is enabled for this campaign
+    if (!campaign.enableEnrichment) {
+      return NextResponse.json(
+        {
+          error: "Enrichment is disabled for this campaign",
+          message: "This campaign is configured to skip enrichment. Proceed to the review step.",
+        },
+        { status: 400 }
+      )
+    }
+
     // Check if campaign is in the right status
     if (campaign.status !== "MAPPING_COMPLETE") {
       return NextResponse.json(

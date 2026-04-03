@@ -22,6 +22,16 @@ interface SendStats {
   failed: number
   pending: number
   hasActiveAccounts: boolean
+  enableCrmSync?: boolean
+}
+
+interface FailedProspect {
+  id: string
+  firstName: string | null
+  lastName: string | null
+  company: string | null
+  linkedinUrl: string | null
+  sendError: string | null
 }
 
 export default function SendPage({ params }: SendPageProps) {
@@ -31,9 +41,12 @@ export default function SendPage({ params }: SendPageProps) {
   const [pausing, setPausing] = useState(false)
   const [stats, setStats] = useState<SendStats | null>(null)
   const [polling, setPolling] = useState(false)
+  const [failedProspects, setFailedProspects] = useState<FailedProspect[]>([])
+  const [loadingFailed, setLoadingFailed] = useState(false)
 
   useEffect(() => {
     fetchStats()
+    fetchFailedProspects()
   }, [])
 
   useEffect(() => {
@@ -42,6 +55,7 @@ export default function SendPage({ params }: SendPageProps) {
       setPolling(true)
       const interval = setInterval(() => {
         fetchStats()
+        fetchFailedProspects() // Also refresh failed prospects
       }, 3000) // Poll every 3 seconds
 
       return () => clearInterval(interval)
@@ -65,6 +79,24 @@ export default function SendPage({ params }: SendPageProps) {
       toast.error("Failed to load send stats")
     } finally {
       setLoading(false)
+    }
+  }
+
+  const fetchFailedProspects = async () => {
+    setLoadingFailed(true)
+    try {
+      const response = await fetch(`/api/campaigns/${params.id}/prospects?sendStatus=FAILED`)
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch failed prospects")
+      }
+
+      const data = await response.json()
+      setFailedProspects(data)
+    } catch (error) {
+      console.error("Error fetching failed prospects:", error)
+    } finally {
+      setLoadingFailed(false)
     }
   }
 
@@ -134,7 +166,7 @@ export default function SendPage({ params }: SendPageProps) {
       <div className="max-w-3xl mx-auto">
         <Card>
           <CardContent className="pt-6">
-            <p className="text-center text-gray-600">Failed to load send data</p>
+            <p className="text-center text-ps-text-secondary">Failed to load send data</p>
           </CardContent>
         </Card>
       </div>
@@ -145,13 +177,18 @@ export default function SendPage({ params }: SendPageProps) {
   const isSending = stats.campaignStatus === "SENDING"
   const isPaused = stats.campaignStatus === "PAUSED"
   const isComplete = stats.campaignStatus === "COMPLETE"
-  const canStart = stats.campaignStatus === "CRM_SYNCED" && stats.pending > 0 && stats.hasActiveAccounts
+
+  // Can start if:
+  // - CRM sync enabled: campaign is in CRM_SYNCED status
+  // - CRM sync disabled: campaign is in REVIEW status (messages approved)
+  const validStartStatuses = stats.enableCrmSync ? ["CRM_SYNCED"] : ["REVIEW", "CRM_SYNCED"]
+  const canStart = validStartStatuses.includes(stats.campaignStatus) && stats.pending > 0 && stats.hasActiveAccounts
 
   return (
     <div className="max-w-4xl mx-auto">
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">Send Campaign</h1>
-        <p className="text-gray-600 mt-1">
+        <h1 className="text-3xl font-bold text-ps-text-primary">Send Campaign</h1>
+        <p className="text-ps-text-secondary mt-1">
           {isComplete
             ? "Campaign complete"
             : isSending
@@ -181,6 +218,25 @@ export default function SendPage({ params }: SendPageProps) {
                       Go to Settings
                     </Button>
                   </Link>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* No CRM Sync Info */}
+        {stats.enableCrmSync === false && !isSending && !isComplete && (
+          <Card className="border-blue-200 bg-blue-50">
+            <CardContent className="pt-6">
+              <div className="flex items-start gap-3">
+                <AlertCircle className="h-5 w-5 text-blue-600 mt-0.5" />
+                <div>
+                  <p className="font-medium text-blue-900 mb-1">
+                    CRM Sync Disabled
+                  </p>
+                  <p className="text-sm text-blue-700">
+                    This campaign will send messages directly without syncing to Salesforce or SalesLoft.
+                  </p>
                 </div>
               </div>
             </CardContent>
@@ -218,16 +274,16 @@ export default function SendPage({ params }: SendPageProps) {
           <CardContent className="space-y-4">
             <div>
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-gray-700">
+                <span className="text-sm font-medium text-ps-text-secondary">
                   {stats.sent + stats.failed} of {stats.total} processed
                 </span>
-                <span className="text-sm text-gray-500">{progressPercentage.toFixed(0)}%</span>
+                <span className="text-sm text-ps-text-secondary">{progressPercentage.toFixed(0)}%</span>
               </div>
               <Progress value={progressPercentage} className="h-2" />
             </div>
 
             {polling && (
-              <p className="text-xs text-gray-500 flex items-center gap-2">
+              <p className="text-xs text-ps-text-secondary flex items-center gap-2">
                 <Loader2 className="h-3 w-3 animate-spin" />
                 Auto-refreshing every 3 seconds...
               </p>
@@ -281,7 +337,7 @@ export default function SendPage({ params }: SendPageProps) {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">Sent</p>
+                  <p className="text-sm text-ps-text-secondary">Sent</p>
                   <p className="text-2xl font-bold text-green-600">{stats.sent}</p>
                 </div>
                 <CheckCircle2 className="h-8 w-8 text-green-500" />
@@ -293,7 +349,7 @@ export default function SendPage({ params }: SendPageProps) {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">Failed</p>
+                  <p className="text-sm text-ps-text-secondary">Failed</p>
                   <p className="text-2xl font-bold text-red-600">{stats.failed}</p>
                 </div>
                 <XCircle className="h-8 w-8 text-red-500" />
@@ -305,7 +361,7 @@ export default function SendPage({ params }: SendPageProps) {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">Pending</p>
+                  <p className="text-sm text-ps-text-secondary">Pending</p>
                   <p className="text-2xl font-bold text-blue-600">{stats.pending}</p>
                 </div>
                 <Loader2 className="h-8 w-8 text-blue-500" />
@@ -313,6 +369,76 @@ export default function SendPage({ params }: SendPageProps) {
             </CardContent>
           </Card>
         </div>
+
+        {/* Failed Prospects */}
+        {stats.failed > 0 && (
+          <Card className="border-red-200 bg-red-50">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-red-900">
+                <XCircle className="h-5 w-5" />
+                Failed Sends ({stats.failed})
+              </CardTitle>
+              <CardDescription className="text-red-700">
+                The following prospects failed to send. Review the errors below to troubleshoot.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              {loadingFailed ? (
+                <div className="flex items-center justify-center py-4">
+                  <Loader2 className="h-5 w-5 animate-spin text-red-600" />
+                </div>
+              ) : failedProspects.length > 0 ? (
+                <div className="space-y-3">
+                  {failedProspects.map((prospect) => (
+                    <div
+                      key={prospect.id}
+                      className="bg-white rounded-lg border border-red-200 p-4"
+                    >
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-1">
+                            <p className="font-medium text-gray-900">
+                              {prospect.firstName} {prospect.lastName}
+                            </p>
+                            {prospect.company && (
+                              <span className="text-sm text-gray-500">
+                                at {prospect.company}
+                              </span>
+                            )}
+                          </div>
+                          {prospect.linkedinUrl && (
+                            <a
+                              href={prospect.linkedinUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-xs text-blue-600 hover:underline"
+                            >
+                              View LinkedIn Profile →
+                            </a>
+                          )}
+                          {prospect.sendError && (
+                            <div className="mt-2 p-2 bg-red-100 rounded border border-red-200">
+                              <p className="text-xs font-medium text-red-900 mb-1">
+                                Error:
+                              </p>
+                              <p className="text-xs text-red-800 font-mono">
+                                {prospect.sendError}
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-sm text-red-700">
+                  No failed prospect details available.
+                </p>
+              )}
+            </CardContent>
+          </Card>
+        )}
 
         {/* Next Steps */}
         {isComplete && (
@@ -342,7 +468,7 @@ export default function SendPage({ params }: SendPageProps) {
               About Message Sending
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-2 text-sm text-gray-600">
+          <CardContent className="space-y-2 text-sm text-ps-text-secondary">
             <p>
               <strong>Human-like Pacing:</strong> Messages are sent with randomized delays (30-90
               seconds) between each send to mimic natural human behavior.
