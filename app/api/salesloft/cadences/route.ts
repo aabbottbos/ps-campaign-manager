@@ -10,14 +10,18 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
+    // Check if SalesLoft is configured
+    if (!process.env.SALESLOFT_API_KEY) {
+      console.log("[SalesLoft] API key not configured, returning empty cadences list")
+      return NextResponse.json([])
+    }
+
     const cadences = await getCadences()
 
     return NextResponse.json(cadences)
   } catch (error) {
     console.error("Error fetching SalesLoft cadences:", error)
-    return NextResponse.json(
-      { error: "Failed to fetch cadences" },
-      { status: 500 }
-    )
+    // Return empty array instead of 500 error - allows campaign creation to proceed
+    return NextResponse.json([])
   }
 }

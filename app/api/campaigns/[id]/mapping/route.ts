@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma"
 import { validateMapping, extractMappedValues, type ColumnMapping } from "@/lib/column-mapper"
 import { parseFile } from "@/lib/file-parser"
 import { get } from "@vercel/blob"
+import { inngest } from "@/lib/inngest/client"
 
 export async function POST(
   request: NextRequest,
@@ -81,8 +82,12 @@ export async function POST(
     })
 
     // Create prospects from parsed rows
-    const prospects = parsedData.rows.map((row) => {
+    const prospects = parsedData.rows.map((row, index) => {
       const mappedValues = extractMappedValues(row, mapping)
+
+      console.log(`[MAPPING] Row ${index + 1} - Raw data:`, row)
+      console.log(`[MAPPING] Row ${index + 1} - Mapped values:`, mappedValues)
+      console.log(`[MAPPING] Row ${index + 1} - LinkedIN URL:`, mappedValues.linkedinUrl)
 
       return {
         campaignId,
@@ -93,6 +98,7 @@ export async function POST(
         company: mappedValues.company,
         title: mappedValues.title,
         phone: mappedValues.phone,
+        linkedinUrl: mappedValues.linkedinUrl,
         enrichmentStatus: "PENDING" as const,
         messageStatus: "PENDING" as const,
         crmSyncStatus: "NOT_SYNCED" as const,
@@ -100,25 +106,71 @@ export async function POST(
       }
     })
 
+    console.log(`[MAPPING] Creating ${prospects.length} prospects for campaign ${campaignId}`)
+    console.log(`[MAPPING] Prospects to create:`, JSON.stringify(prospects, null, 2))
+
     // Batch create prospects
-    await prisma.prospect.createMany({
+    const created = await prisma.prospect.createMany({
       data: prospects,
     })
 
-    // Update campaign with mapping and status
-    await prisma.campaign.update({
-      where: { id: campaignId },
-      data: {
-        columnMapping: mapping as any,
-        status: "MAPPING_COMPLETE",
-      },
-    })
+    console.log(`[MAPPING] Successfully created ${created.count} prospects`)
 
-    return NextResponse.json({
-      success: true,
-      prospectsCreated: prospects.length,
-      message: `Successfully created ${prospects.length} prospects`,
+    // Verify creation
+    const verifyProspects = await prisma.prospect.findMany({
+      where: { campaignId },
+      select: {
+        id: true,
+        firstName: true,
+        lastName: true,
+        company: true,
+        linkedinUrl: true,
+        messageStatus: true,
+        sendStatus: true,
+      }
     })
+    console.log(`[MAPPING] Verification - Found ${verifyProspects.length} prospects in DB:`, JSON.stringify(verifyProspects, null, 2))
+
+    // Workflow branching based on message generation strategy
+    if (campaign.messageGenerationStrategy === "FIXED_MESSAGE") {
+      // Fixed message: Copy the same message to all prospects and skip enrichment
+      await prisma.campaign.update({
+        where: { id: campaignId },
+        data: {
+          columnMapping: mapping as any,
+          status: "MAPPING_COMPLETE",
+        },
+      })
+
+      // Trigger fixed message copy job
+      await inngest.send({
+        name: "campaign/copy-fixed-message",
+        data: { campaignId }
+      })
+
+      return NextResponse.json({
+        success: true,
+        prospectsCreated: prospects.length,
+        message: `Successfully created ${prospects.length} prospects. Fixed message will be copied to all.`,
+        strategy: "FIXED_MESSAGE"
+      })
+    } else {
+      // AI personalized: Proceed to enrichment workflow
+      await prisma.campaign.update({
+        where: { id: campaignId },
+        data: {
+          columnMapping: mapping as any,
+          status: "MAPPING_COMPLETE",
+        },
+      })
+
+      return NextResponse.json({
+        success: true,
+        prospectsCreated: prospects.length,
+        message: `Successfully created ${prospects.length} prospects`,
+        strategy: "AI_PERSONALIZED"
+      })
+    }
   } catch (error) {
     console.error("Error saving column mapping:", error)
     return NextResponse.json(

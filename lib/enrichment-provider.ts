@@ -186,7 +186,7 @@ export async function enrichPerson(
     }
 
     // matchConfidence is on 0-100 scale, convert to 0.0-1.0
-    const confidenceScore = enrichmentResult.matchConfidence / 100
+    const confidenceScore = (enrichmentResult.matchConfidence ?? 0) / 100
     console.log("[Apify] Confidence score (0-1 scale):", confidenceScore)
 
     // Filter out low-confidence matches (< 0.20, equivalent to < 20 on 0-100 scale)

@@ -35,12 +35,18 @@ interface MappingData {
   existingMapping: ColumnMapping | null
 }
 
+interface Campaign {
+  messageGenerationStrategy: string
+  outreachType: string
+}
+
 export default function MappingPage({ params }: MappingPageProps) {
   const router = useRouter()
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [data, setData] = useState<MappingData | null>(null)
   const [mapping, setMapping] = useState<ColumnMapping>({})
+  const [campaign, setCampaign] = useState<Campaign | null>(null)
 
   useEffect(() => {
     fetchMappingData()
@@ -48,14 +54,26 @@ export default function MappingPage({ params }: MappingPageProps) {
 
   const fetchMappingData = async () => {
     try {
-      const response = await fetch(`/api/campaigns/${params.id}/mapping`)
+      const [mappingResponse, campaignResponse] = await Promise.all([
+        fetch(`/api/campaigns/${params.id}/mapping`),
+        fetch(`/api/campaigns/${params.id}`)
+      ])
 
-      if (!response.ok) {
+      if (!mappingResponse.ok) {
         throw new Error("Failed to fetch mapping data")
       }
 
-      const result = await response.json()
+      const result = await mappingResponse.json()
       setData(result)
+
+      // Fetch campaign to determine strategy
+      if (campaignResponse.ok) {
+        const campaignData = await campaignResponse.json()
+        setCampaign({
+          messageGenerationStrategy: campaignData.messageGenerationStrategy,
+          outreachType: campaignData.outreachType
+        })
+      }
 
       // Use existing mapping if available, otherwise auto-detect
       const initialMapping = result.existingMapping || autoMapColumns(result.headers)
@@ -98,9 +116,13 @@ export default function MappingPage({ params }: MappingPageProps) {
         throw new Error(result.error || "Failed to save mapping")
       }
 
-      toast.success(result.message || "Column mapping saved successfully")
+      const successMessage = campaign?.messageGenerationStrategy === "FIXED_MESSAGE"
+        ? "Column mapping saved. Fixed message will be applied to all prospects."
+        : "Column mapping saved successfully"
 
-      // Redirect to enrichment page (will be created in Sprint 3)
+      toast.success(result.message || successMessage)
+
+      // Redirect back to campaign page
       setTimeout(() => {
         router.push(`/campaigns/${params.id}`)
       }, 500)
@@ -125,7 +147,7 @@ export default function MappingPage({ params }: MappingPageProps) {
       <div className="max-w-3xl mx-auto">
         <Card>
           <CardContent className="pt-6">
-            <p className="text-center text-gray-600">Failed to load file data</p>
+            <p className="text-center text-ps-text-secondary">Failed to load file data</p>
           </CardContent>
         </Card>
       </div>
@@ -137,9 +159,17 @@ export default function MappingPage({ params }: MappingPageProps) {
   return (
     <div className="max-w-5xl mx-auto">
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">Map Columns</h1>
-        <p className="text-gray-600 mt-1">Step 3: Column Mapping</p>
+        <h1 className="text-3xl font-bold text-ps-text-primary">Map Columns</h1>
+        <p className="text-ps-text-secondary mt-1">Step 3: Column Mapping</p>
       </div>
+
+      {campaign?.messageGenerationStrategy === "FIXED_MESSAGE" && (
+        <div className="mb-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <p className="text-sm text-blue-900">
+            📝 <strong>Fixed Message Campaign:</strong> Enrichment will be skipped. The same message will be sent to all prospects after mapping.
+          </p>
+        </div>
+      )}
 
       <div className="space-y-6">
         <Card>
@@ -171,7 +201,7 @@ export default function MappingPage({ params }: MappingPageProps) {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="none">
-                          <span className="text-gray-500">-- Not mapped --</span>
+                          <span className="text-ps-text-secondary">-- Not mapped --</span>
                         </SelectItem>
                         {data.headers.map((header) => (
                           <SelectItem key={header} value={header}>
@@ -219,8 +249,8 @@ export default function MappingPage({ params }: MappingPageProps) {
             <div className="overflow-x-auto">
               <table className="w-full border-collapse text-sm">
                 <thead>
-                  <tr className="border-b bg-gray-50">
-                    <th className="px-4 py-3 text-left font-medium text-gray-700">#</th>
+                  <tr className="border-b bg-surface">
+                    <th className="px-4 py-3 text-left font-medium text-ps-text-secondary">#</th>
                     {data.headers.map((header) => {
                       const isMapped = Object.values(mapping).includes(header)
                       return (
@@ -229,7 +259,7 @@ export default function MappingPage({ params }: MappingPageProps) {
                           className={`px-4 py-3 text-left font-medium ${
                             isMapped
                               ? "bg-primary/10 text-primary"
-                              : "text-gray-700"
+                              : "text-ps-text-secondary"
                           }`}
                         >
                           {header}
@@ -249,15 +279,15 @@ export default function MappingPage({ params }: MappingPageProps) {
                 </thead>
                 <tbody>
                   {data.preview.map((row, index) => (
-                    <tr key={index} className="border-b hover:bg-gray-50">
-                      <td className="px-4 py-3 text-gray-500">{index + 1}</td>
+                    <tr key={index} className="border-b hover:bg-surface">
+                      <td className="px-4 py-3 text-ps-text-secondary">{index + 1}</td>
                       {data.headers.map((header) => {
                         const isMapped = Object.values(mapping).includes(header)
                         return (
                           <td
                             key={header}
                             className={`px-4 py-3 ${
-                              isMapped ? "font-medium" : "text-gray-600"
+                              isMapped ? "font-medium" : "text-ps-text-secondary"
                             }`}
                           >
                             {row[header] || (
@@ -287,6 +317,11 @@ export default function MappingPage({ params }: MappingPageProps) {
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 Saving...
+              </>
+            ) : campaign?.messageGenerationStrategy === "FIXED_MESSAGE" ? (
+              <>
+                Continue
+                <ArrowRight className="ml-2 h-4 w-4" />
               </>
             ) : (
               <>

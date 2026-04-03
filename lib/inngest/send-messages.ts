@@ -61,26 +61,47 @@ export const sendMessages = inngest.createFunction(
       })
     })
 
-    // Get all prospects ready to send (APPROVED and SYNCED and NOT_SENT)
+    // Get all prospects ready to send
     const prospects = await step.run("get-prospects", async () => {
+      // For campaigns with CRM sync, require SYNCED status
+      // For campaigns without CRM sync, just need APPROVED
+      const whereClause = campaign.enableCrmSync
+        ? {
+            campaignId,
+            messageStatus: "APPROVED" as const,
+            crmSyncStatus: "SYNCED" as const,
+            sendStatus: "NOT_SENT" as const,
+          }
+        : {
+            campaignId,
+            messageStatus: "APPROVED" as const,
+            sendStatus: "NOT_SENT" as const,
+          }
+
       return prisma.prospect.findMany({
-        where: {
-          campaignId,
-          messageStatus: "APPROVED",
-          crmSyncStatus: "SYNCED",
-          sendStatus: "NOT_SENT",
-        },
+        where: whereClause,
         orderBy: { createdAt: "asc" },
       })
     })
 
-    console.log(`Sending messages to ${prospects.length} prospects`)
+    console.log(`[SEND_MESSAGES] Starting send for campaign ${campaignId}`)
+    console.log(`[SEND_MESSAGES] Found ${prospects.length} prospects ready to send`)
+    console.log(`[SEND_MESSAGES] Campaign details:`, {
+      outreachType: campaign.outreachType,
+      enableCrmSync: campaign.enableCrmSync,
+      activeAccounts: activeAccounts.length,
+    })
 
     let sentCount = 0
     let failedCount = 0
 
     // Process each prospect
     for (const prospect of prospects) {
+      console.log(`[SEND_MESSAGES] Processing prospect ${prospect.id}:`, {
+        name: `${prospect.firstName} ${prospect.lastName}`,
+        linkedinUrl: prospect.linkedinUrl,
+        hasMessage: !!(prospect.editedMessage || prospect.generatedMessage),
+      })
       // Check if campaign is paused
       const currentCampaign = await step.run(`check-campaign-status-${prospect.id}`, async () => {
         return prisma.campaign.findUnique({
@@ -108,30 +129,55 @@ export const sendMessages = inngest.createFunction(
       const result = await step.run(`send-message-${prospect.id}`, async () => {
         const message = prospect.editedMessage || prospect.generatedMessage
 
+        console.log(`[SEND_MESSAGES] Attempting to send to ${prospect.firstName} ${prospect.lastName}`)
+
         if (!message) {
+          console.error(`[SEND_MESSAGES] ERROR: No message available for prospect ${prospect.id}`)
           return { success: false, error: "No message available" }
         }
 
         if (!prospect.linkedinUrl) {
+          console.error(`[SEND_MESSAGES] ERROR: No LinkedIn URL for prospect ${prospect.id}`)
           return { success: false, error: "No LinkedIn URL" }
         }
 
-        // Send based on outreach type
-        if (campaign.outreachType === "CONNECT") {
-          return sendConnectionRequest({
-            accountId: account.unipileAccountId,
-            profileUrl: prospect.linkedinUrl,
-            message,
-          })
-        } else {
-          return sendInMail({
-            accountId: account.unipileAccountId,
-            profileUrl: prospect.linkedinUrl,
-            message,
-            subject: `Re: ${prospect.company || "Your work"}`,
-          })
+        console.log(`[SEND_MESSAGES] Sending via Unipile:`, {
+          accountId: account.unipileAccountId,
+          profileUrl: prospect.linkedinUrl,
+          outreachType: campaign.outreachType,
+          messageLength: message.length,
+        })
+
+        try {
+          // Send based on outreach type
+          let sendResult
+          if (campaign.outreachType === "CONNECT") {
+            sendResult = await sendConnectionRequest({
+              accountId: account.unipileAccountId,
+              profileUrl: prospect.linkedinUrl,
+              message,
+            })
+          } else {
+            sendResult = await sendInMail({
+              accountId: account.unipileAccountId,
+              profileUrl: prospect.linkedinUrl,
+              message,
+              subject: `Re: ${prospect.company || "Your work"}`,
+            })
+          }
+
+          console.log(`[SEND_MESSAGES] Unipile response:`, sendResult)
+          return sendResult
+        } catch (error) {
+          console.error(`[SEND_MESSAGES] Exception during send:`, error)
+          return {
+            success: false,
+            error: error instanceof Error ? error.message : String(error)
+          }
         }
       })
+
+      console.log(`[SEND_MESSAGES] Send result for ${prospect.id}:`, result)
 
       // Update prospect status
       await step.run(`update-prospect-${prospect.id}`, async () => {
@@ -167,6 +213,7 @@ export const sendMessages = inngest.createFunction(
           }
         } else {
           failedCount++
+          console.error(`[SEND_MESSAGES] Send FAILED for ${prospect.id}:`, result.error)
 
           await prisma.prospect.update({
             where: { id: prospect.id },
@@ -186,13 +233,21 @@ export const sendMessages = inngest.createFunction(
 
     // Update campaign to COMPLETE if all sent
     const remainingToSend = await step.run("check-remaining", async () => {
+      const whereClause = campaign.enableCrmSync
+        ? {
+            campaignId,
+            messageStatus: "APPROVED" as const,
+            crmSyncStatus: "SYNCED" as const,
+            sendStatus: "NOT_SENT" as const,
+          }
+        : {
+            campaignId,
+            messageStatus: "APPROVED" as const,
+            sendStatus: "NOT_SENT" as const,
+          }
+
       return prisma.prospect.count({
-        where: {
-          campaignId,
-          messageStatus: "APPROVED",
-          crmSyncStatus: "SYNCED",
-          sendStatus: "NOT_SENT",
-        },
+        where: whereClause,
       })
     })
 

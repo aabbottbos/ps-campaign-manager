@@ -34,10 +34,35 @@ export const authOptions: NextAuthOptions = {
     signIn: "/login",
   },
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, account }) {
       if (user) {
         token.id = user.id
       }
+
+      // Validate user still exists in database
+      if (token.id && token.email) {
+        try {
+          const dbUser = await prisma.user.findUnique({
+            where: { id: token.id as string },
+          })
+
+          // If user doesn't exist, find or create by email
+          if (!dbUser) {
+            console.log("[JWT] User ID not found, looking up by email:", token.email)
+            const userByEmail = await prisma.user.findUnique({
+              where: { email: token.email },
+            })
+
+            if (userByEmail) {
+              console.log("[JWT] Found user by email, updating token ID:", userByEmail.id)
+              token.id = userByEmail.id
+            }
+          }
+        } catch (error) {
+          console.error("[JWT] Error validating user:", error)
+        }
+      }
+
       return token
     },
     async session({ session, token }) {

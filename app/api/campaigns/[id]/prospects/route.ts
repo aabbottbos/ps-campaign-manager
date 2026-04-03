@@ -32,6 +32,7 @@ export async function GET(
     const { searchParams } = new URL(request.url)
     const enrichmentStatus = searchParams.get("enrichmentStatus")
     const messageStatus = searchParams.get("messageStatus")
+    const sendStatus = searchParams.get("sendStatus")
 
     // Build filter
     const where: any = { campaignId }
@@ -42,6 +43,10 @@ export async function GET(
 
     if (messageStatus) {
       where.messageStatus = messageStatus
+    }
+
+    if (sendStatus) {
+      where.sendStatus = sendStatus
     }
 
     // Get prospects

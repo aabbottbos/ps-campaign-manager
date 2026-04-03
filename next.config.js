@@ -1,8 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    serverComponentsExternalPackages: ['@prisma/client', 'prisma']
-  }
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'productschool.com',
+        pathname: '/_next/static/media/**',
+      },
+    ],
+  },
 }
 
 module.exports = nextConfig

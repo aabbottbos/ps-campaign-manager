@@ -31,6 +31,18 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    console.log("[LinkedIn Callback] Unipile account data:", JSON.stringify(unipileAccount, null, 2))
+
+    // Extract LinkedIn-specific data
+    const linkedinUsername = unipileAccount.connection_params?.im?.username || unipileAccount.name || "Unknown"
+    const publicIdentifier = unipileAccount.connection_params?.im?.publicIdentifier || ""
+
+    // Derive email from public identifier or use placeholder
+    const email = publicIdentifier ? `${publicIdentifier}@linkedin.com` : `${accountId}@linkedin.com`
+
+    // Determine status from sources
+    const accountStatus = unipileAccount.sources?.[0]?.status === "OK" ? "ACTIVE" : "DISCONNECTED"
+
     // Check if account already exists
     const existing = await prisma.linkedInAccount.findFirst({
       where: {
@@ -40,7 +52,15 @@ export async function POST(request: NextRequest) {
     })
 
     if (existing) {
-      return NextResponse.json({ account: existing })
+      // Update existing account with latest info
+      const updated = await prisma.linkedInAccount.update({
+        where: { id: existing.id },
+        data: {
+          linkedinName: linkedinUsername,
+          status: accountStatus,
+        },
+      })
+      return NextResponse.json({ account: updated })
     }
 
     // Create account in database
@@ -48,8 +68,10 @@ export async function POST(request: NextRequest) {
       data: {
         userId: session.user.id,
         unipileAccountId: accountId,
-        email: unipileAccount.email,
-        status: unipileAccount.status,
+        email,
+        linkedinName: linkedinUsername,
+        linkedinProfileUrl: publicIdentifier ? `https://www.linkedin.com/in/${publicIdentifier}` : null,
+        status: accountStatus,
         dailySendCount: 0,
         lastSendDate: null,
       },

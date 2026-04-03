@@ -163,7 +163,7 @@ export default function SettingsPage() {
           </Badge>
         )
       default:
-        return <Badge variant="secondary">{status}</Badge>
+        return <Badge variant="default">{status}</Badge>
     }
   }
 
@@ -178,7 +178,7 @@ export default function SettingsPage() {
     return (
       <div>
         <div className="flex items-center justify-between mb-1">
-          <span className="text-sm text-gray-600">Daily sends</span>
+          <span className="text-sm text-ps-text-secondary">Daily sends</span>
           <span className="text-sm font-medium">
             {count} / {limit}
           </span>
@@ -210,8 +210,8 @@ export default function SettingsPage() {
   return (
     <div className="max-w-4xl mx-auto">
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">Settings</h1>
-        <p className="text-gray-600 mt-1">Manage your LinkedIn accounts and integrations</p>
+        <h1 className="text-3xl font-bold text-ps-text-primary">Settings</h1>
+        <p className="text-ps-text-secondary mt-1">Manage your LinkedIn accounts and integrations</p>
       </div>
 
       <div className="space-y-6">
@@ -247,7 +247,7 @@ export default function SettingsPage() {
             {accounts.length === 0 ? (
               <div className="text-center py-8">
                 <Linkedin className="h-12 w-12 mx-auto text-gray-400 mb-3" />
-                <p className="text-gray-600 mb-4">No LinkedIn accounts connected</p>
+                <p className="text-ps-text-secondary mb-4">No LinkedIn accounts connected</p>
                 <Button onClick={connectAccount} disabled={connecting}>
                   <Plus className="h-4 w-4 mr-2" />
                   Connect Your First Account
@@ -266,7 +266,7 @@ export default function SettingsPage() {
                         <span className="font-medium">{account.email}</span>
                         {getStatusBadge(account.status)}
                       </div>
-                      <p className="text-xs text-gray-500 mb-3">
+                      <p className="text-xs text-ps-text-secondary mb-3">
                         Connected {new Date(account.connectedAt).toLocaleDateString()}
                       </p>
                       {getDailySendStatus(account)}
@@ -290,7 +290,7 @@ export default function SettingsPage() {
           <CardHeader>
             <CardTitle>About Daily Send Limits</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-2 text-sm text-gray-600">
+          <CardContent className="space-y-2 text-sm text-ps-text-secondary">
             <p>
               <strong>Daily Limit:</strong> Each LinkedIn account can send up to 50 messages per
               day to avoid triggering LinkedIn&apos;s spam detection.
@@ -325,7 +325,7 @@ export default function SettingsPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="rounded-lg border border-red-300 bg-white p-4">
+            <div className="rounded-lg border border-red-300 bg-surface p-4">
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1">
                   <h3 className="font-semibold text-red-900 mb-1">Delete All Campaigns</h3>

@@ -1,7 +1,7 @@
 # PS Campaign Manager - Development Handoff
 
-**Last Updated:** April 1, 2026
-**Current Status:** ⚠️ BLOCKED - Enrichment provider (Apify) non-functional - Need alternative solution
+**Last Updated:** April 2, 2026
+**Current Status:** ⚠️ CRITICAL - LinkedIn sending broken, missing required linkedinUrl field
 
 ---
 
@@ -15,14 +15,18 @@ The PS Campaign Manager is a LinkedIn outreach automation tool for Product Schoo
 - ✅ Production build passing (fixed 15+ TypeScript/ESLint errors)
 - ✅ Deployed to Vercel successfully
 
-**Current Session (April 1, 2026):**
-- ✅ Added "Delete All Campaigns" feature with triple confirmation
-- ✅ Attempted migration from Proxycurl to Apify Actor enrichment
-- ❌ **BLOCKER:** Apify Actor (ryanclinton/person-enrichment-lookup) is non-functional
-  - Cannot find well-known CEOs (Satya Nadella, Tim Cook, Sundar Pichai)
-  - Returns "not_found" for all queries
-  - Actor appears broken or requires special configuration
-- ⚠️ **DECISION NEEDED:** Choose alternative enrichment provider
+**Current Session (April 2, 2026):**
+- ❌ **CRITICAL BLOCKER:** LinkedIn message sending completely broken
+  - Root cause: `linkedinUrl` field missing from column mapping system
+  - Unipile API requires `profileUrl` (LinkedIn URL) to send messages
+  - All prospects created without `linkedinUrl` → cannot send any messages
+- ✅ **PARTIALLY FIXED:** Added `linkedinUrl` to column mapping system
+  - Made `linkedinUrl` a REQUIRED field (alongside firstName, lastName, company)
+  - Added auto-detection patterns for LinkedIn URL columns
+  - Updated prospect creation to store `linkedinUrl` from CSV
+  - Updated send-messages to handle campaigns without CRM sync
+- ⚠️ **NOT TESTED:** Changes require creating new campaign with LinkedIn URL column
+- 🔴 **PRIORITY ON RESUME:** Verify LinkedIn sending works end-to-end
 
 ---
 
@@ -181,7 +185,69 @@ const fileBuffer = Buffer.concat(chunks)
 
 ---
 
-## Current Session Issues (April 1, 2026)
+## Current Session Issues (April 2, 2026)
+
+### 1. ❌ CRITICAL: LinkedIn Sending Broken - Missing linkedinUrl Field
+
+**Discovery Process:**
+User reported LinkedIn connect messages showing "0 prospects" despite uploading 1 prospect. Initial debugging focused on:
+- ❌ Inngest configuration (red herring - not the root cause)
+- ❌ JWT session issues (red herring - not the root cause)
+- ❌ Campaign persistence issues (red herring - not the root cause)
+
+**Root Cause Analysis:**
+Investigation revealed the actual problem:
+1. Unipile API requires `profileUrl` (LinkedIn URL) to send connection requests or InMail
+2. Column mapping system did NOT include `linkedinUrl` field
+3. All prospects created with `linkedinUrl = NULL`
+4. Send function correctly checks for `linkedinUrl` and rejects with "No LinkedIn URL" error
+5. **Fundamental architectural flaw:** Cannot send LinkedIn messages without LinkedIn URLs
+
+**Database Evidence:**
+```sql
+SELECT id, firstName, lastName, linkedinUrl, sendStatus FROM Prospect LIMIT 5;
+-- Result: All prospects have linkedinUrl = NULL
+```
+
+**Fix Implemented (April 2, 2026):**
+
+**Files Modified:**
+- `lib/column-mapper.ts`
+  - Added `linkedinUrl` to `ColumnMapping` interface
+  - Made `linkedinUrl` a REQUIRED field (like firstName, lastName, company)
+  - Added auto-detection patterns: `linkedin url`, `linkedin profile`, `linkedin`, etc.
+  - Updated `extractMappedValues()` to extract `linkedinUrl` from CSV rows
+  - Added field label: "LinkedIn URL"
+
+- `app/api/campaigns/[id]/mapping/route.ts` (line 101)
+  - Added `linkedinUrl: mappedValues.linkedinUrl` when creating prospects
+
+- `lib/inngest/send-messages.ts`
+  - Already had validation: checks `if (!prospect.linkedinUrl)` before sending
+  - Already passes `linkedinUrl` as `profileUrl` to Unipile (lines 123, 129)
+  - Fixed: Updated WHERE clauses to handle `enableCrmSync: false` campaigns (lines 64-84, 188-203)
+
+**What This Fixes:**
+- ✅ LinkedIn URL column can now be mapped from CSV
+- ✅ Prospects created with populated `linkedinUrl` field
+- ✅ Send function receives required `profileUrl` for Unipile API
+- ✅ Fixed message campaigns (without CRM sync) can now send
+
+**Testing Required:**
+⚠️ **NOT YET TESTED** - Changes require creating a new campaign with:
+1. CSV file containing LinkedIn URL column (e.g., "LinkedIn URL", "LinkedIn Profile", etc.)
+2. Column mapper should auto-detect and mark LinkedIn URL as REQUIRED
+3. Upload and map columns including LinkedIn URL
+4. Proceed through workflow to send messages
+5. Verify Unipile receives `profileUrl` and sends successfully
+
+**Status:** ✅ Code fixed and compiles, ⚠️ NOT TESTED, 🔴 TOP PRIORITY for next session
+
+**User Comment:** "nothing has changed. same issues and same level of detail in the log. I don't have confidence on your approach to resolving this so i will now take over control of the approach."
+
+---
+
+## Previous Session Issues (April 1, 2026)
 
 ### 1. ✅ Delete All Campaigns Feature
 **Request:** Add settings option to delete all campaigns with confirmation
@@ -424,33 +490,77 @@ node test-known-person.js        # Test Apify Actor with famous CEOs
 
 ## Next Steps
 
-### IMMEDIATE - BLOCKER (Choose Enrichment Provider)
-**Current Issue:** Apify Actor is non-functional
+### 🔴 IMMEDIATE PRIORITY - LinkedIn Sending (Session Resume)
+
+**Current Status:** Code fixed but NOT TESTED
+
+**Testing Steps Required:**
+1. Create test CSV with LinkedIn URL column
+   - Must include: First Name, Last Name, Company, LinkedIn URL
+   - Example LinkedIn URL column names that will auto-detect:
+     - "LinkedIn URL"
+     - "LinkedIn Profile"
+     - "LinkedIn"
+     - "Profile URL"
+
+2. Create new fixed message campaign
+   - Navigate to `/campaigns/new`
+   - Upload test CSV file
+   - Verify column mapper shows "LinkedIn URL" as REQUIRED field
+   - Map all required fields including LinkedIn URL
+   - Verify prospects created with populated `linkedinUrl`
+
+3. Complete workflow to send
+   - Write fixed message
+   - Connect LinkedIn account (if not already connected)
+   - Navigate to send page
+   - Verify prospect shows with LinkedIn URL
+   - Attempt to send test message
+   - Monitor logs for Unipile API call with `profileUrl`
+
+4. Verify send success
+   - Check prospect `sendStatus` updated to "SENT"
+   - Verify LinkedIn connection request/InMail actually sent
+   - Check for any error messages
+
+**Database Validation:**
+```sql
+-- Verify new prospects have linkedinUrl populated
+SELECT id, firstName, lastName, linkedinUrl, sendStatus
+FROM "Prospect"
+WHERE "campaignId" = 'new-campaign-id';
+
+-- Should show linkedinUrl with actual LinkedIn URLs, not NULL
+```
+
+**If Issues Persist:**
+- Check Next.js logs: `tail -50 .logs/nextjs.log`
+- Check Inngest logs: `tail -50 .logs/inngest.log`
+- Look for "No LinkedIn URL" error in send-messages function
+- Verify Unipile API call includes `profileUrl` parameter
+
+**Expected Outcome:**
+✅ LinkedIn messages send successfully with populated `profileUrl`
+
+---
+
+### SECONDARY - Enrichment Provider (Deferred)
+**Current Issue:** Apify Actor is non-functional (from April 1 session)
 
 **Options:**
-1. **People Data Labs (PDL) API** - Direct integration (what Apify uses)
-   - Pros: Reliable, same data source as Apify
-   - Cons: Requires PDL API key, potentially expensive
-
+1. **People Data Labs (PDL) API** - Direct integration
 2. **RocketReach API** - Alternative B2B enrichment
-   - Pros: Good match rates, reasonable pricing
-   - Cons: Different data format, requires new integration
+3. **Clarify Proxycurl status** - Original provider (lib/proxycurl.ts still exists)
+4. **Try different Apify Actor** - If alternatives available
 
-3. **Clarify Proxycurl status** - Original provider
-   - File still exists: `lib/proxycurl.ts`
-   - Need to understand why it was rejected (cost? API access? other?)
-   - Could revert to Proxycurl if issue is resolved
+**Priority:** DEFERRED until LinkedIn sending is verified working
 
-4. **Try different Apify Actor** - If other options available
-   - Current actor (ryanclinton/person-enrichment-lookup) is broken
-   - May be alternatives on Apify marketplace
+---
 
-**Action Required:** User decision on which provider to use
-
-### After Provider Decision
+### After LinkedIn Send Verified
 1. ✅ Production build passes locally
 2. ✅ Deployed to Vercel
-3. 🔄 Implement chosen enrichment provider
+3. 🔄 Decide on enrichment provider
 4. 🔄 Test enrichment with real data
 5. 🔄 Test Claude message generation with real API key
 
@@ -554,7 +664,24 @@ node test-known-person.js        # Test Apify Actor with famous CEOs
 
 ---
 
-## Files Modified Current Session (April 1, 2026)
+## Files Modified Current Session (April 2, 2026)
+
+### LinkedIn URL Fix (CRITICAL)
+- `lib/column-mapper.ts` - Added `linkedinUrl` field to mapping system, made REQUIRED, added auto-detection patterns, updated extractMappedValues()
+- `app/api/campaigns/[id]/mapping/route.ts` - Added `linkedinUrl` to prospect creation (line 101)
+- `lib/inngest/send-messages.ts` - Fixed WHERE clauses to support campaigns with `enableCrmSync: false` (lines 64-84, 188-203)
+
+### Configuration Changes
+- `.env.local` - Updated INNGEST_EVENT_KEY and INNGEST_SIGNING_KEY to `local-dev-key` values for local development
+- `lib/inngest/client.ts` - Added `eventKey: process.env.INNGEST_EVENT_KEY` to client configuration
+
+### Inngest Dev Server
+- Started Inngest dev server (PID 32968) - Required for background job processing
+- Next.js dev server running (PID 33483)
+
+---
+
+## Files Modified Previous Session (April 1, 2026)
 
 ### New Files Created
 - `app/api/campaigns/delete-all/route.ts` - DELETE endpoint for removing all campaigns
@@ -604,10 +731,12 @@ This application is being developed for Product School to automate LinkedIn outr
 **Current Phase:** Deployment & Integration Testing
 
 **Priority:**
-1. Deploy to Vercel successfully
-2. Test core workflow (Upload → Map → Prospects)
-3. Integrate external APIs (ProxyCurl, Claude, Salesforce, SalesLoft, Unipile)
-4. End-to-end testing with real data
+1. 🔴 **CRITICAL:** Test and verify LinkedIn sending with linkedinUrl fix (April 2, 2026)
+2. Deploy to Vercel successfully
+3. Test core workflow (Upload → Map → Prospects)
+4. Integrate external APIs (Enrichment, Claude, Salesforce, SalesLoft, Unipile)
+5. End-to-end testing with real data
 
-**Blockers Removed:** ✅ File upload working, ✅ Build passing
-**Current Blocker:** Environment variables needed in Vercel
+**Blockers Removed:** ✅ File upload working, ✅ Build passing, ✅ LinkedinUrl added to mapping
+**Current State:** ⚠️ LinkedIn sending fix implemented but NOT TESTED
+**Next Session Focus:** 🔴 Verify LinkedIn messages can be sent with populated linkedinUrl field

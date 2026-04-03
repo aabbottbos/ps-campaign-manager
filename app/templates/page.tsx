@@ -5,8 +5,8 @@ export default function TemplatesPage() {
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">Campaign Templates</h1>
-        <p className="text-gray-600 mt-1">Save and reuse campaign configurations</p>
+        <h1 className="text-3xl font-bold text-ps-text-primary">Campaign Templates</h1>
+        <p className="text-ps-text-secondary mt-1">Save and reuse campaign configurations</p>
       </div>
 
       <Card className="text-center py-12">

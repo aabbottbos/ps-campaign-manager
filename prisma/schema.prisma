@@ -92,6 +92,14 @@ model Campaign {
 
   prospects           Prospect[]
 
+  // Message generation strategy
+  messageGenerationStrategy MessageGenerationStrategy @default(AI_PERSONALIZED)
+  fixedMessage              String?         @db.Text // Fixed message for all prospects (when strategy = FIXED_MESSAGE)
+
+  // CRM integration toggles
+  enableCrmSync       Boolean         @default(true)  // Whether to sync to Salesforce/SalesLoft
+  enableEnrichment    Boolean         @default(true)  // Whether to enrich prospects with LinkedIn data
+
   // SalesLoft Cadence to enroll prospects into
   salesloftCadenceId  String?
 
@@ -105,6 +113,11 @@ model Campaign {
 enum OutreachType {
   CONNECT   // 300 character limit
   INMAIL    // ~1900 character limit
+}
+
+enum MessageGenerationStrategy {
+  AI_PERSONALIZED   // Enrich prospects and generate unique messages with AI
+  FIXED_MESSAGE     // Send the same message to all prospects
 }
 
 enum CampaignStatus {

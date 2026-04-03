@@ -35,6 +35,22 @@ export const syncCRM = inngest.createFunction(
       throw new Error(`Campaign ${campaignId} not found`)
     }
 
+    // Check if CRM sync is enabled for this campaign
+    if (!campaign.enableCrmSync) {
+      // Skip CRM sync, proceed directly to sending or complete
+      await step.run("skip-crm-sync", async () => {
+        return prisma.campaign.update({
+          where: { id: campaignId },
+          data: { status: "SENDING" }
+        })
+      })
+
+      return {
+        message: "CRM sync disabled for this campaign",
+        skipped: true
+      }
+    }
+
     if (campaign.prospects.length === 0) {
       return { message: "No approved prospects to sync" }
     }

@@ -109,8 +109,8 @@ export default function UploadPage({ params }: UploadPageProps) {
   return (
     <div className="max-w-3xl mx-auto">
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">Upload Prospects</h1>
-        <p className="text-gray-600 mt-1">Step 2: File Upload</p>
+        <h1 className="text-3xl font-bold text-ps-text-primary">Upload Prospects</h1>
+        <p className="text-ps-text-secondary mt-1">Step 2: File Upload</p>
       </div>
 
       <Card>
@@ -126,7 +126,7 @@ export default function UploadPage({ params }: UploadPageProps) {
               className={`relative border-2 border-dashed rounded-lg p-12 text-center transition-colors ${
                 dragActive
                   ? "border-primary bg-primary/5"
-                  : "border-gray-300 hover:border-gray-400"
+                  : "border-ps hover:border-gray-400"
               }`}
               onDragEnter={handleDrag}
               onDragLeave={handleDrag}
@@ -142,7 +142,7 @@ export default function UploadPage({ params }: UploadPageProps) {
                 disabled={uploading}
               />
               <Upload className="mx-auto h-12 w-12 text-gray-400" />
-              <p className="mt-4 text-sm font-medium text-gray-900">
+              <p className="mt-4 text-sm font-medium text-ps-text-primary">
                 Drop your file here, or{" "}
                 <label
                   htmlFor="file-upload"
@@ -151,17 +151,17 @@ export default function UploadPage({ params }: UploadPageProps) {
                   browse
                 </label>
               </p>
-              <p className="mt-2 text-xs text-gray-500">
+              <p className="mt-2 text-xs text-ps-text-secondary">
                 CSV, XLSX, or XLS files up to 10MB • Maximum 5,000 rows
               </p>
             </div>
           ) : (
-            <div className="border rounded-lg p-6 bg-gray-50">
+            <div className="border rounded-lg p-6 bg-surface">
               <div className="flex items-start gap-4">
                 <FileText className="h-10 w-10 text-primary flex-shrink-0" />
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-gray-900 truncate">{file.name}</p>
-                  <p className="text-xs text-gray-500 mt-1">
+                  <p className="text-sm font-medium text-ps-text-primary truncate">{file.name}</p>
+                  <p className="text-xs text-ps-text-secondary mt-1">
                     {(file.size / 1024).toFixed(1)} KB
                   </p>
                   {uploadProgress && (
@@ -171,7 +171,7 @@ export default function UploadPage({ params }: UploadPageProps) {
                       ) : (
                         <CheckCircle2 className="h-4 w-4 text-green-500" />
                       )}
-                      <p className="text-sm text-gray-700">{uploadProgress}</p>
+                      <p className="text-sm text-ps-text-secondary">{uploadProgress}</p>
                     </div>
                   )}
                 </div>
