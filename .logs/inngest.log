@@ -79,3 +79,18 @@
 {"time":"2026-04-03T12:49:13.062077Z","level":"INFO","msg":"starting connect gateway grpc server","caller":"connect-gateway","addr":":50052"}
 {"time":"2026-04-03T12:49:13.064833Z","level":"INFO","msg":"subscribing to events","topic":"events"}
 {"time":"2026-04-03T12:49:19.473431Z","level":"INFO","msg":"apps synced, disabling auto-discovery"}
+{"time":"2026-04-03T14:49:40.186169Z","level":"INFO","msg":"starting executor grpc server","svc":"executor","addr":":50053"}
+{"time":"2026-04-03T14:49:40.188153Z","level":"INFO","msg":"service starting","caller":"lease-scavenger","service":"lease-scavenger"}
+{"time":"2026-04-03T14:49:40.188151Z","level":"INFO","msg":"service starting","caller":"executor","service":"executor"}
+{"time":"2026-04-03T14:49:40.188176Z","level":"INFO","msg":"subscribing to function queue"}
+{"time":"2026-04-03T14:49:40.188185Z","level":"INFO","msg":"Executor started in assignedQueueShard Mode","queue_shard":"default"}
+{"time":"2026-04-03T14:49:40.188191Z","level":"INFO","msg":"service starting","caller":"devserver","service":"devserver"}
+{"time":"2026-04-03T14:49:40.188196Z","level":"INFO","msg":"autodiscovering locally hosted SDKs"}
+{"time":"2026-04-03T14:49:40.188172Z","level":"INFO","msg":"service starting","caller":"api","service":"api"}
+{"time":"2026-04-03T14:49:40.188259Z","level":"INFO","msg":"starting server","caller":"api","addr":"0.0.0.0:8288"}
+{"time":"2026-04-03T14:49:40.188342Z","level":"INFO","msg":"service starting","caller":"connect-gateway","service":"connect-gateway"}
+{"time":"2026-04-03T14:49:40.188264Z","level":"INFO","msg":"starting event stream","backend":"redis"}
+{"time":"2026-04-03T14:49:40.188389Z","level":"INFO","msg":"service starting","caller":"runner","service":"runner"}
+{"time":"2026-04-03T14:49:40.188486Z","level":"INFO","msg":"starting connect gateway grpc server","caller":"connect-gateway","addr":":50052"}
+{"time":"2026-04-03T14:49:40.190126Z","level":"INFO","msg":"subscribing to events","topic":"events"}
+{"time":"2026-04-03T14:49:46.561569Z","level":"INFO","msg":"apps synced, disabling auto-discovery"}

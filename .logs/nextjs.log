@@ -9983,3 +9983,65 @@ Require stack:
  PUT /api/inngest 200 in 17ms
  PUT /api/inngest 200 in 17ms
  PUT /api/inngest 200 in 9ms
+
+> ps-campaign-manager@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3000
+  - Environments: .env.local, .env
+
+ ✓ Starting...
+ ✓ Ready in 1102ms
+ ✓ Compiled /api/inngest in 321ms (550 modules)
+ GET /api/inngest 200 in 467ms
+ PUT /api/inngest 200 in 485ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 723ms (1071 modules)
+ GET /x/inngest 404 in 780ms
+ ✓ Compiled in 116ms (1057 modules)
+ GET /.netlify/functions/inngest 404 in 98ms
+ GET /.redwood/functions/inngest 404 in 8ms
+ PUT /api/inngest 200 in 115ms
+ PUT /api/inngest 200 in 12ms
+ ○ Compiling /campaigns ...
+ ✓ Compiled /campaigns in 1015ms (3300 modules)
+ PUT /api/inngest 200 in 745ms
+ GET /campaigns 200 in 2167ms
+ ✓ Compiled /api/auth/[...nextauth] in 181ms (2397 modules)
+ GET /api/auth/session 200 in 432ms
+ GET /api/auth/session 200 in 31ms
+ PUT /api/inngest 200 in 35ms
+ ✓ Compiled /settings in 495ms (3329 modules)
+ GET /settings?_rsc=1n6hx 200 in 39ms
+ ✓ Compiled /api/linkedin/accounts in 159ms (2438 modules)
+ GET /api/linkedin/accounts 200 in 376ms
+ GET /api/linkedin/accounts 200 in 66ms
+ PUT /api/inngest 200 in 120ms
+ PUT /api/inngest 200 in 26ms
+ ✓ Compiled /api/campaigns/delete-all in 189ms (2440 modules)
+ DELETE /api/campaigns/delete-all 200 in 334ms
+ PUT /api/inngest 200 in 46ms
+ PUT /api/inngest 200 in 26ms
+ PUT /api/inngest 200 in 19ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 28ms
+ PUT /api/inngest 200 in 22ms
+ GET /api/auth/session 200 in 76ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 38ms
+ PUT /api/inngest 200 in 24ms
+ PUT /api/inngest 200 in 22ms
+ PUT /api/inngest 200 in 21ms
+ PUT /api/inngest 200 in 27ms
+ PUT /api/inngest 200 in 18ms
+ PUT /api/inngest 200 in 15ms
+ GET /api/auth/session 200 in 74ms
+ PUT /api/inngest 200 in 7ms
+ GET /campaigns?_rsc=c0pfn 200 in 158ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 25ms
+ PUT /api/inngest 200 in 27ms
+ PUT /api/inngest 200 in 20ms
+ PUT /api/inngest 200 in 19ms
