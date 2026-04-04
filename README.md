@@ -2,7 +2,7 @@
 
 LinkedIn outreach campaign management tool for Product School.
 
-## Sprint 1: Foundation — ✅ Complete
+## Sprint 1: Foundation —  Complete
 
 ### What's Been Built
 
