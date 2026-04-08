@@ -38,3 +38,24 @@ next-env.d.ts
 
 # prisma
 prisma/migrations/
+
+# test scripts
+/test-scripts/
+test-*.js
+check-*.js
+debug-*.js
+demonstrate-*.js
+unipile-*.js
+
+# logs and pids
+.logs/
+.pids/
+*.log
+*.pid
+
+# test data
+*.csv
+
+# vim swap files
+*.swp
+*.swo

@@ -68,6 +68,29 @@ function getHeaders(): Record<string, string> {
 }
 
 /**
+ * Extract LinkedIn public identifier from a LinkedIn URL
+ * Examples:
+ *   https://www.linkedin.com/in/aaabbott/ → aaabbott
+ *   https://linkedin.com/in/john-smith → john-smith
+ *   john-smith → john-smith (already extracted)
+ */
+function extractLinkedInPublicId(urlOrId: string): string {
+  // If it's already just an ID (no slashes or http), return as-is
+  if (!urlOrId.includes('/') && !urlOrId.includes('http')) {
+    return urlOrId
+  }
+
+  // Extract from URL pattern: /in/{publicId}/
+  const match = urlOrId.match(/\/in\/([^\/\?#]+)/)
+  if (match && match[1]) {
+    return match[1]
+  }
+
+  // Fallback: return as-is
+  return urlOrId
+}
+
+/**
  * List all connected LinkedIn accounts
  */
 export async function listAccounts(): Promise<UnipileAccount[]> {
@@ -143,14 +166,19 @@ export async function sendConnectionRequest(
   params: SendConnectionRequestParams
 ): Promise<UnipileMessageResponse> {
   try {
+    // Extract LinkedIn public ID from URL (e.g., "aaabbott" from "https://linkedin.com/in/aaabbott/")
+    const publicId = extractLinkedInPublicId(params.profileUrl)
+
     console.log(`[UNIPILE] Step 1: Fetching profile to get provider_id`, {
       accountId: params.accountId,
       profileUrl: params.profileUrl,
+      publicId: publicId,
     })
 
     // Step 1: Get the user's profile to extract provider_id
+    // CORRECT FORMAT: GET /api/v1/users/{identifier}?account_id={account_id}
     const profileResponse = await fetch(
-      `${UNIPILE_API_URL}/users/profile?account_id=${params.accountId}&identifier=${encodeURIComponent(params.profileUrl)}`,
+      `${UNIPILE_API_URL}/users/${encodeURIComponent(publicId)}?account_id=${params.accountId}`,
       {
         method: "GET",
         headers: getHeaders(),
@@ -230,36 +258,164 @@ export async function sendConnectionRequest(
 /**
  * Send a LinkedIn InMail message
  * @param params - Account ID, LinkedIn profile URL, optional subject, and message (max ~1900 chars)
+ *
+ * This uses the correct Unipile endpoint for InMail messaging.
+ * Similar to connection requests, this requires a two-step process:
+ * 1. Get the user's profile to retrieve their provider_id (LinkedIn URN)
+ * 2. Send the InMail using the provider_id with the /api/v1/chats endpoint
  */
 export async function sendInMail(params: SendInMailParams): Promise<UnipileMessageResponse> {
   try {
-    const response = await fetch(`${UNIPILE_API_URL}/messaging/inmail`, {
-      method: "POST",
-      headers: getHeaders(),
-      body: JSON.stringify({
-        account_id: params.accountId,
-        profile_url: params.profileUrl,
-        subject: params.subject,
-        message: params.message,
-      }),
+    // Extract LinkedIn public ID from URL (e.g., "aaabbott" from "https://linkedin.com/in/aaabbott/")
+    const publicId = extractLinkedInPublicId(params.profileUrl)
+
+    console.log(`[UNIPILE] Step 1: Fetching profile to get provider_id for InMail`, {
+      accountId: params.accountId,
+      profileUrl: params.profileUrl,
+      publicId: publicId,
     })
 
-    const data = await response.json()
+    // Step 1: Get the user's profile to extract provider_id
+    // CORRECT FORMAT: GET /api/v1/users/{identifier}?account_id={account_id}
+    const profileResponse = await fetch(
+      `${UNIPILE_API_URL}/users/${encodeURIComponent(publicId)}?account_id=${params.accountId}`,
+      {
+        method: "GET",
+        headers: getHeaders(),
+      }
+    )
 
-    if (!response.ok) {
+    if (!profileResponse.ok) {
+      const profileError = await profileResponse.json()
+      console.error(`[UNIPILE] Profile fetch failed for InMail:`, {
+        status: profileResponse.status,
+        error: profileError,
+      })
       return {
         success: false,
-        error: data.error || `API error: ${response.status}`,
-        rate_limit_reset: data.rate_limit_reset,
+        error: profileError.detail || profileError.message || `Failed to fetch profile: ${profileResponse.status}`,
       }
     }
 
+    const profileData = await profileResponse.json()
+    const providerId = profileData.provider_id
+
+    if (!providerId) {
+      console.error(`[UNIPILE] No provider_id found in profile response:`, profileData)
+      return {
+        success: false,
+        error: "Could not find LinkedIn profile ID",
+      }
+    }
+
+    // Check if there's a pending connection request that YOU sent (blocks InMail)
+    // Note: Only outgoing requests (type: SENT) block InMail, not incoming requests (type: RECEIVED)
+    if (profileData.invitation?.status === "PENDING" && profileData.invitation?.type === "SENT") {
+      console.log(`[UNIPILE] BLOCKED: You have a pending outgoing connection request for ${params.profileUrl}`)
+      console.log(`[UNIPILE] LinkedIn blocks InMail when you have sent a pending connection request`)
+      console.log(`[UNIPILE] Invitation details:`, profileData.invitation)
+      return {
+        success: false,
+        error: "Cannot send InMail: You have a pending connection request to this person. Withdraw the connection request on LinkedIn first or wait for them to accept/reject it.",
+      }
+    }
+
+    // Log if there's any invitation status (for debugging)
+    if (profileData.invitation) {
+      console.log(`[UNIPILE] Invitation status for ${params.profileUrl}:`, profileData.invitation)
+    }
+
+    // Check if already connected (should use regular message, not InMail)
+    if (profileData.network_distance === "FIRST_DEGREE") {
+      console.log(`[UNIPILE] Note: Already connected to ${params.profileUrl} - using InMail anyway`)
+    }
+
+    console.log(`[UNIPILE] Step 2: Sending InMail via chats endpoint`, {
+      providerId,
+      hasSubject: !!params.subject,
+      messageLength: params.message.length,
+      networkDistance: profileData.network_distance,
+    })
+
+    // Step 2: Get account to determine LinkedIn API type
+    const accountResponse = await fetch(`${UNIPILE_API_URL}/accounts/${params.accountId}`, {
+      headers: getHeaders(),
+    })
+
+    let apiType = "classic"
+    if (accountResponse.ok) {
+      const accountData = await accountResponse.json()
+      const premiumFeatures = accountData.connection_params?.im?.premiumFeatures || []
+
+      if (premiumFeatures.includes("sales_navigator")) {
+        apiType = "sales_navigator"
+      } else if (premiumFeatures.includes("recruiter")) {
+        apiType = "recruiter"
+      }
+    }
+
+    console.log(`[UNIPILE] Using LinkedIn API type: ${apiType}`)
+
+    // Step 3: Send InMail using the /api/v1/chats endpoint
+    const inmailPayload: any = {
+      account_id: params.accountId,
+      text: params.message,
+      attendees_ids: [providerId],
+      linkedin: {
+        api: apiType,
+        inmail: true,
+      },
+    }
+
+    // Add subject if provided
+    if (params.subject) {
+      inmailPayload.subject = params.subject
+    }
+
+    const inmailResponse = await fetch(`${UNIPILE_API_URL}/chats`, {
+      method: "POST",
+      headers: getHeaders(),
+      body: JSON.stringify(inmailPayload),
+    })
+
+    console.log(`[UNIPILE] InMail response status:`, inmailResponse.status, inmailResponse.statusText)
+
+    const inmailData = await inmailResponse.json()
+    console.log(`[UNIPILE] InMail response data:`, inmailData)
+
+    if (!inmailResponse.ok) {
+      console.error(`[UNIPILE] InMail failed:`, {
+        status: inmailResponse.status,
+        error: inmailData,
+      })
+
+      // Provide more helpful error messages for common issues
+      let errorMessage = inmailData.detail || inmailData.message || `API error: ${inmailResponse.status}`
+
+      if (inmailResponse.status === 403) {
+        // 403 Forbidden - likely InMail-specific restrictions
+        if (inmailData.detail?.includes("access")) {
+          errorMessage = "InMail blocked: Possible causes - (1) InMail credits depleted (check LinkedIn), (2) Recipient disabled InMails, (3) Account needs re-authentication. Sales Navigator has ~50 InMails/month."
+        }
+      } else if (inmailResponse.status === 429) {
+        // Rate limited
+        errorMessage = `Rate limited: Too many requests. ${inmailData.rate_limit_reset ? `Try again after ${inmailData.rate_limit_reset}` : 'Wait 24 hours and try again'}`
+      }
+
+      return {
+        success: false,
+        error: errorMessage,
+        rate_limit_reset: inmailData.rate_limit_reset,
+      }
+    }
+
+    console.log(`[UNIPILE] InMail sent successfully`)
     return {
       success: true,
-      message_id: data.message_id,
+      message_id: inmailData.id || "inmail_sent",
     }
   } catch (error) {
-    console.error("Error sending InMail:", error)
+    console.error("[UNIPILE] Exception sending InMail:", error)
     return {
       success: false,
       error: error instanceof Error ? error.message : "Unknown error",
