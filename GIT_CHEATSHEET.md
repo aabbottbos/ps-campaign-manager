@@ -24,7 +24,7 @@ git commit -m "feat: your change description"
 git checkout main
 git merge feature/my-feature --no-ff
 git push origin main
-git branch -d feature/my-feature
+3my-feature
 ```
 
 ---
