@@ -8,8 +8,9 @@ export interface ColumnMapping {
   linkedinUrl?: string
 }
 
-export const REQUIRED_FIELDS = ['firstName', 'lastName', 'company', 'linkedinUrl'] as const
-export const OPTIONAL_FIELDS = ['email', 'title', 'phone'] as const
+// All fields are now optional - mapping can proceed with any subset of fields
+export const REQUIRED_FIELDS = [] as const
+export const OPTIONAL_FIELDS = ['firstName', 'lastName', 'email', 'company', 'title', 'phone', 'linkedinUrl'] as const
 export const ALL_FIELDS = [...REQUIRED_FIELDS, ...OPTIONAL_FIELDS] as const
 
 export type MappingField = typeof ALL_FIELDS[number]
@@ -95,22 +96,31 @@ export function autoMapColumns(headers: string[]): ColumnMapping {
 
 /**
  * Validate that required fields are mapped
+ * Now that all fields are optional, this always returns valid=true
+ * but checks if at least one field is mapped
  */
 export function validateMapping(mapping: ColumnMapping): {
   valid: boolean
   missingFields: string[]
+  hasAtLeastOneField: boolean
 } {
   const missingFields: string[] = []
 
+  // Check for any required fields (currently none)
   for (const field of REQUIRED_FIELDS) {
     if (!mapping[field]) {
       missingFields.push(field)
     }
   }
 
+  // Check if at least one field is mapped
+  const mappedFields = Object.values(mapping).filter(val => val !== undefined && val !== null)
+  const hasAtLeastOneField = mappedFields.length > 0
+
   return {
-    valid: missingFields.length === 0,
+    valid: missingFields.length === 0, // Always true now since REQUIRED_FIELDS is empty
     missingFields,
+    hasAtLeastOneField,
   }
 }
 
@@ -168,7 +178,8 @@ export function getFieldLabel(field: MappingField): string {
 
 /**
  * Check if a field is required
+ * Since all fields are now optional, this always returns false
  */
 export function isRequiredField(field: MappingField): boolean {
-  return REQUIRED_FIELDS.includes(field as any)
+  return false
 }
