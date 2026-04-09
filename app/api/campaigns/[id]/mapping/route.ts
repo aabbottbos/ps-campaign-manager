@@ -43,12 +43,12 @@ export async function POST(
     const body = await request.json()
     const mapping: ColumnMapping = body.mapping
 
-    // Validate mapping
+    // Validate mapping - ensure at least one field is mapped
     const validation = validateMapping(mapping)
-    if (!validation.valid) {
+    if (!validation.hasAtLeastOneField) {
       return NextResponse.json(
         {
-          error: `Missing required field mappings: ${validation.missingFields.join(", ")}`,
+          error: "Please map at least one field from your file",
         },
         { status: 400 }
       )

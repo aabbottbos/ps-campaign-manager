@@ -176,19 +176,17 @@ export default function MappingPage({ params }: MappingPageProps) {
           <CardHeader>
             <CardTitle>Map Your File Columns</CardTitle>
             <CardDescription>
-              Match the columns from your file to the required prospect fields. Found {data.totalRows} prospects.
+              Match the columns from your file to prospect fields. All fields are optional. Found {data.totalRows} prospects.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             {ALL_FIELDS.map((field) => {
-              const required = isRequiredField(field)
               const currentValue = mapping[field]
 
               return (
                 <div key={field} className="grid grid-cols-3 gap-4 items-center">
                   <Label className="flex items-center gap-2">
                     {getFieldLabel(field)}
-                    {required && <span className="text-red-500">*</span>}
                   </Label>
 
                   <div className="col-span-2">
@@ -215,13 +213,13 @@ export default function MappingPage({ params }: MappingPageProps) {
               )
             })}
 
-            {!validation.valid && (
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex gap-3">
-                <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
-                <div className="text-sm text-red-900">
-                  <p className="font-medium">Required fields missing:</p>
+            {!validation.hasAtLeastOneField && (
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 flex gap-3">
+                <AlertCircle className="h-5 w-5 text-yellow-600 flex-shrink-0 mt-0.5" />
+                <div className="text-sm text-yellow-900">
+                  <p className="font-medium">No fields mapped</p>
                   <p className="mt-1">
-                    {validation.missingFields.map((field) => getFieldLabel(field as any)).join(", ")}
+                    Please map at least one field from your file to continue.
                   </p>
                 </div>
               </div>
@@ -312,7 +310,7 @@ export default function MappingPage({ params }: MappingPageProps) {
           >
             Back to Upload
           </Button>
-          <Button onClick={handleSaveMapping} disabled={!validation.valid || saving}>
+          <Button onClick={handleSaveMapping} disabled={!validation.hasAtLeastOneField || saving}>
             {saving ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
