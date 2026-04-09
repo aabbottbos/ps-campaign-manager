@@ -36,17 +36,6 @@ export async function POST(
       return NextResponse.json({ error: "Forbidden" }, { status: 403 })
     }
 
-    // Check if enrichment is enabled for this campaign
-    if (!campaign.enableEnrichment) {
-      return NextResponse.json(
-        {
-          error: "Enrichment is disabled for this campaign",
-          message: "This campaign is configured to skip enrichment. Proceed to the review step.",
-        },
-        { status: 400 }
-      )
-    }
-
     // Check if campaign is in the right status
     if (campaign.status !== "MAPPING_COMPLETE") {
       return NextResponse.json(
@@ -73,6 +62,46 @@ export async function POST(
           requiresSetup: true,
         },
         { status: 503 }
+      )
+    }
+
+    // For AI_PERSONALIZED campaigns, skip Apify enrichment and go directly to message generation
+    if (campaign.messageGenerationStrategy === "AI_PERSONALIZED") {
+      try {
+        await inngest.send({
+          name: "campaign/generate-ai-personalized-messages",
+          data: {
+            campaignId,
+          },
+        })
+
+        return NextResponse.json({
+          success: true,
+          message: "AI message generation started",
+          campaignId,
+          prospectCount: campaign._count.prospects,
+        })
+      } catch (inngestError: any) {
+        console.error("Inngest error:", inngestError)
+        return NextResponse.json(
+          {
+            error: "Failed to start message generation job",
+            message: inngestError.message || "Unknown error with background job service",
+            requiresSetup: true,
+          },
+          { status: 503 }
+        )
+      }
+    }
+
+    // For non-AI campaigns with enrichment enabled, use traditional Apify enrichment
+    if (!campaign.enableEnrichment) {
+      return NextResponse.json(
+        {
+          error: "Enrichment is disabled for this campaign",
+          message: "This campaign is configured to skip enrichment. Proceed to the review step.",
+        },
+        { status: 400 }
       )
     }
 
